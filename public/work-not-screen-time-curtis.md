@@ -1,5 +1,5 @@
 ### For this class, I'm currently working on...
- - Making work-not-screen-time-curtis.md
+ - Studying for the test
 
 ### If the above is empty, I'm currently working on...
  - 
