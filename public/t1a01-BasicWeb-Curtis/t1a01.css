@@ -5,24 +5,48 @@
 }
 
 body {
-    background-color: rgb(0, 0, 20);
+    background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 20));
+    background-attachment: fixed;
 }
 
-#headingDiv {
+
+
+
+/* Header code */
+
+header {
+    position: relative;
     background-color: rgb(0, 0, 100);
     margin: auto;
-    width: fit-content;
+    margin-block-end: 1%;
+    width: 50%;
     border: 4px double white;
     padding: 1%;
 }
 
-heading {
+header heading {
     display: block;
     font-size: xx-large;
     /*margin-block-end: 1%;*/
 }
 
-subtitle {
+header subtitle {
     display: block;
     font-size: small;
+}
+
+
+
+
+/* Content code */
+
+main {
+    position: relative;
+    background-color: rgb(0, 0, 100);
+    text-align:left;
+    margin: auto;
+    width: 50%;
+    border: 4px double white;
+    padding: 1%;
+    white-space: normal;
 }

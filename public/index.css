@@ -1,4 +1,4 @@
-* {
+body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
@@ -14,4 +14,11 @@
     margin-top: 1%;
     border-style: double;
     padding: 25px;
+}
+
+
+#todoList {
+    text-align: left; 
+    align-content: left; 
+    align-items: left;
 }
