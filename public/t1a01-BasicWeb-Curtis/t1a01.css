@@ -1,0 +1,28 @@
+* {
+    text-align: center;
+    color:white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+body {
+    background-color: rgb(0, 0, 20);
+}
+
+#headingDiv {
+    background-color: rgb(0, 0, 100);
+    margin: auto;
+    width: fit-content;
+    border: 4px double white;
+    padding: 1%;
+}
+
+heading {
+    display: block;
+    font-size: xx-large;
+    /*margin-block-end: 1%;*/
+}
+
+subtitle {
+    display: block;
+    font-size: small;
+}
