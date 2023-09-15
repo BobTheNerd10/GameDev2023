@@ -1,14 +1,18 @@
 * {
-    text-align: center;
-    color:white;
+    
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 body {
     background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 20));
+    text-align: center;
     background-attachment: fixed;
+    color:white;
 }
 
+a {
+    color:aquamarine;
+}
 
 
 
@@ -49,4 +53,45 @@ main {
     border: 4px double white;
     padding: 1%;
     white-space: normal;
+}
+
+red {
+    color: red;
+}
+
+orange {
+    color: orange;
+}
+
+yellow {
+    color: yellow;
+}
+
+green {
+    color: greenyellow;
+}
+
+turquoise {
+    color:turquoise;
+}
+
+blue {
+    color: rgb(55, 68, 255);
+}
+
+indigo {
+    color:rgb(113, 4, 255);
+}
+
+purple {
+    color:rgb(255, 0, 234)
+}
+
+darkPurple {
+    color:rgb(255, 0, 157)
+}
+
+.inlineGallery img {
+    display:inline;
+    height: 13vw;;
 }
