@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 20));
+    background-image: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 50));
     text-align: center;
     background-attachment: fixed;
     color:white;
