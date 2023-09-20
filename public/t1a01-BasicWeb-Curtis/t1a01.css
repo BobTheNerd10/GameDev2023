@@ -116,27 +116,18 @@ darkPurple {
     width:fit-content;
     transform-origin: center;
     position: relative;
-    animation-name: spinny;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;  
-    
+    animation: spinny 5s infinite linear;    
 }
 
 .wave1, .wave2, .wave3, .wave4, .wave5, .wave6 {
     position: relative;
-    animation-name: wavy;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;  
-    animation-direction: alternate;
+    animation: wavy 1s infinite linear alternate;
     
 }
 
 .biggerWave1, .biggerWave2, .biggerWave3, .biggerWave4, .biggerWave5, .biggerWave6, .biggerWave7, .biggerWave8, .biggerWave9, .biggerWave10 {
     position: relative;
-    animation-name: biggerWavy;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;  
-    animation-direction: alternate;
+    animation: biggerWavy 1s infinite linear alternate;
 }
 
 .wave1, .biggerWave1 {
