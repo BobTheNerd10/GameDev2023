@@ -97,19 +97,85 @@ darkPurple {
 }
 
 
-#spanT {
+@keyframes wavy {
+    0%   {top: 2px;}
+    100% {top: -2px;}
+}
+
+@keyframes biggerWavy {
+    0%   {top: 4px;}
+    100% {top: -4px;}
+}
+
+@keyframes spinny {
+    0%   {rotate: 0deg;}
+    100% {rotate: 360deg;}
+}
+
+.spinny {
+    width:fit-content;
+    transform-origin: center;
+    position: relative;
+    animation-name: spinny;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;  
     
 }
 
-#spanH {
-
+.wave1, .wave2, .wave3, .wave4, .wave5, .wave6 {
+    position: relative;
+    animation-name: wavy;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;  
+    animation-direction: alternate;
+    
 }
 
-#spanI {
-
+.biggerWave1, .biggerWave2, .biggerWave3, .biggerWave4, .biggerWave5, .biggerWave6, .biggerWave7, .biggerWave8, .biggerWave9, .biggerWave10 {
+    position: relative;
+    animation-name: biggerWavy;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;  
+    animation-direction: alternate;
 }
 
-#spanS {
-
+.wave1, .biggerWave1 {
+    animation-delay: 0s;
 }
 
+.wave2, .biggerWave2 {
+    animation-delay: -0.2s;
+}
+
+.wave3, .biggerWave3 {
+    animation-delay: -0.4s;
+}
+
+.wave4, .biggerWave4 {
+    animation-delay: -0.6s;
+}
+  
+.wave5, .biggerWave5 {
+    animation-delay: -0.8s;
+}
+
+.wave6, .biggerWave6 {
+    animation-delay: -1s;
+}
+
+.wave7, .biggerWave7 {
+    animation-delay: -1.2s;
+}
+
+.wave8, .biggerWave8 {
+    animation-delay: -1.3s;
+}
+
+.wave9, .biggerWave9 {
+    animation-delay: -1.4s;
+}
+
+.wave10, .biggerWave10 {
+    animation-delay: -1.5s;
+}
+  
