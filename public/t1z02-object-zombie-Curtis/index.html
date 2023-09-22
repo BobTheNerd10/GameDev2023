@@ -8,33 +8,79 @@
 
 </head>
 <body>
-
-    <script>
-        let humanDictionary = {
-            'jon' : {
-                'zombie':   'true',
-                'name':     'jon'
-            },
-            'dan' : {
-                'zombie':   'false',
-                'name':     'dan'
-            }
-        }
-    </script>
+    <!--Remove alert alerts are lbasldkfjasldkfj
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -->
     <h3 text-align=center>t1z02-object-zombie-Curtis</h3>
     
-    <p>People: Jon, Dan</p>
+    <p>People: Jon, Dan, Bob, Jerry</p>
 
     <hr>
 
     <h4>Zombie checker</h4>
     Is <input id="myText01" type="text" value="jon"> a Zombie?<br>
-    <input type="button" value="Check it" onclick="{
-        
-        alert('maybe')
-    }"><br>
-    
 
+    <button id="myButton01">Check it!</button><br>
+    
+    <script defer>
+        let humanDictionary = {
+            'jon' : {
+                zombie:   true,
+                name:     'jon'
+            },
+            'dan' : {
+                zombie:   false,
+                name:     'dan'
+            },
+            'bob' : {
+                zombie:   true,
+                name:     'bob'
+            },
+            'jerry' : {
+                zombie:   false,
+                name:     'jerry'
+            }
+        }
+
+
+        let myButton = document.getElementById("myButton01") 
+        console.log(myButton)
+        let textInput = document.getElementById("myText01") 
+        myButton.addEventListener("onClick", myFunction())
+
+
+        function myFunction(){
+            
+            if(textInput.value in humanDictionary){
+                if(humanDictionary[textInput.value].zombie){
+                    alert("oh no! " + textInput.value + " is a zombie!")
+                }
+                else {
+                    alert(textInput.value + " is not a zombie!")
+                }
+            } 
+            else {
+                alert(textInput.value + " is not a valid person")
+            }
+        }    
+
+    </script>
 
 </body>
 </html>
