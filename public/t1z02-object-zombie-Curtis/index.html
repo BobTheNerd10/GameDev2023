@@ -29,7 +29,7 @@
     -->
     <h3 text-align=center>t1z02-object-zombie-Curtis</h3>
     
-    <p>People: Jon, Dan, Bob, Jerry</p>
+    <p id="personList">People:</p>
 
     <hr>
 
@@ -37,9 +37,12 @@
     Is <input id="myText01" type="text" value="jon"> a Zombie?<br>
 
     <button id="myButton01">Check it!</button><br>
+
+    <div id="zombieResultDiv"></div>
     
     <script defer>
-        let humanDictionary = {
+        // List of people who may be zombies
+        let humans = {
             'jon' : {
                 zombie:   true,
                 name:     'jon'
@@ -58,27 +61,39 @@
             }
         }
 
+        
 
+        // Get HTML elements by IDs
         let myButton = document.getElementById("myButton01") 
-        console.log(myButton)
+        let zombieResultDiv = document.getElementById("zombieResultDiv") 
+        let personList = document.getElementById("personList") 
         let textInput = document.getElementById("myText01") 
-        myButton.addEventListener("onClick", myFunction())
 
 
-        function myFunction(){
-            
-            if(textInput.value in humanDictionary){
-                if(humanDictionary[textInput.value].zombie){
-                    document.write("oh no! " + textInput.value + " is a zombie!")
+        // Add list of possible people to content on page
+        Object.keys(humans).forEach(person => {
+            personList.innerHTML += " " + humans[person].name
+        });
+
+        myButton.addEventListener("click", function (){
+
+            console.log("geosajjldfk")
+            if(textInput.value in humans){
+                if(humans[textInput.value].zombie){
+                    zombieResultDiv.innerHTML = "oh no! " + textInput.value + " is a zombie!"
                 }
                 else {
-                    document.write(textInput.value + " is not a zombie!")
+                    zombieResultDiv.innerHTML = textInput.value + " is not a zombie!"
                 }
             } 
             else {
-                document.write(textInput.value + " is not a valid person")
-            }
-        }    
+                zombieResultDiv.innerHTML = textInput.value + " is not a valid person"
+            }    
+
+        })
+
+
+
 
     </script>
 
