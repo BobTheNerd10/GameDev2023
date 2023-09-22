@@ -69,14 +69,14 @@
             
             if(textInput.value in humanDictionary){
                 if(humanDictionary[textInput.value].zombie){
-                    alert("oh no! " + textInput.value + " is a zombie!")
+                    document.write("oh no! " + textInput.value + " is a zombie!")
                 }
                 else {
-                    alert(textInput.value + " is not a zombie!")
+                    document.write(textInput.value + " is not a zombie!")
                 }
             } 
             else {
-                alert(textInput.value + " is not a valid person")
+                document.write(textInput.value + " is not a valid person")
             }
         }    
 
