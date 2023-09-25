@@ -8,21 +8,12 @@
 
 </head>
 <body>
-    <!--Remove alert alerts are lbasldkfjasldkfj
+    <!--
     
     
     
-    Make it a select box instead of a text box
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    Make the zombie selecter a select box instead of a text box
+    Have the option to add zombies
     
     
     
@@ -88,7 +79,7 @@
         let textInput = document.getElementById("myText01") 
 
 
-        // Add list of possible people to content on page
+        // Add list of possible people to the page (with respect for grammar)
         lastPerson = humans[Object.keys(humans)[Object.keys(humans).length - 1]]
 
         Object.keys(humans).forEach(person => {
@@ -110,14 +101,14 @@
 
 
 
-        // Add functionality to the buttons
+        // Add functionality to the button
         myButton.addEventListener("click", function (){
 
             inputText = textInput.value.toLowerCase().replace(" ", "")
 
             if(inputText in humans){
                 currentZombiePercentage = humans[inputText].zombiePercentage
-
+                
                 if(currentZombiePercentage > 90){
                     zombieResultDiv.innerHTML = `AAAAA ${humans[inputText].name.toUpperCase()} IS ${currentZombiePercentage}% ZOMBIE!! RUNN`
                 }
