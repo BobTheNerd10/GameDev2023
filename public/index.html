@@ -17,7 +17,17 @@
 		<h1>Assignments</h1>
 		<a href="Work-Not-Screen-Time-Curtis.html">Work-Not-Screen-Time-Curtis</a> (My to-do list!)
 		<hr>
+
+
+		<!--
+		<div id="assignmentList">
+
+
+		</div>
 		<p>T1A01 is a work in progress</p>
+		-->
+
+
 		<!--
 			<a href="t1a01-BasicWeb-Curtis">t1a01-BasicWeb-Curtis</a>
 		-->
@@ -43,6 +53,51 @@
 		
 
 	</div>
+
+	<script defer>
+		var assignmentList = document.getElementById("assignmentList")
+		const creatorName = "Curtis"
+
+		class AssignmentEntry {
+
+			constructor(assignmentId, assignmentName, isWip, isLinked){
+				this.assignmentId = assignmentId;
+				this.assignmentName = assignmentName;
+				this.isWip = isWip;
+				this.isLinked = isLinked;
+			}
+
+			addToAssignmentList(){
+
+				if(isLinked){
+
+				}
+				else if (isWip) {
+					assignmentList.innerHTML += `<p>${this.assignmentId.toUpperCase()} is a work in progress<p>`
+				}
+				else {
+					return
+				}
+
+				
+			}
+
+
+		}
+
+		let assignmentListData = [
+			new AssignmentEntry("t1a01", "BasicWeb", true, false),
+			new AssignmentEntry("t1a02", "lists-tables", true, false),
+			new AssignmentEntry("t1a03", "forms", true, false),
+			new AssignmentEntry("t1a04", "css", true, false),
+			new AssignmentEntry("t1z01", "first-javascript", true, false),
+			new AssignmentEntry("t1z02", "object-zombie", true, true),
+		]
+		
+
+		console.log(AssignmentEntry.assignmentListData)
+
+	</script>
 </body>
 </html>
 
