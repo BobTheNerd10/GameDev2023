@@ -29,7 +29,7 @@
     -->
     <h3 text-align=center>t1z02-object-zombie-Curtis</h3>
     
-    <p id="personList">People:</p>
+    <p id="personList">The people who are possibly zombies are</p>
 
     <hr>
 
@@ -40,24 +40,42 @@
 
     <div id="zombieResultDiv"></div>
     
-    <script defer>
+    <script defer> // Defer loads the JS code after the page has loaded (so JS doesnt try to load anything that isnt ready in the HTML code)
+        
+        
         // List of people who may be zombies
         let humans = {
             'jon' : {
-                zombie:   true,
-                name:     'jon'
+                zombiePercentage: 79,
+                name:     'Jon'
             },
             'dan' : {
-                zombie:   false,
-                name:     'dan'
+                zombiePercentage: 0,
+                name:     'Dan'
             },
             'bob' : {
-                zombie:   true,
-                name:     'bob'
+                zombiePercentage: 100,
+                name:     'Bob'
             },
-            'jerry' : {
-                zombie:   false,
-                name:     'jerry'
+            'samantha' : {
+                zombiePercentage: 0,
+                name:     'Samantha'
+            },
+            'jason' : {
+                zombiePercentage: 23,
+                name:     'Jason'
+            },
+            'billy' : {
+                zombiePercentage: 0,
+                name:     'Billy'
+            },
+            'martin' : {
+                zombiePercentage: 98,
+                name:     'Martin'
+            },
+            'zoe' : {
+                zombiePercentage: 0,
+                name:     'Zoe'
             }
         }
 
@@ -71,22 +89,53 @@
 
 
         // Add list of possible people to content on page
+        lastPerson = humans[Object.keys(humans)[Object.keys(humans).length - 1]]
+
         Object.keys(humans).forEach(person => {
+
+            // The reason this code is so weird is because of grammar
+            if (humans[person].name == lastPerson.name){
+                personList.innerHTML += " and"
+            }
+
             personList.innerHTML += " " + humans[person].name
+
+            if (humans[person] == lastPerson){
+                personList.innerHTML += "."
+            }
+            else {
+                personList.innerHTML += ","
+            }
         });
 
+
+
+        // Add functionality to the buttons
         myButton.addEventListener("click", function (){
 
-            if(textInput.value in humans){
-                if(humans[textInput.value].zombie){
-                    zombieResultDiv.innerHTML = "oh no! " + textInput.value + " is a zombie!"
+            inputText = textInput.value.toLowerCase()
+
+            if(inputText in humans){
+                currentZombiePercentage = humans[inputText].zombiePercentage
+
+                if(currentZombiePercentage > 90){
+                    zombieResultDiv.innerHTML = `AAAAA ${humans[inputText].name.toUpperCase()} IS ${currentZombiePercentage}% ZOMBIE!! RUNN`
                 }
-                else {
-                    zombieResultDiv.innerHTML = textInput.value + " is not a zombie!"
+                else if (currentZombiePercentage > 70){
+                    zombieResultDiv.innerHTML = `${humans[inputText].name} is ${currentZombiePercentage}% zombie! Better quarantine them!`
+                }
+                else if (currentZombiePercentage > 50){
+                    zombieResultDiv.innerHTML = `Oh no! ${humans[inputText].name} is more than 50% zombie! (${currentZombiePercentage}% to be exact.) Keep your distance!`
+                }
+                else if (currentZombiePercentage > 0){
+                    zombieResultDiv.innerHTML = `Uh oh, ${humans[inputText].name} is ${currentZombiePercentage}% zombie! Better find them a cure!`
+                }
+                else if (currentZombiePercentage == 0){
+                    zombieResultDiv.innerHTML = `Phew! ${humans[inputText].name} is ${currentZombiePercentage}% zombie! They are not a zombie :D`
                 }
             } 
             else {
-                zombieResultDiv.innerHTML = textInput.value + " is not a valid person"
+                zombieResultDiv.innerHTML = humans[inputText].name + " is not a valid person."
             }    
 
         })
