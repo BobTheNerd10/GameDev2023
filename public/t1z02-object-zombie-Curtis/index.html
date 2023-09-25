@@ -113,7 +113,7 @@
         // Add functionality to the buttons
         myButton.addEventListener("click", function (){
 
-            inputText = textInput.value.toLowerCase()
+            inputText = textInput.value.toLowerCase().replace(" ", "")
 
             if(inputText in humans){
                 currentZombiePercentage = humans[inputText].zombiePercentage
@@ -134,10 +134,24 @@
                     zombieResultDiv.innerHTML = `Phew! ${humans[inputText].name} is ${currentZombiePercentage}% zombie! They are not a zombie :D`
                 }
             } 
-            else {
-                zombieResultDiv.innerHTML = humans[inputText].name + " is not a valid person."
-            }    
-
+            else switch(inputText){
+                case "":
+                case "noone":
+                case "none":
+                case "no one":
+                    zombieResultDiv.innerHTML = "With all due respect, I can't check if the air is a zombie. Please use one of the names above!"
+                    break
+                case "everyone":
+                case "every one":
+                    zombieResultDiv.innerHTML = "That's like asking a syringe if it can vaccinate everyone at once. One name at a time, please!"
+                    break
+                case "curtis":
+                    zombieResultDiv.innerHTML = "DEFINITELY not a zombie! >:D"
+                    break
+                default:
+                    zombieResultDiv.innerHTML = `There's no one here named ${inputText}.`
+                    break
+            }
         })
 
 
