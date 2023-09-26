@@ -17,85 +17,67 @@
 		<h1>Assignments</h1>
 		<a href="Work-Not-Screen-Time-Curtis.html">Work-Not-Screen-Time-Curtis</a> (My to-do list!)
 		<hr>
-
-
-		<!--
-		<div id="assignmentList">
-
-
-		</div>
-		<p>T1A01 is a work in progress</p>
-		-->
-
-
-		<!--
-			<a href="t1a01-BasicWeb-Curtis">t1a01-BasicWeb-Curtis</a>
-		-->
-		<p>T1A02 is a work in progress</p>
-		<!--
-			<a href="t1a02-lists-tables-Curtis">t1a02-lists-tables-Curtis</a>
-		-->
-		<p>T1A03 is a work in progress</p>
-		<!--
-			<a href="t1a03-forms-Curtis">t1a03-forms-Curtis</a>
-		-->
-		<p>T1A04 is a work in progress</p>
-		<!--
-			<a href="t1a04-css-Curtis">t1a04-CSS-Curtis</a>
-		-->
-		<p>T1z01 is a work in progress</p>
-		<!--
-			<a href="t1z01-first-javascript-Curtis">t1z01-first-javascript-Curtis</a>
-		-->
-		<!--<p>T1z02 is a work in progress</p>
-		-->
-			<a href="t1z02-object-zombie-Curtis">t1z02-object-zombie-Curtis (WIP)</a>
 		
+		<div id="assignmentList">
+			<!--This will be filled dynamically by the javascript portion of the code-->
+		</div>
 
 	</div>
 
+	<!--Javascript portion :D-->
 	<script defer>
+
+
 		var assignmentList = document.getElementById("assignmentList")
 		const creatorName = "Curtis"
 
+
+
 		class AssignmentEntry {
 
-			constructor(assignmentId, assignmentName, isWip, isLinked){
+			constructor(assignmentId, assignmentName, isWip = false, isLinked = false, linkOveride = null){
 				this.assignmentId = assignmentId;
 				this.assignmentName = assignmentName;
+				this.fullAssignmentName = this.assignmentId + "-" + this.assignmentName + "-" + creatorName
+				this.fullLink = linkOveride ? linkOveride : this.fullAssignmentName + "/index.html"
 				this.isWip = isWip;
 				this.isLinked = isLinked;
+				this.linkOveride = linkOveride;
 			}
 
 			addToAssignmentList(){
 
-				if(isLinked){
-
+				if(this.isLinked){
+					assignmentList.innerHTML += `<a href="${this.fullLink}">${this.fullAssignmentName}`
+					if (this.isWip) {assignmentList.innerHTML += ` WIP`}
+					assignmentList.innerHTML += `</a>`
 				}
-				else if (isWip) {
+				else if (this.isWip) {
 					assignmentList.innerHTML += `<p>${this.assignmentId.toUpperCase()} is a work in progress<p>`
 				}
 				else {
 					return
 				}
-
-				
 			}
-
-
 		}
 
+
 		let assignmentListData = [
-			new AssignmentEntry("t1a01", "BasicWeb", true, false),
-			new AssignmentEntry("t1a02", "lists-tables", true, false),
-			new AssignmentEntry("t1a03", "forms", true, false),
-			new AssignmentEntry("t1a04", "css", true, false),
-			new AssignmentEntry("t1z01", "first-javascript", true, false),
-			new AssignmentEntry("t1z02", "object-zombie", true, true),
+			new AssignmentEntry(assignmentId = "t1a01", assignmentName = "BasicWeb",             isWip = true,  isLinked = false),
+			new AssignmentEntry(assignmentId = "t1a02", assignmentName = "lists-tables",         isWip = true,  isLinked = false),
+			new AssignmentEntry(assignmentId = "t1a03", assignmentName = "forms",                isWip = true,  isLinked = false),
+			new AssignmentEntry(assignmentId = "t1a04", assignmentName = "css",                  isWip = true,  isLinked = false),
+			//new AssignmentEntry(assignmentId = "t1z00", assignmentName = "Work-Not-Screen-Time", isWip = false, isLinked = true, linkOveride = "Work-Not-Screen-Time-Curtis.html"),
+			new AssignmentEntry(assignmentId = "t1z01", assignmentName = "first-javascript",     isWip = true,  isLinked = false),
+			new AssignmentEntry(assignmentId = "t1z02", assignmentName = "object-zombie",        isWip = true,  isLinked = true),
+			new AssignmentEntry(assignmentId = "t1z03", assignmentName = "array-zombie",         isWip = true,  isLinked = false),
 		]
 		
 
-		console.log(AssignmentEntry.assignmentListData)
+		
+		assignmentListData.forEach(function(assignmentEntryToAdd){
+			assignmentEntryToAdd.addToAssignmentList()
+		})
 
 	</script>
 </body>

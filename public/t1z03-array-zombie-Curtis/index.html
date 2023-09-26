@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t1z03 Curtis</title>
+
+
+</head>
+<body>
+    <!--
+    
+    
+    
+    Make the zombie selecter a select box instead of a text box
+    Have the option to add zombies
+    
+
+    Copy everything from t1z02 but make it a more array themed :D
+    
+    
+    
+    -->
+    <h3 text-align=center>t1z02-object-zombie-Curtis</h3>
+    
+    <p id="personList">The people who are possibly zombies are</p>
+
+    <hr>
+
+    <h4>Zombie checker</h4>
+    Is <input id="myText01" type="text" value="jon"> a Zombie?<br>
+
+    <button id="myButton01">Check it!</button><br>
+
+    <div id="zombieResultDiv"></div>
+    
+    <script defer> // Defer loads the JS code after the page has loaded (so JS doesnt try to load anything that isnt ready in the HTML code)
+        
+        
+        // List of people who may be zombies
+        let humans = {
+            'jon' : {
+                zombiePercentage: 79,
+                name:     'Jon'
+            },
+            'dan' : {
+                zombiePercentage: 0,
+                name:     'Dan'
+            },
+            'bob' : {
+                zombiePercentage: 100,
+                name:     'Bob'
+            },
+            'samantha' : {
+                zombiePercentage: 0,
+                name:     'Samantha'
+            },
+            'jason' : {
+                zombiePercentage: 23,
+                name:     'Jason'
+            },
+            'billy' : {
+                zombiePercentage: 0,
+                name:     'Billy'
+            },
+            'martin' : {
+                zombiePercentage: 98,
+                name:     'Martin'
+            },
+            'zoe' : {
+                zombiePercentage: 0,
+                name:     'Zoe'
+            }
+        }
+
+        
+
+        // Get HTML elements by IDs
+        let myButton = document.getElementById("myButton01") 
+        let zombieResultDiv = document.getElementById("zombieResultDiv") 
+        let personList = document.getElementById("personList") 
+        let textInput = document.getElementById("myText01") 
+
+
+        // Add list of possible people to the page (with respect for grammar)
+        lastPerson = humans[Object.keys(humans)[Object.keys(humans).length - 1]]
+
+        Object.keys(humans).forEach(person => {
+
+            // The reason this code is so weird is because of grammar
+            if (humans[person].name == lastPerson.name){
+                personList.innerHTML += " and"
+            }
+
+            personList.innerHTML += " " + humans[person].name
+
+            if (humans[person] == lastPerson){
+                personList.innerHTML += "."
+            }
+            else {
+                personList.innerHTML += ","
+            }
+        });
+
+
+
+        // Add functionality to the button
+        myButton.addEventListener("click", function (){
+
+            inputText = textInput.value.toLowerCase().replace(" ", "")
+
+            if(inputText in humans){
+                currentZombiePercentage = humans[inputText].zombiePercentage
+                
+                if(currentZombiePercentage > 90){
+                    zombieResultDiv.innerHTML = `AAAAA ${humans[inputText].name.toUpperCase()} IS ${currentZombiePercentage}% ZOMBIE!! RUNN`
+                }
+                else if (currentZombiePercentage > 70){
+                    zombieResultDiv.innerHTML = `${humans[inputText].name} is ${currentZombiePercentage}% zombie! Better quarantine them!`
+                }
+                else if (currentZombiePercentage > 50){
+                    zombieResultDiv.innerHTML = `Oh no! ${humans[inputText].name} is more than 50% zombie! (${currentZombiePercentage}% to be exact.) Keep your distance!`
+                }
+                else if (currentZombiePercentage > 0){
+                    zombieResultDiv.innerHTML = `Uh oh, ${humans[inputText].name} is ${currentZombiePercentage}% zombie! Better find them a cure!`
+                }
+                else if (currentZombiePercentage == 0){
+                    zombieResultDiv.innerHTML = `Phew! ${humans[inputText].name} is ${currentZombiePercentage}% zombie! They are not a zombie :D`
+                }
+            } 
+            else switch(inputText){
+                case "":
+                case "noone":
+                case "none":
+                case "no one":
+                    zombieResultDiv.innerHTML = "With all due respect, I can't check if the air is a zombie. Please use one of the names above!"
+                    break
+                case "everyone":
+                case "every one":
+                    zombieResultDiv.innerHTML = "That's like asking a syringe if it can vaccinate everyone at once. One name at a time, please!"
+                    break
+                case "curtis":
+                    zombieResultDiv.innerHTML = "DEFINITELY not a zombie! >:D"
+                    break
+                default:
+                    zombieResultDiv.innerHTML = `There's no one here named ${inputText}.`
+                    break
+            }
+        })
+
+
+
+
+    </script>
+
+</body>
+</html>
