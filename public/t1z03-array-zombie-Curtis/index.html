@@ -8,10 +8,10 @@
 
 </head>
 <body>
+    
+    
+    
     <!--
-    
-    
-    
     Make the zombie selecter a select box instead of a text box
     Have the option to add zombies
     
@@ -19,8 +19,36 @@
     Copy everything from t1z02 but make it a more array themed :D
     
     
-    
+    <h3 align=center>T1z03-array-zombie-fred.html</h3>
+    <script>
+        let myThingName = ['Jon','Dna', 'Fred']
+        let myThingZombie = [true,false.true]        
+    </script>
+
+    Is <select id="mySelect01"  size=1 onchange="{
+        myInput = document.getElementById('mySelect01').value
+        for (myLoop=0; myLoop <4; myLoop++){
+            if (myThingName[myLoop] == myInput){
+                if(myThingZombie[myLoop]){
+                    document.getElementById('myDiv01').innerHTML = myInput + ' is a Zombie'
+                } else {
+                    document.getElementById('myDiv01').innerHTML = myInput + ' is NOT a Zombie'
+                }
+            }
+        }
+    }">
+    <option>
+    <option>Jon
+    <option>Dan
+    <option>Fred
+    </select> a zombie? Really!<br>
+    <div id="myDiv01">...</div><br>
     -->
+
+
+
+    
+    
     <h3 text-align=center>t1z02-object-zombie-Curtis</h3>
     
     <p id="personList">The people who are possibly zombies are</p>

@@ -6,7 +6,7 @@
   	<title>GameDev 2023 Curtis</title>
 
 	<!--Other sheets-->
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="printStyle.css">
 	<!--<script src="index.js"></script>-->
 </head>
 <body>
@@ -45,15 +45,15 @@
 				this.linkOveride = linkOveride;
 			}
 
-			addToAssignmentList(){
-
+			
+			addToAssignmentList(htmlElement = assignmentList){
 				if(this.isLinked){
-					assignmentList.innerHTML += `<a href="${this.fullLink}">${this.fullAssignmentName}`
-					if (this.isWip) {assignmentList.innerHTML += ` WIP`}
-					assignmentList.innerHTML += `</a>`
+					htmlElement.innerHTML += `<a href="${this.fullLink}">${this.fullAssignmentName}`
+					if (this.isWip) {htmlElement.innerHTML += ` WIP`}
+					htmlElement.innerHTML += `</a>`
 				}
 				else if (this.isWip) {
-					assignmentList.innerHTML += `<p>${this.assignmentId.toUpperCase()} is a work in progress<p>`
+					htmlElement.innerHTML += `<p>${this.assignmentId.toUpperCase()} is a work in progress<p>`
 				}
 				else {
 					return
@@ -74,7 +74,7 @@
 		]
 		
 
-		
+
 		assignmentListData.forEach(function(assignmentEntryToAdd){
 			assignmentEntryToAdd.addToAssignmentList()
 		})
