@@ -7,79 +7,29 @@
 
 	<!--Other sheets-->
 	<link rel="stylesheet" href="printStyle.css">
-	<!--<script src="index.js"></script>-->
-</head>
-<body>
-    <h1 class="contentCentered">Welcome to Curtis's <i><b>GameDev 2023</b></i> website!</h1>
-	<a class="contentCentered" href="https://github.com/BobTheNerd10/GameDev2023">Link to the repository</a>
+	<script src="common.js"></script>
+	<script src="index.js" defer></script>
 
-	<div class="menuBox contentCentered">
+</head>
+
+<body>
+	<header>
+		<h1>Welcome to Curtis's <i><b>GameDev 2023</b></i> website!</h1>
+		<a href="https://github.com/BobTheNerd10/GameDev2023">Link to the repository</a>
+	</header>
+
+	<main>
+
 		<h1>Assignments</h1>
 		<a href="Work-Not-Screen-Time-Curtis.html">Work-Not-Screen-Time-Curtis</a> (My to-do list!)
+
 		<hr>
 		
-		<div id="assignmentList">
+		<section id="assignmentList">
 			<!--This will be filled dynamically by the javascript portion of the code-->
-		</div>
-
-	</div>
-
-	<!--Javascript portion :D-->
-	<script defer>
-
-
-		var assignmentList = document.getElementById("assignmentList")
-		const creatorName = "Curtis"
-
-
-
-		class AssignmentEntry {
-
-			constructor(assignmentId, assignmentName, isWip = false, isLinked = false, linkOveride = null){
-				this.assignmentId = assignmentId;
-				this.assignmentName = assignmentName;
-				this.fullAssignmentName = this.assignmentId + "-" + this.assignmentName + "-" + creatorName
-				this.fullLink = linkOveride ? linkOveride : this.fullAssignmentName + "/index.html"
-				this.isWip = isWip;
-				this.isLinked = isLinked;
-				this.linkOveride = linkOveride;
-			}
-
-			
-			addToAssignmentList(htmlElement = assignmentList){
-				if(this.isLinked){
-					htmlElement.innerHTML += `<a href="${this.fullLink}">${this.fullAssignmentName}`
-					if (this.isWip) {htmlElement.innerHTML += ` WIP`}
-					htmlElement.innerHTML += `</a>`
-				}
-				else if (this.isWip) {
-					htmlElement.innerHTML += `<p>${this.assignmentId.toUpperCase()} is a work in progress<p>`
-				}
-				else {
-					return
-				}
-			}
-		}
-
-
-		let assignmentListData = [
-			new AssignmentEntry(assignmentId = "t1a01", assignmentName = "BasicWeb",             isWip = true,  isLinked = false),
-			new AssignmentEntry(assignmentId = "t1a02", assignmentName = "lists-tables",         isWip = true,  isLinked = false),
-			new AssignmentEntry(assignmentId = "t1a03", assignmentName = "forms",                isWip = true,  isLinked = false),
-			new AssignmentEntry(assignmentId = "t1a04", assignmentName = "css",                  isWip = true,  isLinked = false),
-			//new AssignmentEntry(assignmentId = "t1z00", assignmentName = "Work-Not-Screen-Time", isWip = false, isLinked = true, linkOveride = "Work-Not-Screen-Time-Curtis.html"),
-			new AssignmentEntry(assignmentId = "t1z01", assignmentName = "first-javascript",     isWip = true,  isLinked = false),
-			new AssignmentEntry(assignmentId = "t1z02", assignmentName = "object-zombie",        isWip = true,  isLinked = true),
-			new AssignmentEntry(assignmentId = "t1z03", assignmentName = "array-zombie",         isWip = true,  isLinked = false),
-		]
+		</section>
 		
-
-
-		assignmentListData.forEach(function(assignmentEntryToAdd){
-			assignmentEntryToAdd.addToAssignmentList()
-		})
-
-	</script>
+	</main>
 </body>
 </html>
 

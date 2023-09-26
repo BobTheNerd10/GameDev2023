@@ -3,22 +3,17 @@ body {
     text-align: center;
 }
 
-.contentCentered {
-    margin: auto;
+main {
+    margin-top: 1%;
+    border-style: double;
+    padding: 1.5%;
+    margin-left: auto;
+    margin-right: auto;
     width: fit-content;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.menuBox {
-    margin-top: 1%;
-    border-style: double;
-    padding: 25px;
-}
-
-
-#todoList {
-    text-align: left; 
-    align-content: left; 
-    align-items: left;
+section {
+    text-align: left;
 }
