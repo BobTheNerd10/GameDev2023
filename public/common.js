@@ -4,7 +4,7 @@ const creatorName = "Curtis"
 class AssignmentEntry 
 {
 
-    constructor(assignmentId, assignmentName, isShown = true, isWip = false, isSubmitted = false, excludedFormats = [], linkOveride = null)
+    constructor(assignmentId = "", assignmentName = "", isShown = true, isWip = false, isSubmitted = false, linkOverride = null, excludedFormats = [])
     {
         this.assignmentId = assignmentId.toUpperCase(); // tXaYY
         this.assignmentName = assignmentName; // whatever ellis writes. Varies between kebab case and pascal case D:
@@ -18,7 +18,7 @@ class AssignmentEntry
         this.excludedFormats = excludedFormats
 
         // Just in case it's NOT an index.html within a folder of the same name (eg, work-not-screen-time)
-        this.fullLink = linkOveride ? linkOveride : this.fullAssignmentName + "/index.html"
+        this.fullLink = linkOverride != null ? linkOverride : this.fullAssignmentName + "/index.html"
     }
 
     
@@ -77,14 +77,15 @@ class AssignmentEntry
 
 let assignments = 
 [
-    new AssignmentEntry(assignmentId = "t1a01", assignmentName = "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry(assignmentId = "t1a02", assignmentName = "lists-tables",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry(assignmentId = "t1a03", assignmentName = "forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry(assignmentId = "t1a04", assignmentName = "css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry(assignmentId = "t1z00", assignmentName = "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true,  linkOveride = "Work-Not-Screen-Time-Curtis.html"),
-    new AssignmentEntry(assignmentId = "t1z01", assignmentName = "first-javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry(assignmentId = "t1z02", assignmentName = "object-zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
-    new AssignmentEntry(assignmentId = "t1z03", assignmentName = "array-zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a02", "lists-tables",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a03", "forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a04", "css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
+    new AssignmentEntry("t1z01", "first-javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z02", "object-zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
+    new AssignmentEntry("t1z03", "array-zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
 ]
 
 let classTodos = [
@@ -96,7 +97,7 @@ let freeTodos = [
     `Brainstorming ideas for games`,
     `Working on stuff for other classes`,
     `Reading the <a href="https://www.gitpod.io/docs/introduction">Gitpod Docs</a> to figure out how to host cool backends!`,
-    `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for sattelite club!`,
+    `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for satellite club!`,
 ]
 
 
