@@ -22,7 +22,7 @@ class AssignmentEntry
     }
 
     
-    getLinkFormat(formatType = "assignmentList") // Default is the first option in the linkFormats
+    getLinkFormat(formatType = "assignmentList", layersDeep = 0) // Default is the first option in the linkFormats
     {
         if(!this.isShown)
         {
@@ -51,8 +51,13 @@ class AssignmentEntry
 
             case "assignmentList":                
                 if(this.isSubmitted)
-                {
-                    formattedLink += `<a href="${this.fullLink}">${this.fullAssignmentName}</a>`
+                {   
+                    // Account for not being at the page's root
+                    formattedLink += `<a href="`
+                    for(let i = layersDeep; i != 0; i--){
+                        formattedLink += "../"
+                    }
+                    formattedLink += `${this.fullLink}">${this.fullAssignmentName}</a>`
                     
                     if (this.isWip) 
                     {
@@ -65,6 +70,22 @@ class AssignmentEntry
                 }
                 break
 
+            case "navBar":                
+                if(!this.isSubmitted)
+                {
+                    break
+                }
+                if(this.isShown)
+                {
+                    // Account for not being at the page's root
+                    formattedLink += `<a href="`
+                    for(let i = layersDeep; i != 0; i--){
+                        formattedLink += "../"
+                    }
+                    formattedLink += `${this.fullLink}">${this.assignmentName}</a>`
+                }
+                break
+
             default: // If the format doesn't exist
                 console.error(`Assignment link format type "${formatType}" does not exist.`)
                 break
@@ -73,6 +94,10 @@ class AssignmentEntry
         return formattedLink
     }
 }
+
+
+
+// ----------------------------------------------------------------------------------------------------------------
 
 
 let assignments = 
@@ -100,9 +125,22 @@ let freeTodos = [
     `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for satellite club!`,
 ]
 
+let extraNavBarLinks = {
+    //"Name of link" : "http link"
+    "Repo" : "https://github.com/BobTheNerd10/GameDev2023"
+}
 
 // ASSIGN THE STUFF TO ELEMENTS BY IDs WHERE NEEDED
 //--------------------------------------------------------------------------------------------------------------
+// Accont for not being at the root
+const pageUrl = window.location.href;
+let arrayOfUrl = pageUrl.split("/")
+if(arrayOfUrl[arrayOfUrl.length - 1].split('').includes(".")) // If the final thing in the href has a period in it, remove it
+{
+    arrayOfUrl.pop()
+}
+layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
+
 
 
 // Assignment list
@@ -113,7 +151,7 @@ for (let assignmentList of assignmentLists)
 {
     for (let assignment of assignments)
     {
-        assignmentList.innerHTML += assignment.getLinkFormat("assignmentList") ? "<p>" + assignment.getLinkFormat("assignmentList") + "</p>" : "" // If it's null then don't add anything
+        assignmentList.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
     }
 } 
 
@@ -126,14 +164,13 @@ for (let todoList of classTodoLists)
 {
     for (let assignment of assignments)
     {
-        todoList.innerHTML += assignment.getLinkFormat("todoList") ? `<li>${assignment.getLinkFormat("todoList")}</li>` : "" // If it's null then don't add anything
+        todoList.innerHTML += assignment.getLinkFormat("todoList", layersDeep) ? `<li>${assignment.getLinkFormat("todoList", layersDeep)}</li>` : "" // If it's null then don't add anything
     }
     for (let extraClassTodo of extraClassTodos)
     {
         todoList.innerHTML += `<li>${extraClassTodo}</li>`
     }
 } 
-
 
 let freeTodoLists = document.getElementsByClassName("freeTodoList")
 
@@ -146,4 +183,27 @@ for (let todoList of freeTodoLists)
 } 
 
    
+// Nav bar
+
+let headerElements = document.getElementsByTagName("header")
+let formattedNav = "";
+
+for (let headerElement of headerElements)
+{
+    formattedNav += "<nav>"
+
+    for (let extraNavBarLinkName of Object.keys(extraNavBarLinks))
+    {   
+        formattedNav += `<a href="${extraNavBarLinks[extraNavBarLinkName]}">${extraNavBarLinkName}</a>`
+    }
+
+    for (let assignment of assignments)
+    {
+        formattedNav += assignment.getLinkFormat("navBar", layersDeep) ? `${assignment.getLinkFormat("navBar", layersDeep)}` : ""
+    }
+
+    formattedNav += "</nav>"
+
+    headerElement.innerHTML += formattedNav
+} 
 

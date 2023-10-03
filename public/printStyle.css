@@ -17,3 +17,14 @@ main {
 section {
     text-align: left;
 }
+
+
+nav a {
+    border-style: double;
+    padding:1%;
+}
+
+nav {
+    margin: 1.5%;
+}
+
