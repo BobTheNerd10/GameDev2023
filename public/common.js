@@ -88,7 +88,7 @@ let assignments =
     new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
 ]
 
-let classTodos = [
+let extraClassTodos = [ // For stuff that isnt assignments 
     "Improving my site's general structure (cleaning!)"
 ]
 
@@ -102,7 +102,10 @@ let freeTodos = [
 
 
 // ASSIGN THE STUFF TO ELEMENTS BY IDs WHERE NEEDED
+//--------------------------------------------------------------------------------------------------------------
 
+
+// Assignment list
 
 let assignmentLists = document.getElementsByClassName("assignmentList")
 
@@ -115,8 +118,7 @@ for (let assignmentList of assignmentLists)
 } 
 
 
-
-
+// Todo list
 
 let classTodoLists = document.getElementsByClassName("classTodoList")
 
@@ -126,9 +128,9 @@ for (let todoList of classTodoLists)
     {
         todoList.innerHTML += assignment.getLinkFormat("todoList") ? `<li>${assignment.getLinkFormat("todoList")}</li>` : "" // If it's null then don't add anything
     }
-    for (let classTodo of classTodos)
+    for (let extraClassTodo of extraClassTodos)
     {
-        todoList.innerHTML += `<li>${classTodo}</li>`
+        todoList.innerHTML += `<li>${extraClassTodo}</li>`
     }
 } 
 
