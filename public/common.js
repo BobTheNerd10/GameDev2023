@@ -127,6 +127,7 @@ let freeTodos = [
 
 let extraNavBarLinks = {
     //"Name of link" : "http link"
+    "Index" : "",
     "Repo" : "https://github.com/BobTheNerd10/GameDev2023"
 }
 
@@ -194,7 +195,11 @@ for (let headerElement of headerElements)
 
     for (let extraNavBarLinkName of Object.keys(extraNavBarLinks))
     {   
-        formattedNav += `<a href="${extraNavBarLinks[extraNavBarLinkName]}">${extraNavBarLinkName}</a>`
+        // If it's a direct link
+        if(extraNavBarLinkName.split("s")[0] != "http")
+        {
+            formattedNav += `<a href="${extraNavBarLinks[extraNavBarLinkName]}">${extraNavBarLinkName}</a>`
+        }
     }
 
     for (let assignment of assignments)
