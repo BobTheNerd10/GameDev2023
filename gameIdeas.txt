@@ -7,3 +7,5 @@ Use an ASCII api for the pictures?
 -Your destination features everything you've learned so far?
 
 The Hex style game that introduces something simple, builds on it, and repeats the same concept in similar ways
+
+Recreate the jack attack from you dont know jack

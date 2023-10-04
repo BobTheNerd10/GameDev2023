@@ -1,39 +1,4 @@
-/* Header code */
-
-header {
-    position: relative;
-    margin: auto;
-    margin-block-end: 1%;
-    width: 50%;
-    border: 4px double white;
-    padding: 1%;
-}
-
-heading {
-    display: block;
-    font-size: xx-large;
-    /*margin-block-end: 1%;*/
-}
-
-subtitle {
-    display: block;
-    font-size: small;
-}
-
-
-
-
 /* Content code */
-
-main {
-    position: relative;
-    text-align:left;
-    margin: auto;
-    width: 50%;
-    border: double;
-    padding: 1%;
-    white-space: normal;
-}
 
 red {
     color: red;

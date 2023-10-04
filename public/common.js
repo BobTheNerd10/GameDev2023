@@ -1,6 +1,3 @@
-const creatorName = "Curtis"
-
-
 class AssignmentEntry 
 {
 
@@ -11,7 +8,8 @@ class AssignmentEntry
 
         this.fullAssignmentName = this.assignmentId + "-" + this.assignmentName + "-" + creatorName // How ellis wants the assignments to be formatted
         
-        this.isShown = isShown
+
+        this.isShown = isShown;
         this.isWip = isWip;
         this.isSubmitted = isSubmitted;
 
@@ -53,11 +51,7 @@ class AssignmentEntry
                 if(this.isSubmitted)
                 {   
                     // Account for not being at the page's root
-                    formattedLink += `<a href="`
-                    for(let i = layersDeep; i != 0; i--){
-                        formattedLink += "../"
-                    }
-                    formattedLink += `${this.fullLink}">${this.fullAssignmentName}</a>`
+                    formattedLink += `<a href="${addLayerCounteracting(this.fullLink, layersDeep)}">${this.fullAssignmentName}</a>`
                     
                     if (this.isWip) 
                     {
@@ -78,11 +72,7 @@ class AssignmentEntry
                 if(this.isShown)
                 {
                     // Account for not being at the page's root
-                    formattedLink += `<a href="`
-                    for(let i = layersDeep; i != 0; i--){
-                        formattedLink += "../"
-                    }
-                    formattedLink += `${this.fullLink}">${this.assignmentName}</a>`
+                    formattedLink += `<a href="${addLayerCounteracting(this.fullLink, layersDeep)}">${this.assignmentName}</a>`
                 }
                 break
 
@@ -96,9 +86,24 @@ class AssignmentEntry
 }
 
 
+// It's the ../ stuff (this whole thing is a hack but ehh)
+function addLayerCounteracting(inputLink = "", layersDeep = 0)
+{
+    formattedResult = ""
+
+    for(let i = layersDeep; i != 0; i--){
+        formattedResult += "../"
+    }
+
+    formattedResult += inputLink
+    
+    return formattedResult
+}
+
 
 // ----------------------------------------------------------------------------------------------------------------
 
+const creatorName = "Curtis"
 
 let assignments = 
 [
@@ -106,6 +111,8 @@ let assignments =
     new AssignmentEntry("t1a02", "lists-tables",         isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a03", "forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a04", "css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
+    // T1a05 doesn't exist yet D:
+    new AssignmentEntry("t1a06", "calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
     new AssignmentEntry("t1z01", "first-javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z02", "object-zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
@@ -127,12 +134,16 @@ let freeTodos = [
 
 let extraNavBarLinks = {
     //"Name of link" : "http link"
-    "Index" : "",
+    "Index" : "index.html",
     "Repo" : "https://github.com/BobTheNerd10/GameDev2023"
 }
 
+
 // ASSIGN THE STUFF TO ELEMENTS BY IDs WHERE NEEDED
 //--------------------------------------------------------------------------------------------------------------
+
+
+
 // Accont for not being at the root
 const pageUrl = window.location.href;
 let arrayOfUrl = pageUrl.split("/")
@@ -140,8 +151,17 @@ if(arrayOfUrl[arrayOfUrl.length - 1].split('').includes(".")) // If the final th
 {
     arrayOfUrl.pop()
 }
-layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
+let layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
 
+
+// Page title 
+
+if(layersDeep >= 1)
+{   
+    document.title = `${arrayOfUrl[arrayOfUrl.length-1].split("-")[0].toUpperCase()} ${creatorName}`
+    // I hate this, but it's good enough (it gets the ID from the folder name)
+    // This is a hack
+}
 
 
 // Assignment list
@@ -193,19 +213,35 @@ for (let headerElement of headerElements)
 {
     formattedNav += "<nav>"
 
+    // Extra links
     for (let extraNavBarLinkName of Object.keys(extraNavBarLinks))
     {   
         // If it's a direct link
-        if(extraNavBarLinkName.split("s")[0] != "http")
+        if(extraNavBarLinks[extraNavBarLinkName].split("s")[0] != "http")
+        {
+            formattedNav += `<a href="${addLayerCounteracting(extraNavBarLinks[extraNavBarLinkName], layersDeep)}">${extraNavBarLinkName}</a>`
+        }
+        else
         {
             formattedNav += `<a href="${extraNavBarLinks[extraNavBarLinkName]}">${extraNavBarLinkName}</a>`
         }
     }
-
+    
+    // Assignment links
     for (let assignment of assignments)
     {
         formattedNav += assignment.getLinkFormat("navBar", layersDeep) ? `${assignment.getLinkFormat("navBar", layersDeep)}` : ""
     }
+
+    if(layersDeep > 0)
+    {
+        formattedNav += `<a href="${addLayerCounteracting("index.html", layersDeep)}">Back</a>`
+    }
+    else
+    {
+        formattedNav += `<a>Back</a>`
+    }
+    
 
     formattedNav += "</nav>"
 
