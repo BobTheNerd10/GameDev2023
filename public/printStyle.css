@@ -37,6 +37,8 @@ nav a, nav button {
     padding:1%;
 }
 
-nav .arrow {
+nav .arrow, nav .arrow:hover, nav .arrow:visited, nav.arrow:active {
     text-decoration:none;
+    border-style: double;
+    color:inherit;
 }

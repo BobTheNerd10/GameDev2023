@@ -107,17 +107,17 @@ const creatorName = "Curtis"
 
 let assignments = 
 [
-    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
-    new AssignmentEntry("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true,   ),
-    new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = true,  ),
-    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
+    new AssignmentEntry("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
+    new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
@@ -135,6 +135,7 @@ let freeTodos = [
 let extraNavBarLinks = {
     //"Name of link" : "http link"
     "Index" : "index.html",
+    "Work-Not-Screen-Time" : "Work-Not-Screen-Time-Curtis.html",
     "Repo" : "https://github.com/BobTheNerd10/GameDev2023"
 }
 
@@ -230,12 +231,14 @@ for (let headerElement of headerElements)
     // Assignment links
 
     formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
+    formattedNav += "<a class='arrow' id='leftArrow'>←</a>" 
 
     for (let assignment of assignments)
     {
         formattedNav += assignment.getLinkFormat("navBar", layersDeep) ? `${assignment.getLinkFormat("navBar", layersDeep)}` : ""
     }
 
+    formattedNav += "<a class='arrow' id='rightArrow'>→</a>" 
     formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
 
     // Back button
