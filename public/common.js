@@ -107,17 +107,17 @@ const creatorName = "Curtis"
 
 let assignments = 
 [
-    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a02", "lists-tables",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a03", "forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a04", "css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
-    // T1a05 doesn't exist yet D:
-    new AssignmentEntry("t1a06", "calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = true,  ),
     new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
-    new AssignmentEntry("t1z01", "first-javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1z02", "object-zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
-    new AssignmentEntry("t1z03", "array-zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true,   ),
+    new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = true,  ),
+    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = true,  ),
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
@@ -228,18 +228,30 @@ for (let headerElement of headerElements)
     }
     
     // Assignment links
+
+    formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
+
     for (let assignment of assignments)
     {
         formattedNav += assignment.getLinkFormat("navBar", layersDeep) ? `${assignment.getLinkFormat("navBar", layersDeep)}` : ""
     }
 
-    if(layersDeep > 0)
+    formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
+
+    // Back button
+    urlListOfIsplit = pageUrl.split("i")
+    
+    if(urlListOfIsplit[urlListOfIsplit.length - 1] != "ndex.html") // HACKHACKHACK I HATE IT 
+    {
+        formattedNav += `<a href="index.html">Back</a>`
+    }
+    else if(layersDeep > 0)
     {
         formattedNav += `<a href="${addLayerCounteracting("index.html", layersDeep)}">Back</a>`
     }
     else
     {
-        formattedNav += `<a>Back</a>`
+        formattedNav += `<a href="index.html">Back</a>`
     }
     
 
