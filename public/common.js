@@ -229,7 +229,7 @@ for (let headerElement of headerElements)
     }
     
     // Assignment links
-
+    /*
     formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
     formattedNav += "<a class='arrow' id='leftArrow'>←</a>" 
 
@@ -239,6 +239,7 @@ for (let headerElement of headerElements)
     }
 
     formattedNav += "<a class='arrow' id='rightArrow'>→</a>" 
+    */
     formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
 
     // Back button
