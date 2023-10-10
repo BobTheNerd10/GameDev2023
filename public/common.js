@@ -113,6 +113,7 @@ let assignments =
     new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
     new AssignmentEntry("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
