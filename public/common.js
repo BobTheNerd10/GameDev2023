@@ -6,7 +6,7 @@ class AssignmentEntry
         this.assignmentId = assignmentId.toUpperCase(); // tXaYY
         this.assignmentName = assignmentName; // whatever ellis writes. Varies between kebab case and pascal case D:
 
-        this.fullAssignmentName = this.assignmentId + "-" + this.assignmentName + "-" + creatorName // How ellis wants the assignments to be formatted
+        this.fullAssignmentName = assignmentId + "-" + this.assignmentName + "-" + creatorName // How ellis wants the assignments to be formatted
         
 
         this.isShown = isShown;
