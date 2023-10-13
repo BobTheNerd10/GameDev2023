@@ -49,8 +49,11 @@
                     if (nameInput == "Curtis")
                     {
                         outputText += "Hey wait... that's me! I don't have amnesia >:("
-                        outputDiv.innerText = outputText
-                        return
+                        return outputText
+                    }
+                    if (nameInput == "Ellis" || nameInput == "Jeremy")
+                    {
+                        outputText += ""
                     }
 
                     if     ( ageInput  <  0   )   {outputText += `You are ${ageInput} years old... have you not been born yet? Regardless, `}
