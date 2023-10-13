@@ -111,7 +111,7 @@ let assignments =
     new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
     new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false   ),
+    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
@@ -120,6 +120,7 @@ let assignments =
     new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = false,  isSubmitted = true   ),
     new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
+    new AssignmentEntry("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"),
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
@@ -161,7 +162,7 @@ let layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
 
 if(layersDeep >= 1)
 {   
-    document.title = `${arrayOfUrl[arrayOfUrl.length-1].split("-")[0].toUpperCase()} ${creatorName}`
+    document.title = `${arrayOfUrl[arrayOfUrl.length-1].split("-")[0]} ${creatorName}`
     // I hate this, but it's good enough (it gets the ID from the folder name)
     // This is a hack
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    
+    <main>
+        <h1>Funtest-By-Curtis</h1>
+        
+        <hr>
+        <section>
+            <span style="font-size: larger; font-weight:bolder">Amnesia Greeting Tool!</span><br>
+            <span>Enter the name of a person you want to greet as well as their age, and this tool will output a greeting for them, as well as a reminder of who they are and how old they are (just in case they forgot)!</span><br>
+            <br>
+
+            <hr>
+            
+            <br>
+            <span>Name: </span><input type="text" id="myName" value="Fred"><br>
+            <br>
+            <span>Age: </span><input type="number" id="myAge" value="16"><br>
+            <br>
+            <button onclick="document.getElementById('myDiv01').innerText = generateGreeting()">Generate Greeting</button>
+            <br>
+            <hr>
+            <script>
+                function generateGreeting()
+                {
+                    let nameInput = document.getElementById("myName").value
+                    let ageInput = Number(document.getElementById("myAge").value)
+                    let outputText = "" // Will be filled by the code
+
+                    outputText += `Hello ${nameInput}! `
+                        outputText += "Hey wait... that's me! I don't have amnesia >:("
+                        outputDiv.innerText = outputText
+                        return
+                    }
+
+                    if     ( ageInput  <  0   )   {outputText += `You are ${ageInput} years old... have you not been born yet? Regardless, `}
+                    else if( ageInput  <  2   )   {outputText += `You are ${ageInput} years old! You are a baby! `}
+                    else if( ageInput  <  4   )   {outputText += `You are ${ageInput} years old! You are a toddler! `}
+                    else if( ageInput  <  13  )   {outputText += `You are ${ageInput} years old! You are a child! `}
+                    else if( ageInput  <  20  )   {outputText += `You are ${ageInput} years old! You are a teenager! `}
+                    else if( ageInput  <  65  )   {outputText += `You are ${ageInput} years old! You are an adult! `}
+                    else if( ageInput  <  116 )   {outputText += `You are ${ageInput} years old! You are a senior! `}
+                    else if( ageInput  <  150 )   {outputText += `You are ${ageInput} years old?? Whoa, you're the oldest person alive! `}
+                    else if( ageInput  >= 150 )   {outputText += `You are ${ageInput} years old... how? Regardless, `}
+                    
+                    outputText += "I hope you've been well!"
+
+                    return outputText
+                }
+            </script>
+            <br>
+            
+            <h4>Output:</h4>
+            <div id="myDiv01">...</div>
+
+        </section>
+    </main>
+</body>
+</html>
