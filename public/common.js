@@ -111,7 +111,7 @@ let assignments =
     new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
     new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = true   ),
+    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false   ),
     new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
