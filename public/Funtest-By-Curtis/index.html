@@ -37,7 +37,11 @@
                 function generateGreeting()
                 {
                     let nameInput = document.getElementById("myName").value
-                    let ageInput = Number(document.getElementById("myAge").value)
+                    if (nameInput == ""){return "Please enter a name."}
+                    let ageInput = document.getElementById("myAge").value
+                    if (ageInput == ""){return "Please enter an age."}
+                    
+                    ageInput = Number(ageInput)
                     let outputText = "" // The returned value. Will be added onto elsewhere in the code
 
                     outputText += `Hello ${nameInput}! `
