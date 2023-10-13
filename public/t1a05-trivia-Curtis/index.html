@@ -26,31 +26,29 @@
     </header>
 
     <main>
-        <!--
-            <h1>t1z02-object-zombie-Curtis</h1>
+        <h1>t1z02-object-zombie-Curtis</h1>
 
+        <hr>
+
+        <section>
+            <input type=button value=Trivia onclick="{
+                async function myCall()
+                {
+                    const myData = await fetch('')
+                    const myTemp = await myData.json()
+                    console.log(myTemp)
+                    document.getElementById('myDiv01').innerHTML = 'myTemp.results[0].question: ' + myTemp.results[0].question
+                    document.getElementById('myDiv02').innerHTML = JSON.stringify(myTemp, null, '<br>')
+                }
+                myCall()
+            }"><br><br>
+
+            <div id="MyDiv01">...</div>
             <hr>
 
-            <section>
-                <input type=button value=Trivia onclick="{
-                    async function myCall()
-                    {
-                        const myData = await fetch('')
-                        const myTemp = await myData.json()
-                        console.log(myTemp)
-                        document.getElementById('myDiv01').innerHTML = 'myTemp.results[0].question: ' + myTemp.results[0].question
-                        document.getElementById('myDiv02').innerHTML = JSON.stringify(myTemp, null, '<br>')
-                    }
-                    myCall()
-                }"><br><br>
-
-                <div id="MyDiv01">...</div>
-                <hr>
-
-                <div id="MyDiv02">...</div>
-                
-            </section>
-        -->
+            <div id="MyDiv02">...</div>
+            
+        </section>
     </main>
 </body>
 </html>

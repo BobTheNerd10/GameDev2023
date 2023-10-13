@@ -7,6 +7,7 @@
 
 	<!--Site sheets-->
 	<link rel="stylesheet" href="../printStyle.css">
+    <link rel="stylesheet" href="t1a02.css">
 	<script src="../common.js" defer></script>
 
 </head>
@@ -15,24 +16,94 @@
         <!--Dummy tag, will be filled in with JS if needed-->
     </header>
 
-    <!--
-        Tables
-        Lists (UL, OL)
-        - Multiple layers, and also combining them
-        Add your own things to a list
-        Make a recursive table using javascript (looks cool but it's pretty useless, but you can make it!)
+    <main>
+        <h1>T1A02-Lists-Tables-Curtis</h1>
 
-    -->
+        <hr>
 
+        <h2>Tables</h2>
 
-    <h3>Tables</h3>
-    <!--Table icon-->
-    
-    <table style="border-style: double;">
-        <tr><td>LU</td><td>MU</td><td>RU</td></tr>
-        <tr> <td>LD</td><td>MD</td><td>RD</td></tr>
+        <section>
+            <table>
+                <tr><td>Upper left</td><td>Upper middle</td><td>Upper right</td></tr>
+                <tr><td>Lower left</td><td>Lower middle</td><td>Lower right</td></tr>
+            </table>
 
-        <!--For high marks, make a borderless table with links and images about ?-->
-    </table>
+            <br>
+
+            <h2>The Dog Table!</h2>
+                
+            <table>
+                <tr>
+                    <td><h2>X</h2></td>
+                    <td><h2>Small</h2></td>
+                    <td><h2>Medium</h2></td>
+                    <td><h2>Big</h2></td>
+                </tr>
+                <tr>
+                    <td><h2>Cute</h2></td>
+                    <td><img src="img/cuteDogSmall.jpg"></td>
+                    <td><img src="img/dog.jpg"></td>
+                    <td><img src="img/bigCute.webp"></td>
+                </tr>
+                <tr>
+                    <td><h2>Normal</h2></td>
+                    <td><img src="img/chihuahuaNormal.jpg"></td>
+                    <td><img src="img/lab.jpg"></td>
+                    <td><img src="img/mountainDog.jpg"></td>
+                </tr>
+                <tr>
+                    <td><h2>Awesome</h2></td>
+                    <td><img src="img/smallDogCool.jpeg"></td>
+                    <td><img src="img/airbud.jpg"></td>
+                    <td><img src="img/bigDogAwesome.jfif"></td>
+                </tr>
+            </table>
+        </section>   
+
+        <hr>
+
+        <h2>Lists</h2>
+        
+        <section>
+            <h3>Unordered list</h3>
+            <ul>
+                <li>This is an unordered list!</li>
+                <li>You can enter as many things as you want.</li>
+                <li>They will be added to the list with a little dot!
+                    <ul>
+                        <li>You can also nest lists like this!</li>
+                        <li>So now there's a list in a list!</li>
+                    </ul>
+                </li>
+                <li>Pretty neat!</li>
+            </ul>
+            
+            <br>
+            
+            <h3>Ordered list</h3>
+            <ol>
+                <li>This is an ordered list.</li>
+                <li>Whenever you enter something new into the list,</li>
+                <li>There will be a number beside it denoting the entry number!</li>
+                <li>You can also nest ordered lists!
+                    <ol>
+                        <li>Yayyy</li>
+                        <li>Ordered list nesting!</li>
+                        <li>What If I were to nest an unordered list in an ordered list?
+                            <ul>
+                                <li>Whoaaaaaa</li>
+                                <li>Funky!</li>
+                            </ul>
+                        </li>
+                        <li>Wow that's neat</li>
+                    </ol>
+                </li>
+                <li>Last entry in the list</li>
+            </ol>
+        </section>
+
+    </main>
+
 </body>
 </html>
