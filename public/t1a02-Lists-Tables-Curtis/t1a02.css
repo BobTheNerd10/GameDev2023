@@ -1,8 +1,22 @@
-td {
+td, th 
+{
     border-style: double;
 }
 
-img {
+img 
+{
     height:auto;
     width:150px;
+}
+
+#multiplicationTable tr th
+{
+    padding:10px;
+}
+
+
+
+#multiplicationTable
+{
+    text-align: center;
 }

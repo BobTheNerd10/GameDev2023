@@ -59,6 +59,48 @@
                     <td><img src="img/bigDogAwesome.jfif"></td>
                 </tr>
             </table>
+            
+            <br>
+
+            <h2>Multiplication Table</h2>
+
+            <table id="multiplicationTable">
+
+            </table>
+
+            <script defer>
+                let multiplicationTable = document.getElementById("multiplicationTable")
+
+                rowAmount = 10
+                columnAmount = 10
+
+
+                // For the first row (agh)
+                rowHtml = "<tr>" // Will be added onto and appended to the table element
+                rowHtml += `<th></th>` // upperleftmost part of table 
+                for(columnNumber = 1; columnAmount > columnNumber; columnNumber++)
+                {
+                    rowHtml += `<th>${columnNumber}</th>`
+                }
+                rowHtml += "</tr>"
+                multiplicationTable.innerHTML += rowHtml
+                
+                for(rowNumber = 1; rowAmount > rowNumber; rowNumber++)
+                {
+                    rowHtml = "<tr>" // Will be added onto and appended to the table element
+                    rowHtml += `<th>${rowNumber}</th>`
+
+                    for(columnNumber = 1; columnAmount > columnNumber; columnNumber++)
+                    {
+                        rowHtml += `<td>${columnNumber * rowNumber}</td>`
+                    }
+
+                    rowHtml += "</tr>"
+                    multiplicationTable.innerHTML += rowHtml
+                }
+                
+                
+            </script>
         </section>   
 
         <hr>
