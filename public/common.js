@@ -108,7 +108,7 @@ const creatorName = "Curtis"
 let assignments = 
 [
     new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true   ),
-    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = true,   isSubmitted = true   ),
+    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
     new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
@@ -120,7 +120,7 @@ let assignments =
     new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
     new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
     new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"),
+    new AssignmentEntry("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack! I blame the lack of consistency in assignment IDs >:C
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
@@ -245,7 +245,10 @@ for (let headerElement of headerElements)
     */
     formattedNav += "<span style='margin-left:0.5%'></span>" // Little divider
 
+
+
     // Back button
+    
     urlListOfIsplit = pageUrl.split("i")
     
     if(urlListOfIsplit[urlListOfIsplit.length - 1] != "ndex.html") // HACKHACKHACK I HATE IT 

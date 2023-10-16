@@ -62,7 +62,7 @@
             
             <br>
 
-            <h2>Multiplication Table</h2>
+            <h2>Multiplication Table (filled with Javascript)</h2>
 
             <table id="multiplicationTable">
 
@@ -85,6 +85,7 @@
                 rowHtml += "</tr>"
                 multiplicationTable.innerHTML += rowHtml
                 
+                // For every row after the first
                 for(rowNumber = 1; rowAmount > rowNumber; rowNumber++)
                 {
                     rowHtml = "<tr>" // Will be added onto and appended to the table element
@@ -129,9 +130,10 @@
                 <li>Whenever you enter something new into the list,</li>
                 <li>There will be a number beside it denoting the entry number!</li>
                 <li>You can also nest ordered lists!
-                    <ol>
+                    <ol type="a">
                         <li>Yayyy</li>
                         <li>Ordered list nesting!</li>
+                        <li>You can also change the nested list's type (the icon nect to each list entry)</li>
                         <li>What If I were to nest an unordered list in an ordered list?
                             <ul>
                                 <li>Whoaaaaaa</li>
@@ -143,6 +145,10 @@
                 </li>
                 <li>Last entry in the list</li>
             </ol>
+
+            <br>
+
+            <p>You can also check my WorkNotScreenTime for another example of unordered lists.</p>
         </section>
 
         <hr>
@@ -150,10 +156,32 @@
         <h2>Make your own List</h2> 
         
         <section>
-            <!--WIP-->
+            
+            <br>
+            <span>Add to list: </span><input type="text" id="listMakerField" value="Fred"><br>
+            <br>
+            <button onclick="addToList(document.getElementById('listMakerField').value)">Add Input to List</button>
+            <button onclick="resetList()">Reset List</button>
+            <br>
+            <br>
+            <ul id="customList">
+                <li>Use the buttons to add to this list!</li>
+                <li>Have fun</li>
+            </ul>
+            <script>
+                function resetList()
+                {
+                    document.getElementById("customList").innerHTML = ""
+                }    
+
+                
+                function addToList(stringToAddToList)
+                {
+                    document.getElementById("customList").innerHTML += `<li>${stringToAddToList}</li>`
+                }
+                
+            </script>         
         </section>
-
     </main>
-
 </body>
 </html>
