@@ -1,35 +1,106 @@
-class AssignmentEntry 
+/*
+
+
+
+
+
+If you're reading this as part of my classes assignment, hello!
+You're currently looking at the JS file that makes my site tick. (common.js)
+
+Wayy back at the start of the term, I coded this Assignment class so I could easily add assignments to the list and be lazy!
+The Assignment class is responsible for handling all the assignment specific entries on my Work-Not-Screen-Time page as well as all the assignments on my index page!
+
+Feel free to scroll down and take a look around!
+
+There's no html page with this assignment (since the html page is my whole site!)
+You can ctrl+u on my index page if you want to see how this js file interacts with it though
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PLEASE READ THE ABOVE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+class Assignment 
 {
 
-    constructor(assignmentId = "", assignmentName = "", isShown = true, isWip = false, isSubmitted = false, linkOverride = null, excludedFormats = [])
+    constructor(assignmentId = "", assignmentName = "", isShown = true, isWip = false, isSubmitted = false, linkOverride = null, assignmentNotes = "")
     {
-        this.assignmentId = assignmentId.toUpperCase(); // tXaYY
-        this.assignmentName = assignmentName; // whatever ellis writes. Varies between kebab case and pascal case D:
+        this.assignmentId = assignmentId.toUpperCase() // tXaYY
+        this.assignmentName = assignmentName // whatever ellis writes. Varies between kebab case and pascal case D:
 
         this.fullAssignmentName = assignmentId + "-" + this.assignmentName + "-" + creatorName // How ellis wants the assignments to be formatted
         
 
-        this.isShown = isShown;
-        this.isWip = isWip;
-        this.isSubmitted = isSubmitted;
+        this.isShown = isShown
+        this.isWip = isWip
+        this.isSubmitted = isSubmitted
 
-        this.excludedFormats = excludedFormats
+        this.assignmentNotes = assignmentNotes // Added to the end of the asssignment's link on the page's index.html
 
-        // Just in case it's NOT an index.html within a folder of the same name (eg, work-not-screen-time)
+        // Points to the index.html if the link override is null (otherwise use the link override for all links referring to this assignment)
         this.fullLink = linkOverride != null ? linkOverride : this.fullAssignmentName + "/index.html"
     }
 
     
-    getLinkFormat(formatType = "assignmentList", layersDeep = 0) // Default is the first option in the linkFormats
+    // Returns some html text that's ready to be put inside the innerHTML of an <li> or a <p> or whatever you want
+    // (I'm aware getters exist, but getters can't take arguments, so I made it a function instead.)
+    getLinkFormat(formatType = "assignmentList", layersDeep = 0) 
     {
         if(!this.isShown)
         {
-            return // Not shown
+            return // Not shown, so return nothing
         }
 
         let formattedLink = ""
 
-        // Note to self: never try to call anonymous functions from an object ESPECIALLY while trying to pass arguments. It's not worth it even if it's elegant
+        // Note to self: never try to call anonymous functions from a class's object ESPECIALLY while trying to pass arguments. It's not worth it even if it's elegant
+        // ^^This note was the pain and suffering of trying to use an enumerator instead of this switch below, so USE SWITCHES^^
         switch(formatType)
         {   
             case "todoList":
@@ -57,6 +128,11 @@ class AssignmentEntry
                     {
                         formattedLink += ` WIP`
                     }
+
+                    if (this.assignmentNotes != "")
+                    {
+                        formattedLink += assignmentNotes
+                    }
                 }
                 else if (this.isWip) 
                 {
@@ -64,7 +140,7 @@ class AssignmentEntry
                 }
                 break
 
-            case "navBar":                
+            case "navBar": // Idk if I ever used this, but it's good to have in case I want to add assignments to my navbar!
                 if(!this.isSubmitted)
                 {
                     break
@@ -86,7 +162,8 @@ class AssignmentEntry
 }
 
 
-// It's the ../ stuff (this whole thing is a hack but ehh)
+// Returns a link that exits folders without needing to subtract from the URL
+//   ../ works in the browser! Did you know that? (this whole thing is a hack but ehh)
 function addLayerCounteracting(inputLink = "", layersDeep = 0)
 {
     formattedResult = ""
@@ -101,26 +178,28 @@ function addLayerCounteracting(inputLink = "", layersDeep = 0)
 }
 
 
-// ----------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const creatorName = "Curtis"
 
 let assignments = 
 [
-    new AssignmentEntry("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true   ),
-    new AssignmentEntry("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
-    new AssignmentEntry("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
-    new AssignmentEntry("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
-    new AssignmentEntry("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("t1z04", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
-    new AssignmentEntry("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack! I blame the lack of consistency in assignment IDs >:C
+    new Assignment("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true   ),
+    new Assignment("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
+    new Assignment("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a09", "local-storage",        isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false, linkOverride = "Work-Not-Screen-Time-Curtis.html"),
+    new Assignment("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
+    new Assignment("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1z04", "Classes",              isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "common.js", assignmentNotes = " (JS file)"),
+    new Assignment("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
@@ -142,13 +221,11 @@ let extraNavBarLinks = {
     "Repo" : "https://github.com/BobTheNerd10/GameDev2023"
 }
 
-
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ASSIGN THE STUFF TO ELEMENTS BY IDs WHERE NEEDED
-//--------------------------------------------------------------------------------------------------------------
 
-
-
-// Accont for not being at the root
+// Prepare to account for not being at the root (create pageUrl, arrayOfUrl, and layersDeep)
 const pageUrl = window.location.href;
 let arrayOfUrl = pageUrl.split("/")
 if(arrayOfUrl[arrayOfUrl.length - 1].split('').includes(".")) // If the final thing in the href has a period in it, remove it
@@ -156,6 +233,7 @@ if(arrayOfUrl[arrayOfUrl.length - 1].split('').includes(".")) // If the final th
     arrayOfUrl.pop()
 }
 let layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
+
 
 
 // Page title 
@@ -168,24 +246,26 @@ if(layersDeep >= 1)
 }
 
 
+
 // Assignment list
 
-let assignmentLists = document.getElementsByClassName("assignmentList")
+let assignmentListElements = document.getElementsByClassName("assignmentList")
 
-for (let assignmentList of assignmentLists)
+for (let assignmentListElement of assignmentListElements)
 {
     for (let assignment of assignments)
     {
-        assignmentList.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
+        assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
     }
 } 
 
 
+
 // Todo list
 
-let classTodoLists = document.getElementsByClassName("classTodoList")
+let classTodoListElements = document.getElementsByClassName("classTodoList")
 
-for (let todoList of classTodoLists)
+for (let classTodoListElement of classTodoListElements)
 {
     for (let assignment of assignments)
     {
@@ -206,6 +286,7 @@ for (let todoList of freeTodoLists)
         todoList.innerHTML += `<li>${freeTodo}</li>`
     }
 } 
+
 
    
 // Nav bar

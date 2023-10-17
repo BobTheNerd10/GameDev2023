@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    
+
+    <script>
+        let todoListElement = document.getElementById("todoList")
+
+
+        function onPageLoad() 
+        {
+            myStorage = localStorage.getItem('todoListItems')
+            if(myStorage != null){
+                todoListElement.innerHTML = myStorage
+            }
+        }
+
+
+
+        function onPageUnload()
+        {
+            localStorage.setItem('todoListItems', todoListElement.innerHTML)
+        }
+
+
+
+        function resetList()
+        {
+            document.getElementById("customList").innerHTML = ""
+        }    
+
+        
+
+        function addToList(stringToAddToList)
+        {
+            document.getElementById("customList").innerHTML += `<li>${stringToAddToList}</li>`
+        }
+                
+    </script>
+
+
+    <main onload="onPageLoad()" onunload="onPageUnload()">
+        
+        <h1 style="margin-block-end:0">T1A09-local-storage-Curtis</h1>
+        <h4 style="margin-block-start:0; font-weight:200;">(year 2)</h4>
+        
+        <hr>
+
+        <h3>To-Do list localstorage tool</h3> 
+        
+        <section>
+            
+            <br>
+            <span>Add to list: </span><input type="text" id="listMakerField" value="Fred"><br>
+            <br>
+            <button onclick="addToList(document.getElementById('listMakerField').value)">Add Input to List</button>
+            <button onclick="resetList()">Reset List</button>
+            <br>
+            <br>
+            <ul id="customList">
+                <li>Use the buttons to add to this list!</li>
+                <li>Have fun</li>
+            </ul>       
+        </section>
+
+
+
+
+
+
+        Text example: <input id="myText1" type="text" size=70 value="" placeholder="Write here to store">
+        
+        <!--
+            Add a deletion button
+        -->
+        <input type="button" value="Store Text" onclick="{
+            localStorage.setItem('myStoredText', document.getElementById('myText1').value)
+            alert(document.getElementById('myText1').value + ' \nHas been stored')
+            document.getElementById('myText1').value = ''
+        }">
+
+        <input type="button" value="Retrieve Text" onclick="{
+            document.getElementById('myText1').value = localStorage.getItem('myStoredText')
+        }">
+
+
+    </main>
+</body>
+</html>
