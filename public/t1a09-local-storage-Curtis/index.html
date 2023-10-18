@@ -26,37 +26,88 @@
         <h1 style="margin-block-end:0">T1A09-local-storage-Curtis</h1>
         <h4 style="margin-block-start:0; font-weight:200;">(year 2)</h4>
         
+        <p>
+            If you put stuff in the todo list, you can refresh the page and it'll stay there!
+        </p>
+
         <hr>
 
-        <h3>To-Do list localstorage tool</h3> 
-        
         <section>
-            
+
             <br>
-            <span>Add to list: </span><input type="text" id="listMakerField" value="Fred"><br>
-            <br>
-            <button onclick="addToList(document.getElementById('listMakerField').value)">Add Input to List</button>
-            <button onclick="resetList()">Delete All</button>
-            <button onclick="tryUndo()">Undo</button>
-            <br>
-            <br>
+
+            Add to list: <input type="text" id="inputField"> 
+        
+            <button onclick="">Add Input to List</button>
+            <button onclick="">Delete All</button>
+            <button onclick="">Undo</button>
+
+            <br><br>
+
             <ul id="todoList">
-                <li>Use the buttons to add to this list!</li>
-                <li>Have fun</li>
+                <!--Fill me using javascript-->
             </ul>       
         </section>
     </main>
 
     <script defer>
-        var todoListElement = document.getElementById("todoList")
-        console.log(todoListElement)
-        
+        class EditableTodoList 
+        {
+            constructor(element, entries = [])
+            {
+                this.element = element
+
+                this.entries = entries // Todo list entries (list of strings)
+                this.entryCounter = 0 // This is a bit hacky, but realistically, no one is going to have so many todo list entries that they hit the integer limit, plus it resets on page refresh
+
+                this.undoBuffer = entries
+
+                this.drawTodoList()
+            }
+
+            drawTodoList()
+            {
+                this.element.innerHTML = ""
+                
+                for(let entry of this.entries)
+                {
+                    this.element.innerHTML += entry
+                }
+            }
+
+            tryUndo()
+            {
+                this.contents = this.undoBuffer
+                this.drawTodoList()
+            }
+
+            addListEntry(todoText = '')
+            {
+                this.entryCounter += 1
+
+                // This line is garbo
+                let todoEntry = `<li id="Entry${this.entryCounter}" onmousehover="document.getElementById('Entry${this.entryCounter}').style.textDecoration = 'line-through'" onmouseout="document.getElementById('Entry${this.entryCounter}').style.textDecoration = 'none'"onclick="">${todoText}</li>`
+                
+                this.entries.push(todoEntry) 
+                
+                this.drawTodoList()
+            }
+        }
+
+        let todoObj = new EditableTodoList(document.getElementById("todoList"))
+        todoObj.addListEntry("HeyHey")
+        todoObj.addListEntry("twasfasdf")
 
         function onPageLoad() 
         {
-            if(localStorage.getItem('todoListHTML'))
+            if(localStorage.getItem('todoListHTML') != null)
             {
-                todoListElement.innerHTML = localStorage.getItem('todoListHTML')
+                todoObj.element.innerHTML = localStorage.getItem('todoListHTML')
+            }
+
+            if(localStorage.getItem('todoListUndoBuffer') != null)
+            {
+                todoListUndoBuffer = localStorage.getItem('todoListUndoBuffer')
             }
         }
 
@@ -64,23 +115,11 @@
         function onPageUnload()
         {
             localStorage.setItem('todoListHTML', todoListElement.innerHTML)
-        }
 
-
-        function resetList()
-        {
-            todoListElement.innerHTML = ""
-        }    
-
-
-        function addToList(stringToAddToList)
-        {
-            todoListElement.innerHTML += `<li>${stringToAddToList}</li>`
-        }
-
-        function tryUndo()
-        {
-            
+            if(todoListUndoBuffer != null)
+            {
+                localStorage.setItem('todoListUndoBuffer', todoListUndoBuffer)
+            }
         }
     </script>
 </body>
