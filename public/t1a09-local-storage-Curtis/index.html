@@ -15,51 +15,10 @@
     </header>
     
 
-    <script>
-        let todoListElement = document.getElementById("todoList")
-
-
-        function onPageLoad() 
-        {
-            myStorage = localStorage.getItem('todoListItems')
-            if(myStorage != null){
-                todoListElement.innerHTML = myStorage
-            }
-        }
-
-
-
-        function onPageUnload()
-        {
-            localStorage.setItem('todoListItems', todoListElement.innerHTML)
-        }
-
-
-
-        function resetList()
-        {
-            document.getElementById("customList").innerHTML = ""
-        }    
-
-        
-
-        function addToList(stringToAddToList)
-        {
-            document.getElementById("customList").innerHTML += `<li>${stringToAddToList}</li>`
-        }
-
-
-        function saveList()
-        {
-
-        }
-
-        function clearLocalStorage()
-        {
-
-        }
-                
-    </script>
+    <!--
+        Click on entries to remove
+        Have an undo button
+    -->
 
 
     <main onload="onPageLoad()" onunload="onPageUnload()">
@@ -77,36 +36,52 @@
             <span>Add to list: </span><input type="text" id="listMakerField" value="Fred"><br>
             <br>
             <button onclick="addToList(document.getElementById('listMakerField').value)">Add Input to List</button>
-            <button onclick="resetList()">Reset List</button>
+            <button onclick="resetList()">Delete All</button>
+            <button onclick="tryUndo()">Undo</button>
             <br>
             <br>
-            <ul id="customList">
+            <ul id="todoList">
                 <li>Use the buttons to add to this list!</li>
                 <li>Have fun</li>
             </ul>       
         </section>
-
-
-
-
-
-
-        Text example: <input id="myText1" type="text" size=70 value="" placeholder="Write here to store">
-        
-        <!--
-            Add a deletion button
-        -->
-        <input type="button" value="Store Text" onclick="{
-            localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-            alert(document.getElementById('myText1').value + ' \nHas been stored')
-            document.getElementById('myText1').value = ''
-        }">
-
-        <input type="button" value="Retrieve Text" onclick="{
-            document.getElementById('myText1').value = localStorage.getItem('myStoredText')
-        }">
-
-
     </main>
+
+    <script defer>
+        var todoListElement = document.getElementById("todoList")
+        console.log(todoListElement)
+        
+
+        function onPageLoad() 
+        {
+            if(localStorage.getItem('todoListHTML'))
+            {
+                todoListElement.innerHTML = localStorage.getItem('todoListHTML')
+            }
+        }
+
+
+        function onPageUnload()
+        {
+            localStorage.setItem('todoListHTML', todoListElement.innerHTML)
+        }
+
+
+        function resetList()
+        {
+            todoListElement.innerHTML = ""
+        }    
+
+
+        function addToList(stringToAddToList)
+        {
+            todoListElement.innerHTML += `<li>${stringToAddToList}</li>`
+        }
+
+        function tryUndo()
+        {
+            
+        }
+    </script>
 </body>
 </html>

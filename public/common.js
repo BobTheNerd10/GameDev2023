@@ -193,10 +193,11 @@ let assignments =
     new Assignment("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a09", "local-storage",        isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a09", "local-storage",        isShown = true,  isWip = true,   isSubmitted = true   ),
+    new Assignment("t1a10", "Events",               isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false, linkOverride = "Work-Not-Screen-Time-Curtis.html"),
     new Assignment("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = true   ),
+    new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1z04", "Classes",              isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "common.js", assignmentNotes = " (JS file)"),
     new Assignment("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
