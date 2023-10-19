@@ -195,6 +195,7 @@ let assignments =
     new Assignment("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1a09", "local-storage",        isShown = true,  isWip = true,   isSubmitted = true   ),
     new Assignment("t1a10", "Events",               isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a11", "Arrays",               isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false, linkOverride = "Work-Not-Screen-Time-Curtis.html"),
     new Assignment("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = false  ),
