@@ -17,19 +17,13 @@
     <!-- 
         Do you have more in common with A rock or The Rock?
 
-        9 different things
+        things
             - Text input
             - Checkboxes
+            - Selection (multiple choice) (<select>)
             - Radio buttons
-            - File input
-            - Hidden
             - Reset
             - Submit
-            - Button 
-            - Text area
-            - Selection box (multiple choice) (<select>)
-            - Which of these sounds do you identify most with
-
     -->
 
     <main>
@@ -39,6 +33,56 @@
 
         <section>
             <form>
+                <fieldset>
+                    <legend>Personal Info:</legend>
+                    <label for="fname">Name:</label>
+                    <input type="text" id="fname" name="fname" list="nameList" required>
+                    <datalist id="nameList">
+                        <option value="Bob">
+                        <option value="Dwayne">
+                        <option value="Curtis">
+                        <option value="Fred">
+                        <option value="Prefer not to say">
+                    </datalist>
+                
+                    
+                </fieldset>
+
+                <fieldset>
+                    <legend>Questionnaire:</legend>                
+                    
+                </fieldset>
+
+                <!--Use the 'required' keyword-->
+        
+                
+
+                <!--
+                    <label for="cars">Choose a car:</label>
+                    <select id="cars" name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+
+                    <label></label>
+
+                    <input type="button">
+                    <input type="checkbox">
+                    <input type="color">
+                    <input type="date">
+                    <input type="number">
+                    <input type="password">
+                    <input type="radio">
+                    <input type="range">
+                    <input type="reset">
+
+
+                    <input type="range"  id="a" name="a" value="50">
+                
+                    <input type="submit">  
+                -->
 
             </form>
         </section>
