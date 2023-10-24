@@ -32,7 +32,7 @@
         <br>
 
         <section>
-            <form>
+            <form id="rockForm">
                 <fieldset>
                     <legend>Personal Info: (Your info will not be saved)</legend>
 
@@ -50,7 +50,7 @@
                     <br>
                     
                     <label for="age">Age:</label>
-                    <input id="age" type="number" required>
+                    <input id="age" name="age" type="number" required>
                 </fieldset>
 
                 <br>
@@ -59,7 +59,13 @@
                 <fieldset>
                     <legend>Questionnaire:</legend>                
                     
-                    
+                    <label for="cars">What do you do on a typical Saturday:</label>
+                    <select id="cars" name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
 
 
                 
@@ -78,13 +84,7 @@
                 
 
                 <!--
-                    <label for="cars">Choose a car:</label>
-                    <select id="cars" name="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                    </select>
+                    
 
                     <label></label>
 
@@ -106,5 +106,24 @@
             </form>
         </section>
     </main>
+
+
+    <script>
+        let rockForm = document.getElementById("rockForm")
+
+        rockForm.addEventListener("submit", handleSubmit)
+
+
+        function handleSubmit(e) // I have no clue what e is, but thank you stack exchange :>
+        {
+            console.log(e)
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const formDataObject = Object.fromEntries(formData);
+            // Form data object is now an object that contains all the user's answers
+
+
+        }
+    </script>
 </body>
 </html>
