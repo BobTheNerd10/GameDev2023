@@ -14,27 +14,28 @@
         <!--Dummy tag, will be filled in with JS if needed-->
     </header>
 
-    <!-- 
-        Do you have more in common with A rock or The Rock?
-
-        things
-            - Text input
-            - Checkboxes
-            - Selection (multiple choice) (<select>)
-            - Radio buttons
-            - Reset
-            - Submit
-    -->
-
     <main>
         <h1>T1A03-Forms-Curtis</h1>
 
         <hr>
 
+        <br>
+        <h2>Do you have more in common with A rock or THE rock?</h2>
+        <img src="RockOrRock.png" style="height:auto; width:30vw;">
+        <br>
+        <br>
+        <br>
+
+        <hr>   
+
+        <br>
+        <br>
+
         <section>
             <form>
                 <fieldset>
-                    <legend>Personal Info:</legend>
+                    <legend>Personal Info: (Your info will not be saved)</legend>
+
                     <label for="fname">Name:</label>
                     <input type="text" id="fname" name="fname" list="nameList" required>
                     <datalist id="nameList">
@@ -44,14 +45,33 @@
                         <option value="Fred">
                         <option value="Prefer not to say">
                     </datalist>
-                
                     
+                    <br>
+                    <br>
+                    
+                    <label for="age">Age:</label>
+                    <input id="age" type="number" required>
                 </fieldset>
 
+                <br>
+                <br>
+                
                 <fieldset>
                     <legend>Questionnaire:</legend>                
                     
+                    
+
+
+                
+
+                    
                 </fieldset>
+
+                <br>
+                <br>
+
+                <input type="submit">  
+                <input type="reset">  
 
                 <!--Use the 'required' keyword-->
         
@@ -72,16 +92,15 @@
                     <input type="checkbox">
                     <input type="color">
                     <input type="date">
-                    <input type="number">
+                    
                     <input type="password">
                     <input type="radio">
                     <input type="range">
-                    <input type="reset">
 
 
                     <input type="range"  id="a" name="a" value="50">
                 
-                    <input type="submit">  
+                    
                 -->
 
             </form>
