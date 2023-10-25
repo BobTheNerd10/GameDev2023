@@ -34,10 +34,10 @@
         <section>
             <form id="rockForm">
                 <fieldset>
-                    <legend>Personal Info: (Your info will not be saved)</legend>
+                    <legend>Personal Info: (Your info will not be saved, but will be used for results)</legend>
 
-                    <label for="fname">Name:</label>
-                    <input id="fname" name="fname" type="text" required>
+                    <label for="firstName">First name:</label>
+                    <input id="firstName" name="firstName" type="text" required>
 
                     <br>
                     <br>
@@ -51,27 +51,76 @@
                 
                 <fieldset>
                     <!--
-the value is how 
+                        the value is what it's worth
                     -->
                 
                     <legend>Questionnaire:</legend>                
                     
-                    <label for="saturday">What do you do on a typical Saturday:</label>
-                    <select id="saturday" name="saturday">
+                    <label for="saturdayActivity">Whats your favourite thing to do on a typical Saturday:</label>
+                    <select id="saturdayActivity" name="saturdayActivity">
+                        <option value="3">Sleep</option>
                         <option value="10">Weightlifting</option>
-                        <option value="-1">Sleep</option>
                         <option value="0">Sit around and do nothing</option>
-                        <option value="5">Listen to music</option>
                         <option value="10">Star in movies</option>
-                        <option value="6">None of the above</option>
+                        <option value="5">Other</option>
                     </select>
 
                     <br>
                     <br>
 
+                    <label for="favouriteFood">What's your favourite kind of food?:</label>
+                    <select id="favouriteFood" name="favouriteFood">
+                        <option value="4">Water</option>
+                        <option value="0">Sediment</option>
+                        <option value="10">Seafood</option>
+                        <option value="6">Red meat</option>
+                        <option value="5">Other</option>
+                    </select>
 
-                
+                    <br>
+                    <br>
 
+                    <!--
+                    
+                    <input type="checkbox">
+                    
+                    <br>
+                    <br>
+
+                    <input type="checkbox">
+                    
+                    <br>
+                    <br>
+
+                    -->
+
+                    <label for="favouriteColour">Input your favourite colour:</label>
+                    <input id='favouriteColour' name='favouriteColour' type="color">
+                    
+                    <br>
+                    <br>             
+
+                    <label for="movieAmount">How many movies have you starred in in the last year:</label>
+                    <input id="movieAmount" name="movieAmount" type="number">    
+                    
+                    <br>
+                    <br>     
+                    
+                    <!--
+
+                    <input type="radio">
+                    
+                    <br>
+                    <br>
+
+                    
+                    Rate movies out of 10:
+                    <input type="range"  id="a" name="a" value="50"> // Rocky
+                    <input type="range"  id="a" name="a" value="50"> // Moana
+                    <input type="range"  id="a" name="a" value="50"> // 
+                    <input type="range"  id="a" name="a" value="50">
+
+                    -->
                     
                 </fieldset>
 
@@ -80,55 +129,88 @@ the value is how
 
                 <input type="submit">  
                 <input type="reset">  
-
-                <!--Use the 'required' keyword-->
-        
-                
-
-                <!--
-                    
-
-                    <label></label>
-
-                    <input type="button">
-                    <input type="checkbox">
-                    <input type="color">
-                    <input type="date">
-                    
-                    <input type="password">
-                    <input type="radio">
-                    <input type="range">
-
-
-                    <input type="range"  id="a" name="a" value="50">
-                
-                    
-                -->
-
             </form>
         </section>
-    </main>
 
+        
+
+        <div id="resultDiv" style="display:none;">
+            
+            <hr>
+
+            <h3>Whoa! You're....</h3>
+            <h1 id="resultText"></h1>
+            <p id="resultSpecialTxt"></p>
+        </div>
+        
+    </main>
+    
+    <br>
+    <br>
+    <br>
+    <br>
 
     <script>
         let rockForm = document.getElementById("rockForm")
+        let resultDiv = document.getElementById("resultDiv")
+        let resultHeading = document.getElementById("resultText")
+        let resultSpecialTxt = document.getElementById("resultSpecialTxt")
 
         rockForm.addEventListener("submit", handleSubmit)
 
 
         function handleSubmit(e) // I have no clue what e is, but thank you stack exchange :>
         {
-            console.log(e)
             e.preventDefault();
-            const formData = new FormData(e.target);
-            const formDataObject = Object.fromEntries(formData);
-            // Form data object is now an object that contains all the user's answers
+            let formData = new FormData(e.target);
+            formData = Object.fromEntries(formData);
 
-            console.log(formDataObject)
-
-            // Todo, remove fname and age from formDataObject and then iterate through the keys as a list
+            // Form data is now an object that contains all the user's answers
 
 
+            let rockScore = 0
+            let highestPossible = 0 // Each question is worth 10 
+           
+            let isDwayne = false
+
+            // Iterate through a list of names that give the "is Dwayne" easter egg if the age is also 51 (real the rock's age)
+            let dwayneNames = ['Dwayne', 'The Rock'] 
+            dwayneNames.forEach(function (name)
+            {
+                if(formData.firstName.replace(/\s+/g, '').toLowerCase() == name.replace(/\s+/g, '').toLowerCase())
+                {   
+                    if(formData.age == 51)
+                    {
+                        isDwayne = true
+                        rockScore += 10
+                        highestPossible += 10
+                    }
+                }
+            })
+
+            delete formData.firstName
+            delete formData.age
+
+
+            // Account for questions that dont already have the numbers counted
+
+            
+
+
+            // Average all the answers
+            for(let answer of Object.values(formData))
+            {  
+                rockScore += parseInt(answer)
+                highestPossible += 10
+            }
+            console.log(rockScore, highestPossible)
+            resultHeading.innerText = `${Math.round(rockScore/highestPossible * 100)}% like the rock and ${Math.round((100 - rockScore/highestPossible * 100))}% like a rock!`
+            resultDiv.style.display = "block" // unhide the results!
+            if(isDwayne)
+            {
+                resultSpecialTxt.innerText = "Wait... are you actually THE rock?\nLemme know if this score was accurate!"
+            }
+            
         }
     </script>
 </body>
