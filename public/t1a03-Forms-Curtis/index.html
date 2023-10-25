@@ -37,15 +37,8 @@
                     <legend>Personal Info: (Your info will not be saved)</legend>
 
                     <label for="fname">Name:</label>
-                    <input type="text" id="fname" name="fname" list="nameList" required>
-                    <datalist id="nameList">
-                        <option value="Bob">
-                        <option value="Dwayne">
-                        <option value="Curtis">
-                        <option value="Fred">
-                        <option value="Prefer not to say">
-                    </datalist>
-                    
+                    <input id="fname" name="fname" type="text" required>
+
                     <br>
                     <br>
                     
@@ -57,15 +50,24 @@
                 <br>
                 
                 <fieldset>
+                    <!--
+the value is how 
+                    -->
+                
                     <legend>Questionnaire:</legend>                
                     
-                    <label for="cars">What do you do on a typical Saturday:</label>
-                    <select id="cars" name="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
+                    <label for="saturday">What do you do on a typical Saturday:</label>
+                    <select id="saturday" name="saturday">
+                        <option value="10">Weightlifting</option>
+                        <option value="-1">Sleep</option>
+                        <option value="0">Sit around and do nothing</option>
+                        <option value="5">Listen to music</option>
+                        <option value="10">Star in movies</option>
+                        <option value="6">None of the above</option>
                     </select>
+
+                    <br>
+                    <br>
 
 
                 
@@ -121,6 +123,10 @@
             const formData = new FormData(e.target);
             const formDataObject = Object.fromEntries(formData);
             // Form data object is now an object that contains all the user's answers
+
+            console.log(formDataObject)
+
+            // Todo, remove fname and age from formDataObject and then iterate through the keys as a list
 
 
         }
