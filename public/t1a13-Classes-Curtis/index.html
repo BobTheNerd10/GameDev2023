@@ -15,13 +15,52 @@
     </header>
 
     <main>
-        <h1 style="margin-block-end:0">TXXXX-YYY-Curtis</h1>
-        <h4 style="margin-block-start:0; font-weight:200;">(year 2)</h4>
+        <h1 style="margin-block-end:0">T1A13-Classes-Curtis</h1>
 
         <hr>
 
         <section>
-            Foo bar 
+            <a href=""> find a good reference to Javascript classes</a><br>
+            Classes are both objects that store variables (called Properties) and functions
+            that work on the variables (called Methods)
+            
+            <h4> Example Classes code</h4>
+            <pre>
+                class myAnimal {
+                    constructor(passName, passAge) {
+                        this.myName = passName;
+                        this.myAge = passAge
+                    }
+                    myShow(){
+                        document.getElementById('myDiv01').innerHTML = 'Hello '+ this.myName + '. You are ' + this.myAge + ' years old<br>'
+                    }
+                }
+
+                myDog = new myAnimal('Snickers', 5)
+                myDog.myShow()
+            </pre>
+
+            <h4> Example working classes code</h4>
+            Nothing: <input type="text" id="myText01" value="Useless at the moment"><br>
+            <input type="button" value="Example Class Set and Show Class Animal" onclick="{
+                class myAnimal {
+                    constructor(passName, passAge) {
+                        this.myName = passName;
+                        this.myAge = passAge
+                    }
+                    myShow(){
+                        document.getElementById('myDiv01').innerHTML = 'Hello '+ this.myName + '. You are ' + this.myAge + ' years old<br>'
+                    }
+                }
+
+                myDog = new myAnimal('Snickers', 5)
+                myDog.myShow()
+            }">
+
+            <div id="myDiv01">...</div>
+
+
+
         </section>
     </main>
 </body>

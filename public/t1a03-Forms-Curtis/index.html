@@ -37,13 +37,13 @@
                     <legend>Personal Info: (Your info will not be saved, but will be used for results)</legend>
 
                     <label for="firstName">First name:</label>
-                    <input id="firstName" name="firstName" type="text" required>
+                    <input id="firstName" name="firstName" type="text">
 
                     <br>
                     <br>
                     
                     <label for="age">Age:</label>
-                    <input id="age" name="age" type="number" required>
+                    <input id="age" name="age" type="number">
                 </fieldset>
 
                 <br>
@@ -58,6 +58,7 @@
                     
                     <label for="saturdayActivity">Whats your favourite thing to do on a typical Saturday:</label>
                     <select id="saturdayActivity" name="saturdayActivity">
+                        <option value=""></option>
                         <option value="3">Sleep</option>
                         <option value="10">Weightlifting</option>
                         <option value="0">Sit around and do nothing</option>
@@ -68,59 +69,45 @@
                     <br>
                     <br>
 
-                    <label for="favouriteFood">What's your favourite kind of food?:</label>
-                    <select id="favouriteFood" name="favouriteFood">
-                        <option value="4">Water</option>
-                        <option value="0">Sediment</option>
-                        <option value="10">Seafood</option>
-                        <option value="6">Red meat</option>
-                        <option value="5">Other</option>
-                    </select>
-
-                    <br>
+                    <span>What's your favourite food?</span><br>
+                    <input type="radio" id="food1" name="favouriteFood" value="4">  <label for="food1">Water</label><br>
+                    <input type="radio" id="food2" name="favouriteFood" value="0">  <label for="food2">Sediment</label><br>  
+                    <input type="radio" id="food3" name="favouriteFood" value="10"> <label for="food3">Seafood</label><br>
+                    <input type="radio" id="food4" name="favouriteFood" value="6">  <label for="food4">Red meat</label><br>
+                    <input type="radio" id="food5" name="favouriteFood" value="5">  <label for="food5">Other</label><br>                   
                     <br>
 
-                    <!--
-                    
-                    <input type="checkbox">
+                    <label for="calledTheRock">People often refer to me as 'the rock':</label>
+                    <input type="checkbox" id="calledTheRock" name="calledTheRock" value="10">
                     
                     <br>
                     <br>
 
-                    <input type="checkbox">
+                    <label for="calledARock">People often refer to me as 'a rock':</label>
+                    <input type="checkbox" id="calledARock" name="calledARock" value="0">
                     
                     <br>
                     <br>
-
-                    -->
-
-                    <label for="favouriteColour">Input your favourite colour:</label>
-                    <input id='favouriteColour' name='favouriteColour' type="color">
-                    
-                    <br>
-                    <br>             
 
                     <label for="movieAmount">How many movies have you starred in in the last year:</label>
-                    <input id="movieAmount" name="movieAmount" type="number">    
-                    
-                    <br>
-                    <br>     
-                    
-                    <!--
-
-                    <input type="radio">
+                    <input id="movieAmount" name="movieAmount" type="number" value="0">    
                     
                     <br>
                     <br>
+                    
+
+                    <hr>
+
+                    <br>
+                    Move the slider to the side that you prefer:<br><br>
+                    
+                    Rock Hard <input type="range"  id="rockHard" name="rockHard" value="5" min="0" max="10"> Rock Hard Abs <br><br>
+                    Literally any other movie <input type="range" id="rockMovie" name="rockMovie" value="5" min="5" max="10" step="0.5"> Moana <br><br>
+                    Erodes with water <input type="range"  id="erodes" name="erodes" value="5" min="0" max="5" step="0.5"> Doesn't erode with water <br><br>
+                    Living a normal life <input type="range"  id="life" name="life" value="5" min="5" max="10" step="0.5"> Starring in the WWE
 
                     
-                    Rate movies out of 10:
-                    <input type="range"  id="a" name="a" value="50"> // Rocky
-                    <input type="range"  id="a" name="a" value="50"> // Moana
-                    <input type="range"  id="a" name="a" value="50"> // 
-                    <input type="range"  id="a" name="a" value="50">
-
-                    -->
+                
                     
                 </fieldset>
 
@@ -192,25 +179,86 @@
             delete formData.age
 
 
-            // Account for questions that dont already have the numbers counted
 
+            // "Typical saturday" special code
+            if(formData.saturdayActivity == "")
+            {
+                delete formData.saturdayActivity
+            }
+
+
+
+            // Movie amount special code
+            let storedMovieAmount = Number(formData.movieAmount)
+            let moveAmountIsAbsurd = false
+            if(storedMovieAmount > 0){
+                formData.movieAmount = "10"
+
+                if(storedMovieAmount > 10){
+                    moveAmountIsAbsurd = true
+                }
+            }
+            else
+            {
+                formData.movieAmount = "5"
+
+                if(storedMovieAmount < 0){
+                    moveAmountIsAbsurd = true
+                }
+            }
             
 
 
-            // Average all the answers
+            // Sliders special code
+            if(formData.rockMovie == "5")
+            {
+                delete formData.rockMovie
+            }
+            if(formData.erodes == "5")
+            {
+                delete formData.erodes
+            }
+            if(formData.life == "5")
+            {
+                delete formData.life
+            }
+
+            console.log(formData)
+
+            // Average all the answers (calculations!)
             for(let answer of Object.values(formData))
             {  
                 rockScore += parseInt(answer)
                 highestPossible += 10
             }
-            console.log(rockScore, highestPossible)
-            resultHeading.innerText = `${Math.round(rockScore/highestPossible * 100)}% like the rock and ${Math.round((100 - rockScore/highestPossible * 100))}% like a rock!`
+
+
+            resultSpecialTxt.innerText = ""
             resultDiv.style.display = "block" // unhide the results!
+
+            // If your movie amount is absurd
+            if (moveAmountIsAbsurd)
+            {
+                resultSpecialTxt.innerText = `Hey... how did you star in ${storedMovieAmount} movies last year?\nIf you put garbage into this quiz, I'm not giving you an answer >:C`
+                return
+            }
+
+            resultHeading.innerText = `${Math.round(rockScore/highestPossible * 100)}% like the rock and ${Math.round((100 - rockScore/highestPossible * 100))}% like a rock!`            
+            
+            // If your name is Dwayne or your rock score is 100%
+            if(Math.round(rockScore/highestPossible * 100) == 100){isDwayne = true}
             if(isDwayne)
             {
                 resultSpecialTxt.innerText = "Wait... are you actually THE rock?\nLemme know if this score was accurate!"
+                return
             }
-            
+
+            // If you got the lowest possible dwayne score
+            if(Math.round(rockScore/highestPossible * 100) < 9)
+            {
+                resultSpecialTxt.innerText = "Well, I mean you're taking this quiz, rocks can't do that! So you can only have so much in common with a rock"
+                return
+            }
         }
     </script>
 </body>

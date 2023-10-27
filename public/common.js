@@ -187,7 +187,7 @@ let assignments =
 [
     new Assignment("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true   ),
     new Assignment("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
-    new Assignment("t1a03", "Forms",                isShown = true,  isWip = true,   isSubmitted = false  ),
+    new Assignment("t1a03", "Forms",                isShown = true,  isWip = false,  isSubmitted = true   ),
     new Assignment("t1a04", "Css",                  isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
     new Assignment("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
