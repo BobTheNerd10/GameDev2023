@@ -274,21 +274,21 @@ for (let classTodoListElement of classTodoListElements)
 {
     for (let assignment of assignments)
     {
-        todoList.innerHTML += assignment.getLinkFormat("todoList", layersDeep) ? `<li>${assignment.getLinkFormat("todoList", layersDeep)}</li>` : "" // If it's null then don't add anything
+        classTodoListElement.innerHTML += assignment.getLinkFormat("todoList", layersDeep) ? `<li>${assignment.getLinkFormat("todoList", layersDeep)}</li>` : "" // If it's null then don't add anything
     }
     for (let extraClassTodo of extraClassTodos)
     {
-        todoList.innerHTML += `<li>${extraClassTodo}</li>`
+        classTodoListElement.innerHTML += `<li>${extraClassTodo}</li>`
     }
 } 
 
 let freeTodoLists = document.getElementsByClassName("freeTodoList")
 
-for (let todoList of freeTodoLists)
+for (let classTodoListElement of freeTodoLists)
 {
     for (let freeTodo of freeTodos)
     {
-        todoList.innerHTML += `<li>${freeTodo}</li>`
+        classTodoListElement.innerHTML += `<li>${freeTodo}</li>`
     }
 } 
 
