@@ -185,26 +185,26 @@ const creatorName = "Curtis"
 
 let assignments = 
 [
-    new Assignment("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true   ),
-    new Assignment("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true   ),
-    new Assignment("t1a03", "Forms",                isShown = true,  isWip = false,  isSubmitted = true   ),
-    new Assignment("t1a04", "Css",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "t1a01-BasicWeb-Curtis/index.html", assignmentNotes = " (my t1a01 is my t1a04 submission. <a href='t1a01-BasicWeb-Curtis/t1a01.css'>Go to css file</a>)"),
-    new Assignment("t1a05", "Trivia",               isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a06", "Calc",                 isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a07", "Mapping",              isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a08", "Graphics",             isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a09", "local-storage",        isShown = true,  isWip = true,   isSubmitted = true   ),
-    new Assignment("t1a10", "Events",               isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a11", "Arrays",               isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a12", "Object",               isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a13", "Classes",              isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1a14", "Extend-Class",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = false, linkOverride = "Work-Not-Screen-Time-Curtis.html"),
-    new Assignment("t1z01", "First-Javascript",     isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1z03", "Array-Zombie",         isShown = true,  isWip = true,   isSubmitted = false  ),
-    new Assignment("t1z04", "Classes",              isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "common.js", assignmentNotes = " (JS file)"),
-    new Assignment("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
+    new Assignment("t1a01", "BasicWeb",             isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a02", "Lists-Tables",         isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a03", "Forms",                isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a04", "Css",                  isShown = true,  isWip = false,  isSubmitted = true, linkOverride = "t1a01-BasicWeb-Curtis/index.html", assignmentNotes = " (my t1a01 is my t1a04 submission. <a href='t1a01-BasicWeb-Curtis/t1a01.css'>Go to css file</a>)"),
+    new Assignment("t1a05", "Input-Output",         isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a06", "Variables",            isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a07", "Decisions",            isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a08", "Loops",                isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a09", "local-storage",        isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a10", "Events",               isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a11", "Arrays",               isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a12", "Objects",              isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a13", "Classes",              isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1a14", "Extend-Classes",       isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true,  isWip = false,  isSubmitted = true, linkOverride = "Work-Not-Screen-Time-Curtis.html"),
+    new Assignment("t1z01", "First-Javascript",     isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1z02", "Object-Zombie",        isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1z03", "Array-Zombie",         isShown = true,  isWip = false,  isSubmitted = true, ),
+    new Assignment("t1z04", "Classes",              isShown = true,  isWip = false,  isSubmitted = true, linkOverride = "common.js", assignmentNotes = " (JS file)"),
+    new Assignment("Funtest","By",                  isShown = true,  isWip = false,  isSubmitted = true, linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
