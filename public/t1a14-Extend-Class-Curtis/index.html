@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    
+    <main>
+        <h1 style="margin-block-end:0">T1a14-Extend-Class-Curtis</h1>
+
+        <hr>
+
+        <script>
+            class myAnimal 
+            {
+                constructor(passName, passAge) 
+                {
+                    this.myName = passName
+                    this.myAge = passAge 
+                }
+                myShow()
+                {
+                    document.getElementById('myDiv01').innerHTML = 'Hello '+ this.myName+"<br>"
+                }
+            }
+        </script>
+
+        <section>
+            
+            Extending a pre-existing Class<br>
+
+            <h4> Example class extend code</h4>
+            <pre>
+
+                class myCat extends myAnimal
+                {
+                    myShow()
+                    {
+                        document.getElementById('myDiv01').innerHTML = this.myName
+                    }
+                }
+            </pre>
+            
+
+            <input type="button" value="Example Clas Set and Show Class Animal" onclick="{
+                myDog = new myAnimal('Snickers', 5)
+                myDog.myShow()
+            }">
+
+            <input type="button" value="Example Extend Class Animal" onclick="{
+
+                class myCat extends myAnimal {
+                    myShow(){
+                        document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat<br>'
+                    }
+                }
+
+                myPet = new myCat('Fluffy', 14)
+                myPet.myShow()
+            }">
+
+            <div id="myDiv01">...</div>
+
+            You can try to extend this class and make other classes or add more properties
+            to the class or add more methods to the class.
+
+            
+
+        </section>
+    </main>
+</body>
+</html>
