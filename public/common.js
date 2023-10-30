@@ -208,7 +208,7 @@ let assignments =
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
-    "Improving my site's general structure (cleaning!)"
+
 ]
 
 let freeTodos = [

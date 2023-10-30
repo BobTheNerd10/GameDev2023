@@ -115,3 +115,35 @@ darkPurple {
     animation-delay: -1.5s;
 }
   
+
+
+.headingRow {
+    display:inline; margin-block:0;
+    display:inline; margin-block:0;
+    display:inline; margin-block:0;
+    display:inline; margin-block:0;
+    display:inline; margin-block:0;
+    display:inline; margin-block:0;
+}
+
+
+#div-flashing {
+    animation: flashingDiv 2s infinite;
+    animation-timing-function: steps(1, end);
+    border: red dotted 5px; 
+    padding:0.5%;
+}
+
+@keyframes flashingDiv {
+    0%   {border: red dotted 5px;}
+    50% {border: rgb(255, 187, 0) dotted 5px;}
+}
+
+.videoflacButton
+{
+    width:11%; 
+    margin:0; 
+    height:0; 
+    padding-bottom:5.5%; 
+    padding-top:3.5%;
+}

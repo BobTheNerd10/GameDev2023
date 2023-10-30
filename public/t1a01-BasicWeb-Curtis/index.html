@@ -48,12 +48,12 @@
         <h3>
             Another element type are headings! 
         </h3>
-        <h1 style="display:inline; margin-block:0;">h1</h1>
-        <h2 style="display:inline; margin-block:0;">h2</h2>
-        <h3 style="display:inline; margin-block:0;">h3</h3>
-        <h4 style="display:inline; margin-block:0;">h4</h4>
-        <h5 style="display:inline; margin-block:0;">h5</h5>
-        <h6 style="display:inline; margin-block:0;">h6 hehe this one is so tiny :></h6>
+        <h1 class="headingRow">h1</h1>
+        <h2 class="headingRow">h2</h2>
+        <h3 class="headingRow">h3</h3>
+        <h4 class="headingRow">h4</h4>
+        <h5 class="headingRow">h5</h5>
+        <h6 class="headingRow">h6 hehe this one is so tiny :></h6>
         </h6>
         <h3>
             You can <u>also</u> put <i>styling</i> in headers! <s>Including strikethrough</s>
@@ -94,18 +94,7 @@
         </p>
         <br>
 
-        <style>
-            #div-flashing {
-                animation: flashingDiv 2s infinite;
-                animation-timing-function: steps(1, end);
-            }
-
-            @keyframes flashingDiv {
-                0%   {border: red dotted 5px;}
-                50% {border: rgb(255, 187, 0) dotted 5px;}
-            }
-        </style>
-        <div id="div-flashing" style="border: red dotted 5px; padding:0.5%;">
+        <div id="div-flashing">
             One last thing to note of is &lt;div&gt;s! Divs let you divide up your webpage and add lots of cool CSS and JS to them! 
             As useful as divs are, you can use most HTML tags to serve the same purpose (this page is divided up into &lt;header&gt; and &lt;main&gt;, 
             which all do the exact same things as div, but they make your code a lot more readable and are good practice! Typically you'll also see &lt;footer&gt;, 
@@ -232,15 +221,15 @@
             }
         </script>
         <table display="inline-block" position="relative" width="10%">
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('V', 'rgb(235, 255, 255)')">V</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('I', 'rgb(255, 235, 255)')">I</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('D', 'rgb(235, 235, 255)')">D</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('E', 'rgb(255, 255, 235)')">E</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('O', 'rgb(235, 255, 235)')">O</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('F', 'rgb(255, 235, 235)')">F</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('L', 'rgb(235, 235, 235)')">L</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('A', 'rgb(235, 255, 255)')">A</button>
-            <button style="width:11%; margin:0; height:0; padding-bottom:5.5%; padding-top:3.5%;" onclick="setTheDisplayBoxText('C', 'rgb(235, 235, 255)')">C</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('V', 'rgb(235, 255, 255)')">V</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('I', 'rgb(255, 235, 255)')">I</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('D', 'rgb(235, 235, 255)')">D</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('E', 'rgb(255, 255, 235)')">E</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('O', 'rgb(235, 255, 235)')">O</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('F', 'rgb(255, 235, 235)')">F</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('L', 'rgb(235, 235, 235)')">L</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('A', 'rgb(235, 255, 255)')">A</button>
+            <button class="videoflacButton" onclick="setTheDisplayBoxText('C', 'rgb(235, 235, 255)')">C</button>
             <br>
             <div id="displayBoxVideoflac" style="position:relative; padding:auto; height:fit-content;">
         </table>
