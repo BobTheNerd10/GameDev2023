@@ -21,7 +21,7 @@
     -->
 
 
-    <main onload="onPageLoad()" onunload="onPageUnload()">
+    <main>
         
         <h1 style="margin-block-end:0">T1A09-local-storage-Curtis</h1>
         <h4 style="margin-block-start:0; font-weight:200;">(year 2)</h4>
@@ -35,7 +35,7 @@
         <section>
 
             <br>
-
+        
             Add to list: <input type="text" id="inputField"> 
         
             <button onclick="addItemTodoList()">Add Input to List</button>
@@ -56,38 +56,32 @@
         let inputFieldElement = document.getElementById("inputField")
         let todoListUndoBuffer 
 
-
-        function onPageLoad() 
+        if(localStorage.getItem('todoListHTML') != null)
         {
-            if(localStorage.getItem('todoListHTML') != null)
-            {
-                todoListElement.innerHTML = localStorage.getItem('todoListHTML')
-            }
-
-            if(localStorage.getItem('todoListUndoBuffer') != null)
-            {
-                todoListUndoBuffer = localStorage.getItem('todoListUndoBuffer')
-            }
+            todoListElement.innerHTML = localStorage.getItem('todoListHTML')
         }
 
-
-        function onPageUnload()
+        if(localStorage.getItem('todoListUndoBuffer') != null)
         {
-            localStorage.setItem('todoListHTML', todoListElement.innerHTML)
-
-            if(todoListUndoBuffer != null)
-            {
-                localStorage.setItem('todoListUndoBuffer', todoListUndoBuffer)
-            }
+            todoListUndoBuffer = localStorage.getItem('todoListUndoBuffer')
         }
 
 
 
+        
 
         function addItemTodoList() 
         {
             todoListUndoBuffer = todoListElement.innerHTML
-            todoListElement.innerHTML += `<li onClick="deleteSingleTodoItem(this)">${inputFieldElement.value}</li>`
+            todoListElement.innerHTML += 
+            `
+                <li 
+                    class="todoListItem"
+                    onclick="deleteSingleTodoItem(this)"
+                >
+                ${inputFieldElement.value}
+                </li>
+            `
         }
 
         function deleteEntireTodoList() 
@@ -98,7 +92,6 @@
 
         function tryUndoTodoList() 
         {
-            console.log("trying to replace ", todoListUndoBuffer, " onto ", todoListElement.innerHTML)
             todoListElement.innerHTML = todoListUndoBuffer
         }
 
@@ -109,20 +102,52 @@
         }
 
 
-        /*
+
+
+
+
+
+
+        
         const sleep = ms => new Promise(r => setTimeout(r, ms));
         myAsync()
 
-
+    
         async function myAsync()
         {
+            await sleep(1000)
             while(true)
             {
-                await sleep(10)
-                console.log(todoListUndoBuffer)
+                await sleep(100)
+                if(todoListUndoBuffer != null)
+                {
+                    localStorage.setItem('todoListUndoBuffer', todoListUndoBuffer)
+                }
+                if(todoListElement.innerHTML != null)
+                {
+                    localStorage.setItem('todoListHTML', todoListElement.innerHTML)
+                }
             }
         }
-        */
+        
+
+
     </script>
+
+    <style>
+        .todoListItem 
+        {
+            text-decoration: none;
+            width:fit-content;
+            font-weight:normal;
+        }
+
+
+        .todoListItem:hover 
+        {
+            text-decoration: line-through;
+            font-weight:bold;
+        }
+    </style>
 </body>
 </html>
