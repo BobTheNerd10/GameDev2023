@@ -193,7 +193,7 @@ let assignments =
     new Assignment("t1a06", "Variables",            isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1a07", "Decisions",            isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1a08", "Loops",                isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1a09", "local-storage",        isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t1a09", "local-storage",        isShown = true, isWip = true,   isSubmitted = true,  ),
     new Assignment("t1a10", "Events",               isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1a11", "Arrays",               isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1a12", "Objects",              isShown = true, isWip = true,   isSubmitted = false, ),

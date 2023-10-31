@@ -38,9 +38,9 @@
 
             Add to list: <input type="text" id="inputField"> 
         
-            <button onclick="">Add Input to List</button>
-            <button onclick="">Delete All</button>
-            <button onclick="">Undo</button>
+            <button onclick="addItemTodoList()">Add Input to List</button>
+            <button onclick="deleteEntireTodoList()">Delete All</button>
+            <button onclick="tryUndoTodoList()">Undo</button>
 
             <br><br>
 
@@ -51,58 +51,17 @@
     </main>
 
     <script defer>
-        class EditableTodoList 
-        {
-            constructor(element, entries = [])
-            {
-                this.element = element
 
-                this.entries = entries // Todo list entries (list of strings)
-                this.entryCounter = 0 // This is a bit hacky, but realistically, no one is going to have so many todo list entries that they hit the integer limit, plus it resets on page refresh
+        let todoListElement = document.getElementById("todoList")
+        let inputFieldElement = document.getElementById("inputField")
+        let todoListUndoBuffer 
 
-                this.undoBuffer = entries
-
-                this.drawTodoList()
-            }
-
-            drawTodoList()
-            {
-                this.element.innerHTML = ""
-                
-                for(let entry of this.entries)
-                {
-                    this.element.innerHTML += entry
-                }
-            }
-
-            tryUndo()
-            {
-                this.contents = this.undoBuffer
-                this.drawTodoList()
-            }
-
-            addListEntry(todoText = '')
-            {
-                this.entryCounter += 1
-
-                // This line is garbo
-                let todoEntry = `<li id="Entry${this.entryCounter}" onmousehover="document.getElementById('Entry${this.entryCounter}').style.textDecoration = 'line-through'" onmouseout="document.getElementById('Entry${this.entryCounter}').style.textDecoration = 'none'"onclick="">${todoText}</li>`
-                
-                this.entries.push(todoEntry) 
-                
-                this.drawTodoList()
-            }
-        }
-
-        let todoObj = new EditableTodoList(document.getElementById("todoList"))
-        todoObj.addListEntry("HeyHey")
-        todoObj.addListEntry("twasfasdf")
 
         function onPageLoad() 
         {
             if(localStorage.getItem('todoListHTML') != null)
             {
-                todoObj.element.innerHTML = localStorage.getItem('todoListHTML')
+                todoListElement.innerHTML = localStorage.getItem('todoListHTML')
             }
 
             if(localStorage.getItem('todoListUndoBuffer') != null)
@@ -121,6 +80,49 @@
                 localStorage.setItem('todoListUndoBuffer', todoListUndoBuffer)
             }
         }
+
+
+
+
+        function addItemTodoList() 
+        {
+            todoListUndoBuffer = todoListElement.innerHTML
+            todoListElement.innerHTML += `<li onClick="deleteSingleTodoItem(this)">${inputFieldElement.value}</li>`
+        }
+
+        function deleteEntireTodoList() 
+        {
+            todoListUndoBuffer = todoListElement.innerHTML
+            todoListElement.innerHTML = ""            
+        }
+
+        function tryUndoTodoList() 
+        {
+            console.log("trying to replace ", todoListUndoBuffer, " onto ", todoListElement.innerHTML)
+            todoListElement.innerHTML = todoListUndoBuffer
+        }
+
+        function deleteSingleTodoItem(element)
+        {
+            todoListUndoBuffer = todoListElement.innerHTML
+            element.remove()
+        }
+
+
+        /*
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+        myAsync()
+
+
+        async function myAsync()
+        {
+            while(true)
+            {
+                await sleep(10)
+                console.log(todoListUndoBuffer)
+            }
+        }
+        */
     </script>
 </body>
 </html>
