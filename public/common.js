@@ -244,7 +244,7 @@ let layersDeep = arrayOfUrl.length - arrayOfUrl.indexOf("public") - 1
 
 // Page title 
 
-if(layersDeep >= 1)
+if(layersDeep >= 1 && document.getElementsByTagName("title")[0].innerHTML == "")
 {   
     document.title = `${arrayOfUrl[arrayOfUrl.length-1].split("-")[0]} ${creatorName}`
     // I hate this, but it's good enough (it gets the ID from the folder name)
