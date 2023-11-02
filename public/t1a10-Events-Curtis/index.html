@@ -34,6 +34,16 @@
 
         <section>
             <h3>onclick</h3>
+            <p>Onclick activates whenever you click an element, try clicking the button below!</p>
+            <img 
+                src="img/button.jpg" 
+                width="100px"
+                onclick=
+                "
+                    document.getElementById('ButtonClickText').innerHTML = 'The button was clicked!'
+                "
+            >
+            <div id="ButtonClickText"></div>
         </section>
 
 
@@ -42,14 +52,20 @@
 
         <section>
             <h3>onmouseover</h3>
-        </section>
-
-
-        <hr>
-
-
-        <section>
-            <h3>onresize</h3>
+            <p>Onmouseover activates whenever you hover your mouse over an element, try petting the cat with your cursor!</p>
+            <img 
+                src="img/cat.jpg" 
+                width="200px"
+                onmouseover=
+                "
+                    document.getElementById('purrText').innerHTML = 'purrrrr'
+                "
+                onmouseout=
+                "
+                    document.getElementById('purrText').innerHTML = ''
+                "
+            >
+            <div id="purrText"></div>
         </section>
 
 
@@ -58,6 +74,19 @@
 
         <section>
             <h3>onscroll</h3>
+            <p>Onscroll triggers whenever you scroll the viewport! Try scrolling now!</p>
+            <script>
+                window.addEventListener("scroll", (event) => {
+
+                    document.getElementById('scrollText').innerHTML = 'You are currently scrolling'
+
+                    setTimeout(() => {
+                        document.getElementById('scrollText').innerHTML = "You are not currently scrolling";
+                    }, 500);
+                    
+                })
+            </script>
+            <p id="scrollText"></p>
         </section>
 
 
@@ -66,9 +95,16 @@
 
         <section>
             <h3>onerror</h3>
-            <!--Thank goodness this one will never get triggered :D
-            
-            "Everything is ok lightbulb"-->
+            <p>On error triggers whenever an element that loads something has an error! Thankfully, that will never happen with MY coding, so you'll never get to see this light turn on! >:D</p>
+            <img 
+                id="errorLight"
+                src="img/lightOff.jpg" 
+                width="200px"
+                onerror=
+                "
+                    this.src = 'img/lightOn.jpg'
+                "
+            >
         </section>
         
 
@@ -77,6 +113,31 @@
 
         <section>
             <h3>onkeydown and onkeyup</h3>
+            <p>
+                Onkeydown and onkeyup trigger whenever you press and release a key on your keyboard!<br>
+                Unfortunately, you need to use addEventListener on the window to get this one to work :[
+            </p>
+            <p>Try pressing the F button!</p>
+            <!--Some JS magic with lambda expressions to get the keycode-->
+            <script>
+                window.addEventListener("keydown", (event) => {
+                    if(event.key == 'f')
+                    {
+                        document.getElementById('fButtonText').innerHTML = 'the F button is down'
+                    }
+                })
+
+                window.addEventListener('keyup', (event) => {
+                    if(event.key == 'f')
+                    {
+                        document.getElementById('fButtonText').innerHTML = 'the F button is up'
+                    }
+                })
+            </script>
+            <p id="fButtonText"></p>
+            <br>
+            <br>
+            <br>
         </section>
     </main>
 </body>

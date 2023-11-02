@@ -29,6 +29,9 @@
         <p>
             If you put stuff in the todo list, you can refresh the page and it'll stay there!
         </p>
+        <p>
+            You can also click on todo list items to remove them!
+        </p>
 
         <hr>
 
@@ -72,16 +75,19 @@
 
         function addItemTodoList() 
         {
-            todoListUndoBuffer = todoListElement.innerHTML
-            todoListElement.innerHTML += 
-            `
-                <li 
-                    class="todoListItem"
-                    onclick="deleteSingleTodoItem(this)"
-                >
-                ${inputFieldElement.value}
-                </li>
-            `
+            if(inputFieldElement.value != "")
+            {
+                todoListUndoBuffer = todoListElement.innerHTML
+                todoListElement.innerHTML += 
+                `
+                    <li 
+                        class="todoListItem"
+                        onclick="deleteSingleTodoItem(this)"
+                    >
+                    ${inputFieldElement.value}
+                    </li>
+                `
+            }
         }
 
         function deleteEntireTodoList() 
