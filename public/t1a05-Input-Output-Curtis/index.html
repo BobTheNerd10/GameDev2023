@@ -3,33 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Carrot Clicker</title>
 
 	<!--Site sheets-->
-	<link rel="stylesheet" href="../printStyle.css">
 	<script src="../common.js" defer></script>
 </head>
 <body>
-    <header>
-        <!--
-            Make a clalculator
-            use math.js
-            Make the output autofill when you put in input text
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding:0;
+            margin:0;
+        }
 
-            Have two kinds of calculators
-            One where it's just a horizontal form (2 text inputs for the numbers and a select input for the operator)
-            One where it's an actual calculator
-        -->
-    </header>
+        .screenObj {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%); /* This will work as long as you only use LEFT and TOP*/
+            transform-origin:center;
+        }
+        
+        .textBox {
+            width:fit-content;
+            padding:50px;
+            background-color:white;
+            border:black double;
+        }
 
-    <main>
-        <h1 style="margin-block-end:0">t1a05-Input-Output-Curtis</h1>
+        #carrotClickable {
+            top:50%;
+            left:50%;
+            max-width:50%;
+            max-height:50%;
+            z-index:-1;
+        }
 
-        <hr>
+        #backButton {
+            position:absolute;
+            left:10px;
+            top:10px;
+            text-align:left;
+        }
+    </style>
 
-        <section>
+    <div class="screenObj textBox">
+        <h1>Addictive Clicker Game</h1>
+        <h4>T1A05 (input output), T1A06 (variables), and T1A07 (decisions) all in one!</h4>
+        <button onclick="this.parentElement.remove(); startGame()">Close</button>
+    </div>
 
-        </section>
-    </main>
+
+    <a id='backButton' href="../index.html">Back</a>
+
+    <gameObjects id="gameObjects">
+        <h2 id="farmText">Your carrot farm</h2>
+        <h1 id="carrotCounter"></h1>
+        <img src="img/carrot.png" class="screenObj" id="carrotClickable" onclick="carrotClicked()" onmousedown="carrotMouseDown()" onmouseup="carrotMouseUp()">
+        <p id="helpText">
+            Click the carrot
+        </p>
+    </gameObjects>
+    
+    <script>
+        let gameObjects = document.getElementById("gameObjects")
+        gameObjects.style.display = "none"
+        
+        let carrotClickable = document.getElementById("carrotClickable")
+        let carrotCounter = document.getElementById('carrotCounter')
+        let carrots = 0
+        let money = 0
+        
+        let gameProgress = 0
+        /*
+            1- unlocked Farmer's Market
+            2- discovered money
+            3- unlocked shop
+            4- 
+            5-
+            6- 
+        */
+
+
+        /*
+            farmer's market:
+                - $10 (20 carrots)  (0.5 dollars per carrot)        
+        
+
+            gardening stuff:
+                - better shovel (more carrots per click)
+                - better watering can (more carrots per click)
+                - better watering can (more carrots per click)
+
+
+                - better watering can (more carrots per click)
+        */
+
+        // Looping stuff
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+        function startGame()
+        {
+            gameObjects.style.display = "block"
+            gameLoop()
+            progressFlags()
+        }
+
+
+        function carrotClicked()
+        {
+            document.getElementById('helpText').style.display = "none"
+            carrots += 1
+        }
+
+        function carrotMouseDown()
+        {
+            carrotClickable.style.transform = "translate(-50%, -50%) scale(0.98)"
+        }
+
+        function carrotMouseUp()
+        {
+            carrotClickable.style.transform = "translate(-50%, -50%) scale(1)"
+        }
+
+        
+        async function gameLoop()
+        {   
+            while(true)
+            {
+                await sleep(10)
+
+                if(gameProgress >= 2)
+                {
+                    carrotCounter.innerHTML = `You have ${carrots} carrots and $${money} dollars!`
+                }
+                else
+                {
+                    carrotCounter.innerHTML = `You have ${carrots} carrots!`
+                }
+                
+            }   
+        }
+
+        // Set gameProgress
+        async function progressFlags()
+        {
+            while(carrots < 10)
+            {
+                await sleep(10)
+            } 
+
+            gameProgress = 1
+
+            while(money == 0)
+            {
+                await sleep(10)
+            } 
+
+            gameProgress = 2
+
+            while(money < 10)
+            {
+                await sleep(10)
+            } 
+
+            gameProgress = 3
+        }
+    </script>
 </body>
 </html>
