@@ -106,15 +106,15 @@
             <h3>Farmer's Market</h3>
             <p>Sell your carrots here!</p>
             <hr>
-            <button class = "buyable"  unlock = '0m'   cost = "20c"  reward = "5m">20 Carrots -> $5</button>
+            <button class = "buyable"  onclick="tryBuy()"  unlock = '0m'   cost = "20c"  reward = "5m">20 Carrots -> $5</button>
         </shop>
 
         <shop id="itemShop" class="textBox"> 
             <h3>Item shop</h3>
             <p>Buy cool things here!</p>
             <hr>
-            <button class = "buyable"  unlock = '15m'  cost = "20m"   reward = "trowel">$20 -> Trowel (double your carrots per click)</button>
-            <button class = "buyable"  unlock = '50m'  cost = "200m"  reward = "motorcycle">$200 -> Motorcycle (sweet ride)</button>
+            <button class = "buyable"  onclick="tryBuy()"  unlock = '15m'  cost = "20m"   reward = "trowel">$20 -> Trowel (double your carrots per click)</button>
+            <button class = "buyable"  onclick="tryBuy()"  unlock = '50m'  cost = "100m"  reward = "motorcycle">$100 -> Motorcycle (sweet ride)</button>
         </shop>
     </gameObjects>
     
@@ -155,8 +155,8 @@
         function startGame()
         {
             gameObjects.style.display = "block"
-            gameLoop()
-            progressFlags()
+            update()
+            progressLoop()
             marketProgressLoop()
         }
 
@@ -178,7 +178,7 @@
         }
 
         
-        async function gameLoop()
+        async function update()
         {   
             while(true)
             {
@@ -196,8 +196,8 @@
             }   
         }
 
-        // Set gameProgress
-        async function progressFlags()
+        // Unlock big things like the shops
+        async function progressLoop()
         {
             while(carrots < 10)
             {
@@ -215,7 +215,7 @@
         }
 
 
-
+        // Unlocks the items of the 2 markets over time as their requirements are met
         async function marketProgressLoop()
         {
             let buyables = document.getElementsByClassName('buyable')
@@ -237,6 +237,12 @@
                 await sleep(100)
             }
 
+        }
+
+
+        function tryBuy()
+        {
+            // Can you buy the market buyable
         }
     </script>
 </body>
