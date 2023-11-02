@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Carrot Clicker</title>
 
 	<!--Site sheets-->
 	<script src="../common.js" defer></script>
 </head>
 <body>
-    
 
-
-<!--
-
-
-    IF you're here for carrot clicker, check out zCarrotGame
-    
+    <!-- This goes into t1 a05, a06, a07, and maybe z01-->
 
 
     <style>
@@ -40,6 +34,7 @@
             padding:50px;
             background-color:white;
             border:black double;
+            overflow: hidden;
         }
 
         #carrotClickable {
@@ -55,6 +50,15 @@
             left:10px;
             top:10px;
             text-align:left;
+        }
+
+        #shopDiv {
+            position:absolute;
+            padding:0.5%;
+            display:none;
+            left:5%;
+            top:5%;
+            height:80vh;
         }
     </style>
 
@@ -74,16 +78,22 @@
         <p id="helpText">
             Click the carrot
         </p>
+        <shop id="shopDiv" class="textBox"> 
+            hello im the shop :D
+        </shop>
     </gameObjects>
     
     <script>
         let gameObjects = document.getElementById("gameObjects")
         gameObjects.style.display = "none"
         
+        let shopDiv = document.getElementById('shopDiv')
+
         let carrotClickable = document.getElementById("carrotClickable")
         let carrotCounter = document.getElementById('carrotCounter')
         let carrots = 0
         let money = 0
+        
         
         let gameProgress = 0
         /*
@@ -104,7 +114,7 @@
             gardening stuff:
                 - better shovel (more carrots per click)
                 - better watering can (more carrots per click)
-                - better watering can (more carrots per click)
+                - better watering can (you can hold click and get carrots(?)
 
 
                 - better watering can (more carrots per click)
@@ -164,6 +174,8 @@
                 await sleep(10)
             } 
 
+            shopDiv.style.display = 'block'
+            shopUnlockLoop()
             gameProgress = 1
 
             while(money == 0)
@@ -181,6 +193,5 @@
             gameProgress = 3
         }
     </script>
--->
 </body>
 </html>

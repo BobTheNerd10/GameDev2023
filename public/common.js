@@ -203,7 +203,7 @@ let assignments =
     new Assignment("t1z01", "First-Javascript",     isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1z02", "Object-Zombie",        isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1z03", "Array-Zombie",         isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1z04", "Classes",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "common.js", assignmentNotes = " (JS file)"),
+    new Assignment("t1z04", "Classes",              isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("Funtest","By",                  isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
 ]
 
