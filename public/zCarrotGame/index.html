@@ -52,15 +52,37 @@
             text-align:left;
         }
 
-        #shopDiv {
+        #farmersMarket {
             position:absolute;
-            padding:0.5%;
+            padding:0.1%;
             display:none;
             left:5%;
             top:5%;
             height:80vh;
+            max-width:10%;
+        }
+
+
+        #itemShop {
+            position:absolute;
+            padding:0.1%;
+            display:none;
+            right:5%;
+            top:5%;
+            height:80vh;
+            max-width:10%;
+        }
+
+        .buyable {
+            position:relative;
+            width:100%;
+            display:none;
         }
     </style>
+
+
+
+
 
     <div class="screenObj textBox">
         <h1>Addictive Clicker Game</h1>
@@ -78,33 +100,40 @@
         <p id="helpText">
             Click the carrot
         </p>
-        <shop id="shopDiv" class="textBox"> 
-            hello im the shop :D
+
+
+        <shop id="farmersMarket" class="textBox"> 
+            <h3>Farmer's Market</h3>
+            <p>Sell your carrots here!</p>
+            <hr>
+            <button class = "buyable"  unlock = '0m'   cost = "20c"  reward = "5m">20 Carrots -> $5</button>
+        </shop>
+
+        <shop id="itemShop" class="textBox"> 
+            <h3>Item shop</h3>
+            <p>Buy cool things here!</p>
+            <hr>
+            <button class = "buyable"  unlock = '15m'  cost = "20m"   reward = "trowel">$20 -> Trowel (double your carrots per click)</button>
+            <button class = "buyable"  unlock = '50m'  cost = "200m"  reward = "motorcycle">$200 -> Motorcycle (sweet ride)</button>
         </shop>
     </gameObjects>
+    
+
+
+
     
     <script>
         let gameObjects = document.getElementById("gameObjects")
         gameObjects.style.display = "none"
         
-        let shopDiv = document.getElementById('shopDiv')
+        let farmersMarket = document.getElementById('farmersMarket')
+        let itemShop = document.getElementById('itemShop')
 
         let carrotClickable = document.getElementById("carrotClickable")
         let carrotCounter = document.getElementById('carrotCounter')
         let carrots = 0
         let money = 0
         
-        
-        let gameProgress = 0
-        /*
-            1- unlocked Farmer's Market
-            2- discovered money
-            3- unlocked shop
-            4- 
-            5-
-            6- 
-        */
-
 
         /*
             farmer's market:
@@ -128,6 +157,7 @@
             gameObjects.style.display = "block"
             gameLoop()
             progressFlags()
+            marketProgressLoop()
         }
 
 
@@ -154,7 +184,7 @@
             {
                 await sleep(10)
 
-                if(gameProgress >= 2)
+                if(money > 0)
                 {
                     carrotCounter.innerHTML = `You have ${carrots} carrots and $${money} dollars!`
                 }
@@ -174,23 +204,39 @@
                 await sleep(10)
             } 
 
-            shopDiv.style.display = 'block'
-            shopUnlockLoop()
-            gameProgress = 1
-
-            while(money == 0)
-            {
-                await sleep(10)
-            } 
-
-            gameProgress = 2
+            farmersMarket.style.display = 'block'
 
             while(money < 10)
             {
                 await sleep(10)
             } 
 
-            gameProgress = 3
+            itemShop.style.display = 'block'
+        }
+
+
+
+        async function marketProgressLoop()
+        {
+            let buyables = document.getElementsByClassName('buyable')
+            let itemsAwaitingUnlock = []
+
+            for(let buyable of buyables)
+            {
+                itemsAwaitingUnlock.push(buyable)
+            }
+
+            while(itemsAwaitingUnlock != [])
+            {
+                for(let item of itemsAwaitingUnlock)
+                {
+                    console.log(item)
+                     
+                }
+
+                await sleep(100)
+            }
+
         }
     </script>
 </body>
