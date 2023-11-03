@@ -103,12 +103,25 @@
 
 
         <shop id="farmersMarket" class="textBox"> 
-            <h3>Farmer's Market</h3>
-            <p>Sell your carrots here!</p>
+            <h3>Shop</h3>
+            <p>Sell and buy things here!</p>
             <hr>
-            <button class = "buyable"  onclick="tryBuy()"  unlock = '0m'   cost = "20c"  reward = "5m">20 Carrots -> $5</button>
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '0'  
+                moneyUnlock = '0'  
+                carrotCost = "15"  
+                moneyCost = "0"
+                carrotReward = "0"
+                moneyReward = "5"
+                functionReward = ""
+                removeOnBuy = "true">
+                15 Carrots -> $5
+            </button>
         </shop>
 
+        <!--
         <shop id="itemShop" class="textBox"> 
             <h3>Item shop</h3>
             <p>Buy cool things here!</p>
@@ -116,6 +129,7 @@
             <button class = "buyable"  onclick="tryBuy()"  unlock = '15m'  cost = "20m"   reward = "trowel">$20 -> Trowel (double your carrots per click)</button>
             <button class = "buyable"  onclick="tryBuy()"  unlock = '50m'  cost = "100m"  reward = "motorcycle">$100 -> Motorcycle (sweet ride)</button>
         </shop>
+        -->
     </gameObjects>
     
 
@@ -206,12 +220,14 @@
 
             farmersMarket.style.display = 'block'
 
+            /*
             while(money < 10)
             {
                 await sleep(10)
             } 
 
             itemShop.style.display = 'block'
+            */
         }
 
 
@@ -219,19 +235,26 @@
         async function marketProgressLoop()
         {
             let buyables = document.getElementsByClassName('buyable')
-            let itemsAwaitingUnlock = []
+            let buyablesAwaitingUnlock = []
 
             for(let buyable of buyables)
             {
-                itemsAwaitingUnlock.push(buyable)
+                buyablesAwaitingUnlock.push(buyable)
             }
 
-            while(itemsAwaitingUnlock != [])
+            while(buyablesAwaitingUnlock != [])
             {
-                for(let item of itemsAwaitingUnlock)
+                for(let buyable of buyablesAwaitingUnlock)
                 {
-                    console.log(item)
-                     
+                    enoughMoney = money >= parseInt(buyable.attributes.moneyUnlock.value) 
+                    enoughCarrots = carrots >= parseInt(buyable.attributes.carrotUnlock.value)
+
+                    if(enoughMoney && enoughCarrots)
+                    {
+                        buyablesAwaitingUnlock.splice(buyablesAwaitingUnlock.indexOf(buyable), 1)
+                        buyable.style.display = "block"
+                    }
+
                 }
 
                 await sleep(100)
@@ -240,9 +263,30 @@
         }
 
 
-        function tryBuy()
+        function tryBuy(element)
         {
-            // Can you buy the market buyable
+            if(money >= Number(element.attributes.moneyCost.value) && carrots >= Number(element.attributes.carrotCost.value))
+            {
+                // Subtract cost
+                money -= Number(element.attributes.moneyCost.value)
+                carrots -= Number(element.attributes.carrotCost.value)
+
+                // Give reward
+                money += Number(element.attributes.moneyReward.value)
+                carrots += Number(element.attributes.carrotReward.value)
+
+
+
+                if(element.attributes.removeOnBuy.value == "true")
+                {
+                    element.remove()
+                }   
+            }
+        }
+
+
+        function testing(){
+            
         }
     </script>
 </body>
