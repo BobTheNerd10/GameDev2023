@@ -34,6 +34,26 @@
                 (This was done with a while loop and some async functions)
             </div>
 
+            <script>
+                const sleep = ms => new Promise(r => setTimeout(r, ms)); // For time based things
+        
+        
+                let flashingDivLoop = document.getElementById('flashingDivLoop')
+        
+                flashingDivLoopFunc()
+        
+                async function flashingDivLoopFunc()
+                {
+                    while(true)
+                    {
+                        flashingDivLoop.style.border = "red dotted 6px"
+                        await sleep(1000)
+                        flashingDivLoop.style.border = "orange dotted 6px"
+                        await sleep(1000)
+                    }
+                }
+        
+            </script>
 
 
             <br>
@@ -44,12 +64,31 @@
 
 
 
-            <p>You can also iterate through lists of things in an array with either "for" or "foreach"</p>
-            <p id="my"></p>
+            <p>You can also iterate through things in an array with "foreach"</p>
+            
+            My grocery list: <span id="itemListDisplay"></span><br>
 
-            <div id="iterateObjectsOutputDiv"></div>
+            <button onclick="iterate()">Iterate through the list!</button>
+
+            <div id="iterateObjectsOutputDiv">...</div>
+
+            <script>
+                let myList = ["Cherries", "Bananas", "Apples", "Plums"]
+                document.getElementById('itemListDisplay').innerHTML = ""
+                myList.forEach(shoppingItem => {
+                    document.getElementById('itemListDisplay').innerHTML += shoppingItem + " "
+                });
 
 
+                function iterate()
+                {
+                    document.getElementById('iterateObjectsOutputDiv').innerHTML = ""
+                    myList.forEach(shoppingItem => {
+                        document.getElementById('iterateObjectsOutputDiv').innerHTML += shoppingItem + "<br>"
+                    });
+                    
+                }
+            </script>
 
             <br>
             <br>
@@ -61,45 +100,42 @@
 
             <p>You can also iterate through ranges of numbers with "for"</p>
             
-            From <input type="number" id="minRange"> to <input type="number" id="maxRange">
+            From <input type="number" id="firstValue"> to <input type="number" id="secondValue">
             <button 
                 onclick="
-                    () => { // Lambda expressions are cringe but i dont care!!!
-                        minValue = document.getElementById('minRange')
+                    firstValue = Number(document.getElementById('firstValue').value)
+                    secondValue = Number(document.getElementById('secondValue').value)
+                    rangeNumbersOutputDiv = document.getElementById('rangeNumbersOutputDiv')        
+
+
+                    rangeNumbersOutputDiv.innerHTML = ''
+
+                    if(firstValue > secondValue)
+                    {
+                        for(let i=firstValue; i > secondValue-1; i--)
+                        {
+                            rangeNumbersOutputDiv.innerHTML += `${i} <br>`
+                        }
                     }
+                    else if(firstValue < secondValue)
+                    {
+                        for(let i=firstValue; i < secondValue+1; i++)
+                        {
+                            rangeNumbersOutputDiv.innerHTML += `${i} <br>`
+                        }
+                    }
+                    else
+                    {
+                        rangeNumbersOutputDiv.innerHTML += `${i} <br>`
+                    }
+                        
+
+                    
                 "
             >Generate numbers</button>
 
             <div id="rangeNumbersOutputDiv">...</div>
         </section>
     </main>
-
-
-    <script>
-        const sleep = ms => new Promise(r => setTimeout(r, ms)); // For time based things
-
-
-        let flashingDivLoop = document.getElementById('flashingDivLoop')
-
-        
-        let iterateObjectsOutputDiv = document.getElementById('iterateObjectsOutputDiv')
-        let rangeNumbersOutputDiv = document.getElementById('rangeNumbersOutputDiv')
-
-
-
-        flashingDivLoopFunc()
-
-        async function flashingDivLoopFunc()
-        {
-            while(true)
-            {
-                flashingDivLoop.style.border = "red dotted 6px"
-                await sleep(1000)
-                flashingDivLoop.style.border = "orange dotted 6px"
-                await sleep(1000)
-            }
-        }
-
-    </script>
 </body>
 </html>
