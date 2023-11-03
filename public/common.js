@@ -200,7 +200,7 @@ let assignments =
     new Assignment("t1a13", "Classes",              isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1a14", "Extend-Classes",       isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
-    new Assignment("t1z01", "First-Javascript",     isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t1z01", "First-Javascript",     isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zCarrotGame/index.html", assignmentNotes = " (carrot game)"),
     new Assignment("t1z02", "Object-Zombie",        isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1z03", "Array-Zombie",         isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t1z04", "Classes",              isShown = true, isWip = true,   isSubmitted = false, ),
