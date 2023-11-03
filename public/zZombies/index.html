@@ -15,8 +15,8 @@
     </header>
     
     <main>
-        <h1 style="margin-block-end:0">TXXXX-YYY-Curtis</h1>
-        <h4 style="margin-block-start:0; font-weight:200;">(year 2)</h4>
+        <h1 style="margin-block-end:0">Classes, Arrays, and Objects</h1>
+        <p>T1Z02, T1Z03, T1Z04, T1A11, T1A12, T1A13</p>
 
         <hr>
 
@@ -29,11 +29,49 @@
                 Have a zombie checker
                 Have class extends
 
-                This goes into t1z02, z03, z04, a11, a12, and a13
+                This goes into t1z02, z03, z04, a11, a12, a13, and a14
 
 
             -->
+
+            <h2>Zombies made with objects</h2>
+            <div id="divObjectZombies"></div>
+
+
+            <h2>Zombies made with classes</h2>
+            <div id="divClassZombies"></div>
+
+            <hr>
+
+            <p>I personally prefer classes because it helps keep data uniform, but some people prefer objects! </p>
         </section>
     </main>
+
+
+    <script>
+        let objectZombies = [] // First row (the one with object zombies)
+        let classZombies = [] // Second row (the one with classes zombies)
+
+        let divObjectZombies = document.getElementById('divObjectZombies')
+        let divClassZombies = document.getElementById('divClassZombies')
+
+
+        for(let zombie in objectZombies)
+        {
+            divObjectZombies.innerHTML += `<button>Zombie</button>`
+        }
+
+
+        for(let zombie in classZombies)
+        {
+            divClassZombies.innerHTML += `<button>Zombie</button>`
+        }
+
+
+
+
+        // For the class zombies, make sure to include extending classes
+
+    </script>
 </body>
 </html>

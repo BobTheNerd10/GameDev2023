@@ -22,7 +22,82 @@
 
         <section>
 
+            You can do several cool things with loops, here are some of them:
+
+
+            <br>
+            <br>
+
+
+            <div id="flashingDivLoop" style="border: red dotted; padding:0.1%; margin-top:2%;">
+                You can make screen effects like this one!<br>
+                (This was done with a while loop and some async functions)
+            </div>
+
+
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+
+
+
+            <p>You can also iterate through lists of things in an array with either "for" or "foreach"</p>
+            <p id="my"></p>
+
+            <div id="iterateObjectsOutputDiv"></div>
+
+
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+
+
+
+            <p>You can also iterate through ranges of numbers with "for"</p>
+            
+            From <input type="number" id="minRange"> to <input type="number" id="maxRange">
+            <button 
+                onclick="
+                    
+                "
+            >Generate numbers</button>
+
+            <div id="rangeNumbersOutputDiv">...</div>
         </section>
     </main>
+
+
+    <script>
+        const sleep = ms => new Promise(r => setTimeout(r, ms)); // For time based things
+
+
+        let flashingDivLoop = document.getElementById('flashingDivLoop')
+
+        
+        let iterateObjectsOutputDiv = document.getElementById('iterateObjectsOutputDiv')
+        let rangeNumbersOutputDiv = document.getElementById('rangeNumbersOutputDiv')
+
+
+
+        flashingDivLoopFunc()
+
+        async function flashingDivLoopFunc()
+        {
+            while(true)
+            {
+                flashingDivLoop.style.border = "red dotted 6px"
+                await sleep(1000)
+                flashingDivLoop.style.border = "orange dotted 6px"
+                await sleep(1000)
+            }
+        }
+
+    </script>
 </body>
 </html>
