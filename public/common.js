@@ -1,70 +1,3 @@
-/*
-
-
-
-
-
-If you're reading this as part of my classes assignment, hello!
-You're currently looking at the JS file that makes my site tick. (common.js)
-
-Wayy back at the start of the term, I coded this Assignment class so I could easily add assignments to the list and be lazy!
-The Assignment class is responsible for handling all the assignment specific entries on my Work-Not-Screen-Time page as well as all the assignments on my index page!
-
-Feel free to scroll down and take a look around!
-
-There's no html page with this assignment (since the html page is my whole site!)
-You can ctrl+u on my index page if you want to see how this js file interacts with it though
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-PLEASE READ THE ABOVE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 
 class Assignment 
 {
@@ -217,6 +150,7 @@ let freeTodos = [
     `Working on stuff for other classes`,
     `Reading the <a href="https://www.gitpod.io/docs/introduction">Gitpod Docs</a> to figure out how to host cool backends!`,
     `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for satellite club!`,
+    `Learning how to use godot`
 ]
 
 let extraNavBarLinks = {
@@ -283,7 +217,7 @@ for (let classTodoListElement of classTodoListElements)
         classTodoListElement.innerHTML += assignmentText
     }
     if(noAssignments == true){
-        classTodolistElement.innerHTML += "Wow, nothing! I'm done every assignment :D"
+        classTodoListElement.innerHTML = "Wow, nothing! I'm done every assignment :D"
     }
     for (let extraClassTodo of extraClassTodos)
     {
