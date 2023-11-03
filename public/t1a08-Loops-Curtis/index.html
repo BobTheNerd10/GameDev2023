@@ -64,7 +64,9 @@
             From <input type="number" id="minRange"> to <input type="number" id="maxRange">
             <button 
                 onclick="
-                    
+                    () => { // Lambda expressions are cringe but i dont care!!!
+                        minValue = document.getElementById('minRange')
+                    }
                 "
             >Generate numbers</button>
 
