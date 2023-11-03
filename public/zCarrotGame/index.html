@@ -59,7 +59,7 @@
             left:5%;
             top:5%;
             height:80vh;
-            max-width:10%;
+            width:15%;
         }
 
 
@@ -75,6 +75,9 @@
 
         .buyable {
             position:relative;
+            padding:1%;
+            padding-bottom:2%;
+            padding-top:2%;
             width:100%;
             display:none;
         }
@@ -116,8 +119,93 @@
                 carrotReward = "0"
                 moneyReward = "5"
                 functionReward = ""
-                removeOnBuy = "true">
+                removeOnBuy = "false">
                 15 Carrots -> $5
+            </button>
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '0'  
+                moneyUnlock = '5'  
+                carrotCost = "0"  
+                moneyCost = "10"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "carrotsPerClick *= 2"
+                removeOnBuy = "true">
+                $10 -> Double your carrots per click
+            </button>
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '0'  
+                moneyUnlock = '10'  
+                carrotCost = "0"  
+                moneyCost = "20"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "carrotsPerTimeInterval += 4"
+                removeOnBuy = "true">
+                $20 -> A growbot that grows carrots for you 
+            </button>
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '0'  
+                moneyUnlock = '20'  
+                carrotCost = "0"  
+                moneyCost = "50"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "carrotsPerTimeInterval += 10"
+                removeOnBuy = "true">
+                $50 -> A SUPER growbot that grows carrots faster than our other model!
+            </button>
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '0'  
+                moneyUnlock = '30'  
+                carrotCost = "0"  
+                moneyCost = "50"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "carrotsPerTimeInterval -= 9; moneyPerTimeInterval += 3"
+                removeOnBuy = "true">
+                $50 -> A finance bot that sells carrots for you!
+            </button>
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '75'  
+                moneyUnlock = '25'  
+                carrotCost = "0"  
+                moneyCost = "30"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "timeInterval *= 0.5;"
+                removeOnBuy = "true">
+                $30 -> Oil that doubles the efficiency of all your robots!
+            </button>
+
+
+            <button 
+                class = "buyable"  
+                onclick="tryBuy(this)"  
+                carrotUnlock = '30'  
+                moneyUnlock = '60'  
+                carrotCost = "0"  
+                moneyCost = "100"
+                carrotReward = "0"
+                moneyReward = "0"
+                functionReward = "winScreen()"
+                removeOnBuy = "true">
+                $100 -> Motorcycle!
             </button>
         </shop>
 
@@ -130,6 +218,23 @@
             <button class = "buyable"  onclick="tryBuy()"  unlock = '50m'  cost = "100m"  reward = "motorcycle">$100 -> Motorcycle (sweet ride)</button>
         </shop>
         -->
+
+
+        <div id="winScreen"
+            style="position:absolute;
+            display:none;
+            overflow:hidden;
+            right:5%;
+            width:20%;
+            height:20%;
+            top:50%;"
+        >
+            <p>You bought a motorcycle! You win!</p>
+            <img
+            style="height:10%;
+            width:10%;" 
+            src="img/winScreen.png"> 
+        </div>
     </gameObjects>
     
 
@@ -146,6 +251,10 @@
         let carrotClickable = document.getElementById("carrotClickable")
         let carrotCounter = document.getElementById('carrotCounter')
         let carrots = 0
+        let carrotsPerClick = 1
+        let carrotsPerTimeInterval = 0
+        let moneyPerTimeInterval = 0
+        let timeInterval = 750
         let money = 0
         
 
@@ -172,13 +281,29 @@
             update()
             progressLoop()
             marketProgressLoop()
+            carrotsPerTimeIntervalLoop()
+        }
+
+        async function carrotsPerTimeIntervalLoop()
+        {
+            while(true)
+            {
+                await sleep(timeInterval)
+                if(carrots + carrotsPerTimeInterval >= 0) // Just so you dont get negative carrots
+                {
+                    carrots += carrotsPerTimeInterval
+                    money += moneyPerTimeInterval
+                }
+                console.log(carrotsPerTimeInterval)
+            }
+            
         }
 
 
         function carrotClicked()
         {
             document.getElementById('helpText').style.display = "none"
-            carrots += 1
+            carrots += carrotsPerClick
         }
 
         function carrotMouseDown()
@@ -275,7 +400,10 @@
                 money += Number(element.attributes.moneyReward.value)
                 carrots += Number(element.attributes.carrotReward.value)
 
-
+                if(element.attributes.functionReward.value != "")
+                {
+                    eval(element.attributes.functionReward.value)
+                }
 
                 if(element.attributes.removeOnBuy.value == "true")
                 {
@@ -285,8 +413,9 @@
         }
 
 
-        function testing(){
-            
+        function winScreen()
+        {
+            document.getElementById("winScreen").style.display = "block"
         }
     </script>
 </body>
