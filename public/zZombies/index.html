@@ -13,65 +13,234 @@
     <header>
         <!--Dummy tag, will be filled in with JS if needed-->
     </header>
-    
+
+
+    <style>
+        pre {
+            font-weight:200;
+            font-size:large;
+        }
+    </style>
+
+
     <main>
         <h1 style="margin-block-end:0">Classes, Arrays, and Objects</h1>
-        <p>T1Z02, T1Z03, T1Z04, T1A11, T1A12, T1A13</p>
-
-        <hr>
+        <p>T1Z02, T1Z03, T1Z04, T1A11, T1A12, T1A13, T1A14</p>
+        <p>Basically everything that has to do with classes, arrays, and objects!</p>
 
         <section>
-            
-            
-            <!--
-
-                Have rows of zombies that ellis can hover over to see their data
-                Have a zombie checker
-                Have class extends
-
-                This goes into t1z02, z03, z04, a11, a12, a13, and a14
 
 
-            -->
-
+            <p>All the zombies are in arrays, but one set of zombies is made with objects and the other set of zombies is made with classes!</p>
+            <hr>
+        
             <h2>Zombies made with objects</h2>
-            <div id="divObjectZombies"></div>
+            <div id="objectZombieDiv"></div> <!--These are filled in with javascript-->
+            <pre id="objectZombieDisplay">...</pre>
 
+            <script>
+
+                let objectZombieList = [
+                    {
+                        "name" : "Garth",
+                        "equipment" : [],
+                        "groan" : "Grraraahahhh",
+                        "health" : 100,
+                    },
+                    {
+                        "name" : "Bert",
+                        "equipment" : ["newspaper"],
+                        "groan" : "Braainnzzz",
+                        "health" : 2,
+                    },
+                    {
+                        "name" : "Zamantha",
+                        "equipment" : [],
+                        "groan" : "Harrgghgnggg",
+                        "health" : 63,
+                    },
+                    {
+                        "name" : "Manny",
+                        "equipment" : ["plunger", "stick"],
+                        "groan" : "Guhhuaaaagh",
+                        "health" : 100,
+                    }
+                ] 
+                
+                
+                // First row (the one with object zombies)
+                let objectZombieDiv = document.getElementById('objectZombieDiv')
+                let objectZombieDisplay = document.getElementById('objectZombieDisplay')
+
+                for(let objectZombie of objectZombieList)
+                {   
+                    objectZombieDiv.innerHTML += `<button zombie='${JSON.stringify(objectZombie, null, ' ').replace('\n', '<br>')}' onclick="objectZombieDisplay.innerHTML = this.attributes.zombie.value">${objectZombie['name']}</button>`
+                }
+
+            </script>
+            
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            
+            <br>
+            <hr>
+            <br>
+
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            <!------------------------------------------------------------------------------------------------------------>
+            
 
             <h2>Zombies made with classes</h2>
-            <div id="divClassZombies"></div>
+            <p>Check out how some of these guys are different! Some of them are just basic zombies, but others are spitters and crawlers! (which are extensions of the zombie class)</p>
+            <p>Spitters attack and groan differently. Crawlers run differently!</p>
+            <br>
+            <pre id="classZombiesDisplay">...</pre>
+            <div id="classZombiesDiv"></div>    
 
+            
+            <br>    
             <hr>
+            <br>
 
             <p>I personally prefer classes because it helps keep data uniform, but some people prefer objects! </p>
+
+
+
+            
+            <script>
+                class Zombie 
+                {
+                    // Constructor
+                    constructor(name, age)
+                    {
+                        this.zombieType = 'Zombie'
+                        this.name = name
+                        this.age = age
+                    }
+                    
+                    
+                    // Groan text
+                    get groanString()
+                    {
+                        return `${this.name} lets out a long droning groan.`
+                    }
+
+                    // Run text
+                    get runString()
+                    {
+                        return `${this.name} runs at you! (Well, as fast as a zombie can run anyway.)`
+                    }
+
+                    // Attack text
+                    get attackString()
+                    {
+                        return `${this.name} takes a bite out of the foe!`
+                    }
+
+                    // Death text
+                    get dieString()
+                    {
+                        return `${this.name} falls down and dies... again? (How do zombies die?)`
+                    }
+                }
+
+
+
+                class Crawler extends Zombie
+                {
+                    // Constructor
+                    constructor(name, age)
+                    {
+                        super(name, age)
+                        this.zombieType = 'Crawler'
+                    }
+
+                    // Run string
+                    get runString()
+                    {
+                        return `${this.name} crawls at you! They are a crawler, not a regular zombie!`
+                    }
+                }
+
+
+                class Spitter extends Zombie
+                {
+                    // Constructor
+                    constructor(name, age)
+                    {
+                        super(name, age)
+                        this.zombieType = 'Spitter'
+                    }
+
+                    // Attack string
+                    get attackString()
+                    {
+                        return `${this.name} spits acid at you! Whoa!`
+                    }
+                    
+                    // Groan string
+                    get groanString()
+                    {
+                        return `${this.name} lets out a gurgle!`
+                    }
+                }
+
+
+                class PatientZero extends Zombie
+                {
+                    // Die string
+                    get dieString()
+                    {
+                        return super.dieString + ` <br>Since ${this.name} is patient zero, all the zombies are cured!`
+                    }
+                }
+
+
+
+                let classZombieList = [] // Second row (the one with classes zombies)
+
+                classZombieList[0] = (new Zombie("Brainy", 21))
+                classZombieList[1] = (new Zombie("Crainy", 20))
+                classZombieList[2] = (new Spitter("Avery", 84))
+                classZombieList[3] = (new Crawler("Sam", 12))
+                classZombieList[4] = (new Crawler("Perry", 26))
+                classZombieList[5] = (new PatientZero("Bose", 51))
+
+            
+
+                let classZombiesDiv = document.getElementById('classZombiesDiv')
+                let classZombiesDisplay = document.getElementById('classZombiesDisplay')
+
+                for(let classZombie of classZombieList)
+                {
+                    classZombiesDiv.innerHTML += 
+                    `
+                        <div class='zombie'>
+                            ${classZombie.name}<br>
+                            Age: ${classZombie.age}<br>
+                            Type: ${classZombie.constructor.name}<br>
+                            <button onclick="classZombiesDisplay.innerHTML = '${classZombie.groanString}' ">Groan Text</button>
+                            <button onclick="classZombiesDisplay.innerHTML = '${classZombie.runString}' ">Run Text</button>
+                            <button onclick="classZombiesDisplay.innerHTML = '${classZombie.attackString}' ">Attack Text</button>
+                            <button onclick="classZombiesDisplay.innerHTML = '${classZombie.dieString}' ">Die Text</button>
+                        </div>
+                    `
+                }
+            </script>
+
+            <style>
+                .zombie {
+                    border: double black;
+                    padding:1%;
+                }
+            </style>
         </section>
     </main>
-
-
-    <script>
-        let objectZombies = [] // First row (the one with object zombies)
-        let classZombies = [] // Second row (the one with classes zombies)
-
-        let divObjectZombies = document.getElementById('divObjectZombies')
-        let divClassZombies = document.getElementById('divClassZombies')
-
-
-        for(let zombie in objectZombies)
-        {
-            divObjectZombies.innerHTML += `<button>Zombie</button>`
-        }
-
-
-        for(let zombie in classZombies)
-        {
-            divClassZombies.innerHTML += `<button>Zombie</button>`
-        }
-
-
-
-
-        // For the class zombies, make sure to include extending classes
-
-    </script>
 </body>
 </html>

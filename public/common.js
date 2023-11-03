@@ -195,15 +195,15 @@ let assignments =
     new Assignment("t1a08", "Loops",                isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t1a09", "local-storage",        isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t1a10", "Events",               isShown = true, isWip = false,  isSubmitted = true,  ),
-    new Assignment("t1a11", "Arrays",               isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1a12", "Objects",              isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1a13", "Classes",              isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1a14", "Extend-Classes",       isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t1a11", "Arrays",               isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
+    new Assignment("t1a12", "Objects",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
+    new Assignment("t1a13", "Classes",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
+    new Assignment("t1a14", "Extend-Classes",       isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
     new Assignment("t1z00", "Work-Not-Screen-Time", isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Work-Not-Screen-Time-Curtis.html"),
     new Assignment("t1z01", "First-Javascript",     isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zCarrotGame/index.html", assignmentNotes = " (carrot game)"),
-    new Assignment("t1z02", "Object-Zombie",        isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1z03", "Array-Zombie",         isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t1z04", "Classes",              isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t1z02", "Object-Zombie",        isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
+    new Assignment("t1z03", "Array-Zombie",         isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
+    new Assignment("t1z04", "Classes",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
     new Assignment("Funtest","By",                  isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
 ]
 
@@ -273,9 +273,17 @@ let classTodoListElements = document.getElementsByClassName("classTodoList")
 
 for (let classTodoListElement of classTodoListElements)
 {
+    noAssignments = true; // Will be set to false if i do have something to do for this class
     for (let assignment of assignments)
     {
-        classTodoListElement.innerHTML += assignment.getLinkFormat("todoList", layersDeep) ? `<li>${assignment.getLinkFormat("todoList", layersDeep)}</li>` : "" // If it's null then don't add anything
+        assignmentText = assignment.getLinkFormat("todoList", layersDeep) ? `<li>${assignment.getLinkFormat("todoList", layersDeep)}</li>` : "" // If it's null then don't add anything
+        if(assignmentText != ""){
+            noAssignments = false
+        }
+        classTodoListElement.innerHTML += assignmentText
+    }
+    if(noAssignments == true){
+        classTodolistElement.innerHTML += "Wow, nothing! I'm done every assignment :D"
     }
     for (let extraClassTodo of extraClassTodos)
     {
