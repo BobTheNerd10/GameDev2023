@@ -137,7 +137,7 @@ let assignments =
     new Assignment("t1z02", "Object-Zombie",        isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
     new Assignment("t1z03", "Array-Zombie",         isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
     new Assignment("t1z04", "Classes",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "zZombies/index.html", assignmentNotes = " (zombies mega assignment)"),
-    new Assignment("Funtest","By",                  isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // This is a hack, but I don't care!
+    new Assignment("Funtest","By",                  isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // The name of this is a hack, but I don't care!
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
