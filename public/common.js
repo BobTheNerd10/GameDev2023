@@ -145,12 +145,12 @@ let extraClassTodos = [ // For stuff that isnt assignments
 ]
 
 let freeTodos = [
+    `Learning how to use godot to make web games!`,
     `Reading <a href="https://developer.mozilla.org/en-US/docs/Games/Introduction">Introduction to game development for the Web</a> (an article on the MDN web docs!)</li>`,
     `Brainstorming ideas for games`,
     `Working on stuff for other classes`,
     `Reading the <a href="https://www.gitpod.io/docs/introduction">Gitpod Docs</a> to figure out how to host cool backends!`,
     `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for satellite club!`,
-    `Learning how to use godot`
 ]
 
 let extraNavBarLinks = {
