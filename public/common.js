@@ -141,7 +141,7 @@ let assignments =
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
-
+	Nov 8 - Working On Other Classes
 ]
 
 let freeTodos = [
