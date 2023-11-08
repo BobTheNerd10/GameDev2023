@@ -141,7 +141,7 @@ let assignments =
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
-	Nov 8 - Working On Other Classes
+	'Nov 8 - Working On Other Classes'
 ]
 
 let freeTodos = [
@@ -216,12 +216,13 @@ for (let classTodoListElement of classTodoListElements)
         }
         classTodoListElement.innerHTML += assignmentText
     }
-    if(noAssignments == true){
-        classTodoListElement.innerHTML = "Wow, nothing! I'm done every assignment :D"
-    }
     for (let extraClassTodo of extraClassTodos)
     {
+		noAssignments = false;
         classTodoListElement.innerHTML += `<li>${extraClassTodo}</li>`
+    }
+	if(noAssignments == true){
+        classTodoListElement.innerHTML = "Wow, nothing! I'm done every assignment :D"
     }
 } 
 
