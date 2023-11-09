@@ -141,6 +141,7 @@ let assignments =
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
+	'Nov 9 - Working On Other Classes',
 	'Nov 8 - Working On Other Classes'
 ]
 
