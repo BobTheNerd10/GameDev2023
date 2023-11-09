@@ -141,7 +141,7 @@ let assignments =
 ]
 
 let extraClassTodos = [ // For stuff that isnt assignments 
-	'Nov 9 - Working On Other Classes',
+	'Nov 9 - Researching how to map binary data from a file to a struct',
 	'Nov 8 - Working On Other Classes'
 ]
 
