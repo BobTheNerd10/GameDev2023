@@ -152,6 +152,7 @@ let freeTodos = [
     `Working on stuff for other classes`,
     `Reading the <a href="https://www.gitpod.io/docs/introduction">Gitpod Docs</a> to figure out how to host cool backends!`,
     `Reading the <a href="https://en.wikipedia.org/wiki/CubeSat">Wikipedia Page for CubeSats</a> for satellite club!`,
+	`Learning how to use Rust since it seems like a cool programming language!`,
 ]
 
 let extraNavBarLinks = {
