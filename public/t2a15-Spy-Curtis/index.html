@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    <style>
+        #encryptMethodSelectionBox, #decryptMethodSelectionBox 
+        {
+            width:50%;
+        }
+    </style>
+    <main>
+        <h1 style="margin-block-end:0">T2A15-Spy-Curtis</h1>
+
+        <hr>
+
+        <section>
+
+            <!--Base text field-->
+            <textarea id="baseTextField" rows="4" cols="70">The 20 quick brown foxes jumped over the 34 lazy dogs 89 times.</textarea><br>
+
+
+            <!--Encryption buttons-->
+            <input 
+                type="button" 
+                value="Encrypt" 
+                onclick=
+                "{
+                    
+                    let baseText = baseTextField.value
+                    
+                    encryptedTextField.value = swapAlphabets(latinAlphabet, encryptMethodSelectionBox.value, baseText) 
+                }"
+            >
+            into 
+            <select id="encryptMethodSelectionBox"></select>
+            <br><br>
+
+
+            <!--Encrypted field-->
+            <textarea id="encryptedTextField" rows="4" cols="70"></textarea><br>
+
+
+            <!--Decryption buttons-->
+            <input
+                type="button"
+                value="Decrypt"
+                onclick=
+                "
+                    let encryptedText = encryptedTextField.value
+
+                    decryptedTextField.value = swapAlphabets(decryptMethodSelectionBox.value, latinAlphabet, encryptedText) 
+                "
+            >
+            from 
+            <select id="decryptMethodSelectionBox"></select>
+            <br><br>
+
+
+            <!--Decrypted field-->
+            <textarea id="decryptedTextField" rows="4" cols="70"></textarea>
+
+        </section>
+
+
+        <!--
+            Ellis will be checking numbers
+
+            Have multiple encryption systems
+                -Emoji speak
+                -Base64
+                -Other kinds
+                -Windings and webdings?
+
+            List of different sample texts
+            Cipher selector
+        -->
+
+        <script>
+            let baseTextField      = document.getElementById('baseTextField')
+            let encryptedTextField = document.getElementById('encryptedTextField')
+            let decryptedTextField = document.getElementById('decryptedTextField')
+            
+            // The various cipher alphabets
+            let latinAlphabet    = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+            let rot13Alphabet    = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+            let atbashAlphabet   = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210' // Reverse alphabet
+            let caeserAlphabet   = 'defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC4567891230' // 3 letters back
+            let cyrillicAlpahbet = 'абцдефгһижклмнопԛрстувԝхйзАБЦДЕФГҺИЖКЛМНОПԚРСТУВԜХЙЗ1234567890' // Cyrillic (for funsies, not a good encryption method as people who know slavic languages can supposedly read it)
+            let screamingAlphabet= 'aaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' // Screaming
+            let swearAlphabet    = '})@(#*$&%^~`¤¿+=|":;?/>[<,})@(#*$&%^~`¤¿+=|":;?/>[<,ϒΣϞπΩΦΘΞΨζ' // Hehe
+
+            let listOfAlphabets = 
+            {
+                "Latin (English)"         : latinAlphabet,
+                "Atbash (Reverse)"        : atbashAlphabet,
+                "Caeser (3 letters back)" : caeserAlphabet,
+                "Rot 13"                  : rot13Alphabet,
+                "Cyrillic (Cyrillicized)" : cyrillicAlpahbet,
+                "Swear (Punctuation)"     : swearAlphabet,
+                "Screaming (AAAAAAAAA)"   : screamingAlphabet,
+
+            }
+
+
+            // Select boxes for the alphabets
+            let encryptMethodSelectionBox = document.getElementById('encryptMethodSelectionBox')
+            let decryptMethodSelectionBox = document.getElementById('decryptMethodSelectionBox')
+            for(alphabetText of Object.keys(listOfAlphabets))
+            {
+                let alphabetOption = document.createElement('option')
+                alphabetOption.innerHTML = alphabetText
+                alphabetOption.value = listOfAlphabets[alphabetText]
+
+                encryptMethodSelectionBox.innerHTML += alphabetOption.outerHTML
+                decryptMethodSelectionBox.innerHTML += alphabetOption.outerHTML
+            }
+
+
+            // Functions for that hey!!
+            function swapAlphabets(inputAlphabet, outputAlphabet, baseText)
+            {
+                let outputText = ""
+                for(character of baseText)
+                {
+                    positionOfCharacterInEncryptedAlphabet = inputAlphabet.indexOf(character)
+                    if(positionOfCharacterInEncryptedAlphabet != -1) // indexOf returns -1 if the input isnt in the given text
+                    {
+                        character = outputAlphabet[positionOfCharacterInEncryptedAlphabet]
+                    }
+                    outputText += character
+                }
+                return outputText
+            }
+        </script>
+    </main>
+</body>
+</html>

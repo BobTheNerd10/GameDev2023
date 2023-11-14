@@ -116,7 +116,13 @@ function addLayerCounteracting(inputLink = "", layersDeep = 0)
 
 const creatorName = "Curtis"
 
-let assignments = 
+
+let term2Assignments =
+[
+    new Assignment("t2a15", "Spy",                  isShown = true, isWip = true,   isSubmitted = false, ),
+]
+
+let term1Assignments = 
 [
     new Assignment("t1a01", "BasicWeb",             isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t1a02", "Lists-Tables",         isShown = true, isWip = false,  isSubmitted = true,  ),
@@ -140,9 +146,12 @@ let assignments =
     new Assignment("Funtest","By",                  isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest-By-Curtis/index.html"), // The name of this is a hack, but I don't care!
 ]
 
+
+let assignments = term1Assignments.concat(term2Assignments)
+
 let extraClassTodos = [ // For stuff that isnt assignments 
-	'Nov 9 - Researching how to map binary data from a file to a struct',
-	'Nov 8 - Working On Other Classes'
+	//'Nov 9 - Researching how to map binary data from a file to a struct',
+	//'Nov 8 - Working On Other Classes'
 ]
 
 let freeTodos = [
@@ -195,7 +204,13 @@ let assignmentListElements = document.getElementsByClassName("assignmentList")
 
 for (let assignmentListElement of assignmentListElements)
 {
-    for (let assignment of assignments)
+    assignmentListElement.innerHTML += "<br> <h3>Term 2</h3>"
+    for (let assignment of term2Assignments)
+    {
+        assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
+    }
+    assignmentListElement.innerHTML += "<br> <h3>Term 1</h3>"
+    for (let assignment of term1Assignments)
     {
         assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
     }
