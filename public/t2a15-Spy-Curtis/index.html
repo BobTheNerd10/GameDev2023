@@ -36,13 +36,13 @@
                 <option value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">Lorem Ipsum</option>
                 <option value="My secret password is WordPass12">Secret Password</option>
             </select><br>
-            <textarea id="baseTextField" rows="4" cols="70"></textarea><br>
+            <textarea id="baseTextField" rows="4" cols="70"></textarea><br><br>
 
 
             <!--Encryption buttons-->
             <input 
                 type="button" 
-                value="Encrypt" 
+                value="Alphabet Encrypt" 
                 onclick=
                 "{
                     
@@ -51,19 +51,30 @@
                     encryptedTextField.value = swapAlphabets(latinAlphabet, encryptMethodSelectionBox.value, baseText) 
                 }"
             >
-            into 
+            using 
             <select id="encryptMethodSelectionBox"></select>
-            <br><br>
+            <br>
+            
+            <button
+                onclick=
+                "{
+                    
+                    let baseText = baseTextField.value
+                    
+                    encryptedTextField.value = btoa(baseText)
+                }"
+            >Base 64 Encrypt</button>
+            <br><br><br>
 
 
             <!--Encrypted field-->
-            <textarea id="encryptedTextField" rows="4" cols="70"></textarea><br>
+            <textarea id="encryptedTextField" rows="4" cols="70"></textarea><br><br>
 
 
             <!--Decryption buttons-->
             <input
                 type="button"
-                value="Decrypt"
+                value="Alphabet Decrypt"
                 onclick=
                 "
                     let encryptedText = encryptedTextField.value
@@ -71,29 +82,26 @@
                     decryptedTextField.value = swapAlphabets(decryptMethodSelectionBox.value, latinAlphabet, encryptedText) 
                 "
             >
-            from 
+            using 
             <select id="decryptMethodSelectionBox"></select>
-            <br><br>
+            <br>
+            
+            <button
+                onclick=
+                "{
+                    
+                    let encryptedText = encryptedTextField.value
+                    
+                    decryptedTextField.value = atob(encryptedText)
+                }"
+            >Base 64 Decrypt</button>
+            <br><br><br>
 
 
             <!--Decrypted field-->
             <textarea id="decryptedTextField" rows="4" cols="70"></textarea>
 
         </section>
-
-
-        <!--
-            Ellis will be checking numbers
-
-            Have multiple encryption systems
-                -Emoji speak
-                -Base64
-                -Other kinds
-                -Windings and webdings?
-
-            List of different sample texts
-            Cipher selector
-        -->
 
         <script>
             let baseTextField      = document.getElementById('baseTextField')
@@ -102,7 +110,7 @@
             
             // The various cipher alphabets
             let latinAlphabet    = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-            let rot13Alphabet    = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+            let rot13Alphabet    = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM1234567890'
             let atbashAlphabet   = 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210' // Reverse alphabet
             let caeserAlphabet   = 'defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC4567891230' // 3 letters back
             let cyrillicAlpahbet = 'абцдефгһижклмнопԛрстувԝхйзАБЦДЕФГҺИЖКЛМНОПԚРСТУВԜХЙЗ1234567890' // Cyrillic (for funsies, not a good encryption method as people who know slavic languages can supposedly read it)
@@ -111,16 +119,15 @@
 
             let listOfAlphabets = 
             {
-                "Latin (English)"         : latinAlphabet,
-                "Atbash (Reverse)"        : atbashAlphabet,
-                "Caeser (3 letters back)" : caeserAlphabet,
-                "Rot 13"                  : rot13Alphabet,
-                "Cyrillic (Cyrillicized)" : cyrillicAlpahbet,
-                "Swear (Punctuation)"     : swearAlphabet,
-                "Screaming (AAAAAAAAA)"   : screamingAlphabet,
-
+                
+                "Atbash"   : atbashAlphabet,
+                "Caeser"   : caeserAlphabet,
+                "Rot 13"   : rot13Alphabet,
+                //"Cyrillic" : cyrillicAlpahbet,
+                //"Latin"    : latinAlphabet,
+                //"Swear (Punctuation)"     : swearAlphabet,
+                //"Screaming (AAAAAAAAA)"   : screamingAlphabet,
             }
-
 
             // Select boxes for the alphabets
             let encryptMethodSelectionBox = document.getElementById('encryptMethodSelectionBox')
