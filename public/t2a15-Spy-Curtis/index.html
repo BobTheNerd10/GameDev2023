@@ -27,7 +27,16 @@
         <section>
 
             <!--Base text field-->
-            <textarea id="baseTextField" rows="4" cols="70">The 20 quick brown foxes jumped over the 34 lazy dogs 89 times.</textarea><br>
+            Sample text: 
+            <select id="sampleTextSelectionBox"
+                onchange="baseTextField.value = this.value"
+            >
+                <option value=""></option>
+                <option value="The 20 quick brown foxes jumped over the 34 lazy dogs 89 times.">Quick brown fox</option>
+                <option value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">Lorem Ipsum</option>
+                <option value="My secret password is WordPass12">Secret Password</option>
+            </select><br>
+            <textarea id="baseTextField" rows="4" cols="70"></textarea><br>
 
 
             <!--Encryption buttons-->
