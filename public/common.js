@@ -120,6 +120,7 @@ const creatorName = "Curtis"
 let term2Assignments =
 [
     new Assignment("t2a15", "Spy",                  isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t2a16", "Move-Background",      isShown = true, isWip = true,   isSubmitted = false, ),
 ]
 
 let term1Assignments = 
