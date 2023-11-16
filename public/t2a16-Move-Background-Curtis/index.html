@@ -9,74 +9,93 @@
 	<link rel="stylesheet" href="../printStyle.css">
 	<script src="../common.js" defer></script>
 </head>
+
+
+<style>
+    * {
+        overflow:hidden;
+    }
+    
+    body {
+        background-repeat: repeat;
+        background-size: 50%;
+        background-image:url("space.jpg");
+        background-position: 0px 0px;
+    }
+
+    #movingObjects * {
+        position:absolute;
+    }
+</style>
+
+
+
 <body>
-    <header>
-        <!--Dummy tag, will be filled in with JS if needed-->
-    </header>
-    
-    <main>
-        <h1 style="margin-block-end:0">T2A16-Move-Background-Curtis</h1>
+    <div id="movingObjects">
+        <h1 style="margin-block-end:0; color:white;">T2A16-Move-Background-Curtis</h1>
+    </div>
 
-        <hr>
 
-        <section>
-            <button onclick="moveBackgroundLeft()">Background Move Left</button>
-            <button onclick="autoBackgroundLeft(-30, 10  )">Auto Background Left Faster</button>
-            <button onclick="autoBackgroundLeft( 30, 1000)">Auto Background Left Slower</button>
-            <br>
-            <button >Image right</button>
-            <br>
-            <img id="moveableImage" style="position:relative; width:200px; height:200px; top:0px; left:0px;" src="dog.webp">
-        </section>
-    </main>
+    <div id="stickyObjects">
+        <div>
+            <button onclick="globalXVelocity += 1">Increase X velocity</button>
+            <button onclick="globalXVelocity += 1">Increase X velocity</button>
+            <button onclick="globalXVelocity += 1">Increase X velocity</button>
+            <button onclick="globalXVelocity += 1">Increase X velocity</button>
+        </div>
+    </div>
 
-    <style>
-        * {
-            overflow:hidden;
-        }
         
-        body {
-            background-repeat: repeat;
-            background-size: 50%;
-            background-image:url("space.jpg");
-            background-position: 0px 0px;
-        }
-    </style>
-
-    <script>
-        let globalX = 0
-        let globalY
-        let clock01
-        let clock02
-        let speed01 = 400
-        let body = document.getElementsByTagName('body').item(0) // If there's multiple body elements, your webpage wont work, sorry :<
 
 
-        function moveBackgroundLeft()
-        {
-            temp = '100px 0px'
-            globalX -= 1
+        
 
-            body.style.backgroundPosition = String(globalX + 'px 0px')
-        }
-
-        function autoBackgroundLeft(increment, cap)
-        {
-            clearInterval(clock01)
-            speed01 += increment
-
-            if(increment > 0)
-            {
-                if(speed01 > cap){speed01 = cap}
-            }
-            else if (increment < 0) 
-            {
-                if(speed01 < cap){speed01 = cap}
-            }
-            
-            clock01 = setInterval(moveBackgroundLeft, speed01)
-        }
-    </script>
     
+
+
 </body>
+
+
+
+
+
+<script>
+    let globalXPosition = 0
+    let globalYPosition = 0
+    let globalXVelocity = 0
+    let globalYVelocity = 0
+    let globalFriction = 1.01
+    let globalRefreshClock
+
+    let body = document.getElementsByTagName('body').item(0) // If there's multiple body elements, your webpage wont work, sorry :<
+
+
+    let scrollingElements = document.getElementById('movingObjects').childNodes
+    console.log(scrollingElements)
+
+    function globalRefresh()
+    {
+        globalXPosition += globalXVelocity
+        globalYPosition += globalYVelocity
+        globalXVelocity /= globalFriction
+        globalYVelocity /= globalFriction
+        body.style.backgroundPosition = `${globalXPosition}px ${globalYPosition}px`
+
+
+        for(let elementIndex = 0; elementIndex != scrollingElements.length; elementIndex++)
+        {
+            null
+        }
+    }
+
+
+    globalRefreshClock = setInterval(globalRefresh, 1)
+</script>
+
+
+
+
+
+
+
 </html>
