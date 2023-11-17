@@ -24,26 +24,28 @@
     }
 
     scrollingElement {
+        z-index:-1;
         position:absolute;
         margin: 0;
         margin-block: 0;
+        white-space:nowrap;
+    }
+
+    stickyElement {
+        z-index:100;
     }
 </style>
 
 
 
 <body>
-    <scrollingElement x=0 y=0 style="color:white;">T2A16-Move-Background-Curtis</scrollingElement>
+    <scrollingElement x=0 y=0><h1 style="color: white;">T2A16-Move-Background-Curtis</h1></scrollingElement>
+    <scrollingElement x=1000 y=1000><img src="dog.webp"></scrollingElement>
 
-
-    <div id="stickyObjects">
-        <div>
-            <button onclick="globalXVelocity -= 1">Go right</button>
-            <button onclick="globalXVelocity += 1">Go left</button>
-            <button onclick="globalYVelocity += 1">Go up</button>
-            <button onclick="globalYVelocity -= 1">Go down</button>
-        </div>
-    </div>
+    <stickyElement><button onclick="globalXVelocity -= 2">Go right</button></stickyElement>
+    <stickyElement><button onclick="globalXVelocity += 2">Go left</button></stickyElement>
+    <stickyElement><button onclick="globalYVelocity += 2">Go up</button></stickyElement>
+    <stickyElement><button onclick="globalYVelocity -= 2">Go down</button></stickyElement>
 
     
 
@@ -56,12 +58,12 @@
 
 <script>
     let globalXPosition = 0
-    let globalXmin = -2000
-    let globalXmax = 2000
+    let globalXmin = -100
+    let globalXmax = 4000
 
     let globalYPosition = 0
-    let globalYmin = -2000
-    let globalYmax = 2000
+    let globalYmin = -100
+    let globalYmax = 4000
 
     let globalXVelocity = 0
     let globalYVelocity = 0
