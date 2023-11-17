@@ -72,7 +72,10 @@
                     
                     let baseText = baseTextField.value
                     
-                    encryptedTextField.value = encryptCrypto(baseText)
+                    encryptCrypto(baseText).then(
+                        function(result) {encryptedTextField.value = result},
+                        function(error) {console.error(error)}
+                    )
                 }"
             >Encrypt</button>
             <br><br><br>
@@ -113,7 +116,12 @@
                     
                     let encryptedText = encryptedTextField.value
                     
-                    decryptedTextField.value = decryptCrypto(encryptedText)
+
+                    decryptCrypto(encryptedText).then(
+                        function(result) {decryptedTextField.value = result},
+                        function(error) {console.error(error)}
+                    )
+                    
                 }"
             >Base 64 Decrypt</button>
             <br><br><br>
@@ -188,13 +196,14 @@
 
 
 
-            async function encryptCrypto()
+            async function encryptCrypto(inputText)
             {
+                return crypto.MD5("inputText");
                 // fill me with stuff using the built in crypto thing
             }
 
 
-            async function decryptCrypto()
+            async function decryptCrypto(inputText)
             {
                 // fill me with stuff using the built in crypto thing
             }
