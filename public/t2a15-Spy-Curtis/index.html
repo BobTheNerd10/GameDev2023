@@ -64,6 +64,17 @@
                     encryptedTextField.value = btoa(baseText)
                 }"
             >Base 64 Encrypt</button>
+
+
+            <button
+                onclick=
+                "{
+                    
+                    let baseText = baseTextField.value
+                    
+                    encryptedTextField.value = encryptCrypto(baseText)
+                }"
+            >Encrypt</button>
             <br><br><br>
 
 
@@ -93,6 +104,16 @@
                     let encryptedText = encryptedTextField.value
                     
                     decryptedTextField.value = atob(encryptedText)
+                }"
+            >Base 64 Decrypt</button>
+
+            <button
+                onclick=
+                "{
+                    
+                    let encryptedText = encryptedTextField.value
+                    
+                    decryptedTextField.value = decryptCrypto(encryptedText)
                 }"
             >Base 64 Decrypt</button>
             <br><br><br>
@@ -157,6 +178,25 @@
                     outputText += character
                 }
                 return outputText
+            }
+
+
+
+
+
+
+
+
+
+            async function encryptCrypto()
+            {
+                // fill me with stuff using the built in crypto thing
+            }
+
+
+            async function decryptCrypto()
+            {
+                // fill me with stuff using the built in crypto thing
             }
         </script>
     </main>
