@@ -205,7 +205,7 @@ let assignmentListElements = document.getElementsByClassName("assignmentList")
 
 for (let assignmentListElement of assignmentListElements)
 {
-    assignmentListElement.innerHTML += "<br> <h3>Term 2</h3>"
+    assignmentListElement.innerHTML += "<h3>Term 2</h3>"
     for (let assignment of term2Assignments)
     {
         assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
