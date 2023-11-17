@@ -198,7 +198,9 @@
 
             async function encryptCrypto(inputText)
             {
-                return crypto.MD5("inputText");
+                var buffer = new ArrayBuffer(12);
+
+                return crypto.getRandomValues(buffer)
                 // fill me with stuff using the built in crypto thing
             }
 

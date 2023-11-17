@@ -23,32 +23,27 @@
         background-position: 0px 0px;
     }
 
-    #movingObjects * {
+    scrollingElement {
         position:absolute;
+        margin: 0;
+        margin-block: 0;
     }
 </style>
 
 
 
 <body>
-    <div id="movingObjects">
-        <h1 style="margin-block-end:0; color:white;">T2A16-Move-Background-Curtis</h1>
-    </div>
+    <scrollingElement x=0 y=0 style="color:white;">T2A16-Move-Background-Curtis</scrollingElement>
 
 
     <div id="stickyObjects">
         <div>
-            <button onclick="globalXVelocity += 1">Increase X velocity</button>
-            <button onclick="globalXVelocity += 1">Increase X velocity</button>
-            <button onclick="globalXVelocity += 1">Increase X velocity</button>
-            <button onclick="globalXVelocity += 1">Increase X velocity</button>
+            <button onclick="globalXVelocity -= 1">Go right</button>
+            <button onclick="globalXVelocity += 1">Go left</button>
+            <button onclick="globalYVelocity += 1">Go up</button>
+            <button onclick="globalYVelocity -= 1">Go down</button>
         </div>
     </div>
-
-        
-
-
-        
 
     
 
@@ -61,35 +56,54 @@
 
 <script>
     let globalXPosition = 0
+    let globalXmin = -2000
+    let globalXmax = 2000
+
     let globalYPosition = 0
+    let globalYmin = -2000
+    let globalYmax = 2000
+
     let globalXVelocity = 0
     let globalYVelocity = 0
-    let globalFriction = 1.01
+    let globalFriction = 1.008
+
     let globalRefreshClock
 
     let body = document.getElementsByTagName('body').item(0) // If there's multiple body elements, your webpage wont work, sorry :<
 
-
-    let scrollingElements = document.getElementById('movingObjects').childNodes
-    console.log(scrollingElements)
+    let scrollingElements = document.getElementsByTagName('scrollingElement')
 
     function globalRefresh()
     {
         globalXPosition += globalXVelocity
+        globalXPosition = globalXPosition.clamp(globalXmin, globalXmax)
         globalYPosition += globalYVelocity
+        globalYPosition = globalYPosition.clamp(globalYmin, globalYmax)
         globalXVelocity /= globalFriction
         globalYVelocity /= globalFriction
         body.style.backgroundPosition = `${globalXPosition}px ${globalYPosition}px`
 
 
-        for(let elementIndex = 0; elementIndex != scrollingElements.length; elementIndex++)
+        for(scrollingElement of scrollingElements)
         {
-            null
+            elementsOriginX = Number(  scrollingElement.getAttribute('x')  )
+            elementsOriginY = Number(  scrollingElement.getAttribute('y')  )
+
+            scrollingElement.style.left = `${elementsOriginX + globalXPosition}px`
+            scrollingElement.style.top =  `${elementsOriginY + globalYPosition}px`
         }
     }
 
 
-    globalRefreshClock = setInterval(globalRefresh, 1)
+    globalRefreshClock = setInterval(globalRefresh, 2)
+
+
+
+    // Add a new function to all Number instances that lets you clamp them
+    Number.prototype.clamp = 
+        function(min, max) {
+            return Math.min(Math.max(this, min), max);
+        };
 </script>
 
 
