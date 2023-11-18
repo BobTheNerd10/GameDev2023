@@ -34,6 +34,16 @@
     stickyElement {
         z-index:100;
     }
+
+    #playerUfo {
+        position:absolute;
+        transform-origin: center;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        width:200px;
+        height:auto;
+    }
 </style>
 
 
@@ -41,15 +51,8 @@
 <body>
     <scrollingElement x=0 y=0><h1 style="color: white;">T2A16-Move-Background-Curtis</h1></scrollingElement>
     <scrollingElement x=1000 y=1000><img src="dog.webp"></scrollingElement>
-
-    <stickyElement><button onclick="globalXVelocity -= 2">Go right</button></stickyElement>
-    <stickyElement><button onclick="globalXVelocity += 2">Go left</button></stickyElement>
-    <stickyElement><button onclick="globalYVelocity += 2">Go up</button></stickyElement>
-    <stickyElement><button onclick="globalYVelocity -= 2">Go down</button></stickyElement>
-
     
-
-
+    <stickyElement><img id="playerUfo" src="ufo.png"></stickyElement>
 </body>
 
 
@@ -58,16 +61,21 @@
 
 <script>
     let globalXPosition = 0
-    let globalXmin = -100
-    let globalXmax = 4000
+    let globalXmin = -1000
+    let globalXmax = 1000
 
     let globalYPosition = 0
-    let globalYmin = -100
-    let globalYmax = 4000
+    let globalYmin = -1000
+    let globalYmax = 1000
 
     let globalXVelocity = 0
     let globalYVelocity = 0
-    let globalFriction = 1.008
+    let globalFriction = 1.0008
+
+    let upKeyDown = false
+    let leftKeyDown = false
+    let rightKeyDown = false
+    let downKeyDown = false
 
     let globalRefreshClock
 
@@ -85,6 +93,20 @@
         globalYVelocity /= globalFriction
         body.style.backgroundPosition = `${globalXPosition}px ${globalYPosition}px`
 
+        // Add velocity with controls
+        if(upKeyDown)    {globalYVelocity += 0.01}
+        if(leftKeyDown)  {globalXVelocity += 0.01}
+        if(downKeyDown)  {globalYVelocity -= 0.01}
+        if(rightKeyDown) {globalXVelocity -= 0.01}
+
+        console.log("X and Y", globalXPosition, globalYPosition)
+        console.log("Xmin and max", globalXmin, globalXmax)
+        console.log("Ymin and max", globalYmin, globalYmax)
+        if(globalXPosition>=globalXmax){globalXVelocity = 0, globalXPosition -= 0.00001}
+        if(globalXPosition<=globalXmin){globalXVelocity = 0, globalXPosition += 0.00001}
+        if(globalYPosition>=globalYmax){globalYVelocity = 0, globalYPosition -= 0.00001}
+        if(globalYPosition<=globalYmin){globalYVelocity = 0, globalYPosition += 0.00001}
+
 
         for(scrollingElement of scrollingElements)
         {
@@ -98,6 +120,46 @@
 
 
     globalRefreshClock = setInterval(globalRefresh, 2)
+
+
+
+    window.addEventListener("keydown", (event) => {
+        if(event.key == 'w')
+        {
+            upKeyDown = true
+        }
+        if(event.key == 'a')
+        {
+            leftKeyDown = true
+        }
+        if(event.key == 's')
+        {
+            downKeyDown = true
+        }
+        if(event.key == 'd')
+        {
+            rightKeyDown = true
+        }
+    })
+
+    window.addEventListener('keyup', (event) => {
+        if(event.key == 'w')
+        {
+            upKeyDown = false
+        }
+        if(event.key == 'a')
+        {
+            leftKeyDown = false
+        }
+        if(event.key == 's')
+        {
+            downKeyDown = false
+        }
+        if(event.key == 'd')
+        {
+            rightKeyDown = false
+        }
+    })
 
 
 
