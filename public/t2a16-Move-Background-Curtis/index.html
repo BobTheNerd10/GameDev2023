@@ -14,6 +14,7 @@
 <style>
     * {
         overflow:hidden;
+        text-align:center;
     }
     
     body {
@@ -44,14 +45,32 @@
         width:200px;
         height:auto;
     }
+
+    h1, p, span {
+        text-align:center;
+        width:100vw;
+        color:white;
+    }
 </style>
 
 
 
 <body>
-    <scrollingElement x=0 y=0><h1 style="color: white;">T2A16-Move-Background-Curtis</h1></scrollingElement>
-    <scrollingElement x=1000 y=1000><img src="dog.webp"></scrollingElement>
-    
+    <!--Spawn text-->
+    <scrollingElement x=0 y=0>
+        <h1>T2A16-Move-Background-Curtis</h1>
+        <p>Use the W, A, S, and D keys to move!</p>
+        <br>
+        <p style="color: white;">Make sure your zoom is set to 100%!</p>
+        <p>(It's out of my hands, browsers weren't made for games like this D:)</p>
+    </scrollingElement>
+
+    <!--
+    <scrollingElement x=-1000 y=-1000>
+        <img src="dog.webp">
+    </scrollingElement>
+    -->
+
     <stickyElement><img id="playerUfo" src="ufo.png"></stickyElement>
 </body>
 
@@ -80,18 +99,29 @@
     let globalRefreshClock
 
     let body = document.getElementsByTagName('body').item(0) // If there's multiple body elements, your webpage wont work, sorry :<
+    let playerUfo = document.getElementById('playerUfo')
 
     let scrollingElements = document.getElementsByTagName('scrollingElement')
+    
 
     function globalRefresh()
     {
+        // bad solution to prevent the browser from automatically saving the user's scroll position on refresh
+        window.scrollTo(0,0);
+        
+        // Update global position and velocity values 
         globalXPosition += globalXVelocity
         globalXPosition = globalXPosition.clamp(globalXmin, globalXmax)
         globalYPosition += globalYVelocity
         globalYPosition = globalYPosition.clamp(globalYmin, globalYmax)
         globalXVelocity /= globalFriction
         globalYVelocity /= globalFriction
+
+        // Move background position so it looks like you're moving
         body.style.backgroundPosition = `${globalXPosition}px ${globalYPosition}px`
+
+        // Make ufo move a lil when moving
+        playerUfo.style.transform = `translate(-50%, -50%) rotate(${(-globalXVelocity*5).clamp(-20, 20)}deg)`
 
         // Add velocity with controls
         if(upKeyDown)    {globalYVelocity += 0.01}
@@ -113,8 +143,8 @@
             elementsOriginX = Number(  scrollingElement.getAttribute('x')  )
             elementsOriginY = Number(  scrollingElement.getAttribute('y')  )
 
-            scrollingElement.style.left = `${elementsOriginX + globalXPosition}px`
-            scrollingElement.style.top =  `${elementsOriginY + globalYPosition}px`
+            scrollingElement.style.left = `${(-elementsOriginX) + globalXPosition}px`
+            scrollingElement.style.top =  `${(-elementsOriginY) + globalYPosition}px`
         }
     }
 
