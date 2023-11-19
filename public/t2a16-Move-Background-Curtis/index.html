@@ -165,18 +165,21 @@
 
     // Set world boundaries
     let worldBoundaryLeft   = document.getElementById('worldBoundaryLeft')
-    let worldBoundaryTop    = document.getElementById('worldBoundaryTop')
-    let worldBoundaryRight  = document.getElementById('worldBoundaryRight')
-    let worldBoundaryBottom = document.getElementById('worldBoundaryBottom')
     worldBoundaryLeft.parentNode.setAttribute('x', globalXmax)
     worldBoundaryLeft.parentNode.setAttribute('y', globalYmax)
     worldBoundaryLeft.style.height = `calc(${globalYmax - globalYmin}px + 100vh)`
+
+    let worldBoundaryTop    = document.getElementById('worldBoundaryTop')
     worldBoundaryTop.parentNode.setAttribute('x', globalXmax)
     worldBoundaryTop.parentNode.setAttribute('y', globalYmax)
     worldBoundaryTop.style.width = `calc(${globalXmax - globalXmin}px + 100vw)`
+
+    let worldBoundaryRight  = document.getElementById('worldBoundaryRight')
     worldBoundaryRight.parentNode.setAttribute('x', globalXmin)
     worldBoundaryRight.parentNode.setAttribute('y', globalYmax)
     worldBoundaryRight.style.height = `calc(${globalYmax - globalYmin}px + 100vh)`
+    
+    let worldBoundaryBottom = document.getElementById('worldBoundaryBottom')
     worldBoundaryBottom.parentNode.setAttribute('x', globalXmax)
     worldBoundaryBottom.parentNode.setAttribute('y', globalYmin)
     worldBoundaryBottom.style.width = `calc(${globalXmax - globalXmin}px + 54vw)`
