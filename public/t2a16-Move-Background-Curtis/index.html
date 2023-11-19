@@ -56,13 +56,34 @@
     .worldBoundary {
         position:relative;
         background-repeat: repeat;
-        background-size: 50%;
+        background-size: 100%;
         background-image:url("asteroids.png");
         background-position: 0px 0px;
-        width:2000px;
-        height:2000px;
-        
-        
+    }
+    #worldBoundaryLeft {
+        width:46vw;
+        height:3000px;
+    }
+    #worldBoundaryTop {
+        width:calc(2000px + 100vw);
+        height:45vh;
+        background-size: 46vw;
+        background-position: 0px -28.5vh;
+        left:46vw;
+    }
+    #worldBoundaryRight {
+        width:100vw;
+        height:3000px;
+        left:54vw;
+        top:45vh;
+        background-size:46vw;
+    }
+    #worldBoundaryBottom {
+        left:46vw;
+        top:55.5vh;
+        height:100vh;
+        width:calc(2000px + 54vw);
+              
     }
 </style>
 
@@ -85,9 +106,30 @@
     -->
     
     <scrollingElement x=1000 y=1000>
-        <div class="worldBoundary"></div>
+        <div class="worldBoundary" id="worldBoundaryLeft"></div>
+        <!--<div class="worldBoundary" id="worldBoundaryTop"></div>
+        <div class="worldBoundary" id="worldBoundaryRight"></div>
+        <div class="worldBoundary" id="worldBoundaryBottom"></div>-->
+    </scrollingElement>
+    <scrollingElement x=1000 y=1000>
+        <div class="worldBoundary" id="worldBoundaryTop"></div>
+    </scrollingElement>
+    <scrollingElement x=-1000 y=1000>
+        <div class="worldBoundary" id="worldBoundaryRight"></div>
+    </scrollingElement>
+    <scrollingElement x=1000 y=-1000>
+        <div class="worldBoundary" id="worldBoundaryBottom"></div>
     </scrollingElement>
 
+    <stickyElement>
+        <button 
+            style="text-align:left;" 
+            onclick="
+                globalXPosition = 0;
+                globalYPosition = 0;
+                globalXVelocity = 0;
+                globalYVelocity = 0;">Warp back to start</button>
+    </stickyElement>
     <stickyElement><img id="playerUfo" src="ufo.png"></stickyElement>
 </body>
 
@@ -97,12 +139,12 @@
 
 <script>
     let globalXPosition = 0
-    let globalXmin = -1000
-    let globalXmax = 1000
+    let globalXmin = -100
+    let globalXmax = 100
 
     let globalYPosition = 0
-    let globalYmin = -1000
-    let globalYmax = 1000
+    let globalYmin = -100
+    let globalYmax = 100
 
     let globalXVelocity = 0
     let globalYVelocity = 0
@@ -119,6 +161,27 @@
     let playerUfo = document.getElementById('playerUfo')
 
     let scrollingElements = document.getElementsByTagName('scrollingElement')
+
+
+    // Set world boundaries
+    let worldBoundaryLeft   = document.getElementById('worldBoundaryLeft')
+    let worldBoundaryTop    = document.getElementById('worldBoundaryTop')
+    let worldBoundaryRight  = document.getElementById('worldBoundaryRight')
+    let worldBoundaryBottom = document.getElementById('worldBoundaryBottom')
+    worldBoundaryLeft.parentNode.setAttribute('x', globalXmax)
+    worldBoundaryLeft.parentNode.setAttribute('y', globalYmax)
+    worldBoundaryLeft.style.height = `calc(${globalYmax - globalYmin}px + 100vh)`
+    worldBoundaryTop.parentNode.setAttribute('x', globalXmax)
+    worldBoundaryTop.parentNode.setAttribute('y', globalYmax)
+    worldBoundaryTop.style.width = `calc(${globalXmax - globalXmin}px + 100vw)`
+    worldBoundaryRight.parentNode.setAttribute('x', globalXmin)
+    worldBoundaryRight.parentNode.setAttribute('y', globalYmax)
+    worldBoundaryRight.style.height = `calc(${globalYmax - globalYmin}px + 100vh)`
+    worldBoundaryBottom.parentNode.setAttribute('x', globalXmax)
+    worldBoundaryBottom.parentNode.setAttribute('y', globalYmin)
+    worldBoundaryBottom.style.width = `calc(${globalXmax - globalXmin}px + 54vw)`
+    worldBoundaryBottom.style.backgroundSize = `calc((${globalXmax - globalXmin}px + 8vw) / ${Math.max(Math.round((globalXmax - globalXmin)/768), 1)})`
+    //Math.round((globalXmax - globalXmin)/768)*768
     
 
     function globalRefresh()
@@ -146,9 +209,6 @@
         if(downKeyDown)  {globalYVelocity -= 0.01}
         if(rightKeyDown) {globalXVelocity -= 0.01}
 
-        console.log("X and Y", globalXPosition, globalYPosition)
-        console.log("Xmin and max", globalXmin, globalXmax)
-        console.log("Ymin and max", globalYmin, globalYmax)
         if(globalXPosition>=globalXmax){globalXVelocity = 0, globalXPosition -= 0.00001}
         if(globalXPosition<=globalXmin){globalXVelocity = 0, globalXPosition += 0.00001}
         if(globalYPosition>=globalYmax){globalYVelocity = 0, globalYPosition -= 0.00001}
