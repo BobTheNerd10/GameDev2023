@@ -51,6 +51,19 @@
         width:100vw;
         color:white;
     }
+
+
+    .worldBoundary {
+        position:relative;
+        background-repeat: repeat;
+        background-size: 50%;
+        background-image:url("asteroids.png");
+        background-position: 0px 0px;
+        width:2000px;
+        height:2000px;
+        
+        
+    }
 </style>
 
 
@@ -70,6 +83,10 @@
         <img src="dog.webp">
     </scrollingElement>
     -->
+    
+    <scrollingElement x=1000 y=1000>
+        <div class="worldBoundary"></div>
+    </scrollingElement>
 
     <stickyElement><img id="playerUfo" src="ufo.png"></stickyElement>
 </body>
