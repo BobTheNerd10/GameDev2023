@@ -70,7 +70,7 @@
         width:calc(2000px + 100vw);
         height:45vh;
         background-size: 46vw;
-        background-position: 0px -28.5vh;
+        background-position: 0px 45vh;
         left:46vw;
     }
     #worldBoundaryRight {
@@ -98,6 +98,28 @@
         <br>
         <p style="color: white;">Make sure your zoom is set to 100%!</p>
         <p>(It's out of my hands, browsers weren't made for games like this D:)</p>
+    </scrollingElement>
+
+    <scrollingElement x="-900" y="-500">
+        <p>Welcome to space!</p>
+    </scrollingElement>
+
+    <scrollingElement x="-1500" y="-300">
+        <p>Coding this was hard D:</p>
+    </scrollingElement>
+
+    <scrollingElement x="600" y="-1100">
+        <p>Hey, this is my corner of the map! Get outta here!</p>
+        <img src="alien.png">
+        
+    </scrollingElement>
+
+    <scrollingElement x="-1500" y="-700" id="meteor">
+        <p>Whoa look a meteor :o <img width="200px" src="meteor.png"></p>
+    </scrollingElement>
+
+    <scrollingElement x="-1300" y="-300">
+        <img src="arrowContent.png">
     </scrollingElement>
 
     <!--
@@ -167,6 +189,9 @@
 
     let scrollingElements = document.getElementsByTagName('scrollingElement')
 
+    let meteor = document.getElementById('meteor')
+    meteor.setAttribute("x", globalXmin)
+
 
     // Set world boundaries
     let worldBoundaryLeft   = document.getElementById('worldBoundaryLeft')
@@ -223,6 +248,7 @@
         if(globalYPosition<=globalYmin){globalYVelocity = 0, globalYPosition += 0.00001}
 
 
+        // Update position of stuff relative to the screen
         for(scrollingElement of scrollingElements)
         {
             elementsOriginX = Number(  scrollingElement.getAttribute('x')  )
@@ -230,6 +256,13 @@
 
             scrollingElement.style.left = `${(-elementsOriginX) + globalXPosition}px`
             scrollingElement.style.top =  `${(-elementsOriginY) + globalYPosition}px`
+        }
+
+
+        // Update meteor's internal position
+        meteor.setAttribute('x', parseInt(meteor.getAttribute("x")) + 1)
+        if(parseInt(meteor.getAttribute("x")) > globalXmax + 1000){
+            meteor.setAttribute("x", globalXmin - 1000)
         }
     }
 
