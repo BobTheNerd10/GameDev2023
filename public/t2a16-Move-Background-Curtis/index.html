@@ -6,7 +6,6 @@
     <title></title>
 
 	<!--Site sheets-->
-	<link rel="stylesheet" href="../printStyle.css">
 	<script src="../common.js" defer></script>
 </head>
 
@@ -14,10 +13,12 @@
 <style>
     * {
         overflow:hidden;
-        text-align:center;
     }
     
     body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding:0;
+        margin:0;
         background-repeat: repeat;
         background-size: 50%;
         background-image:url("space.jpg");
@@ -25,6 +26,7 @@
     }
 
     scrollingElement {
+        text-align:center;
         z-index:-1;
         position:absolute;
         margin: 0;
@@ -82,8 +84,7 @@
         left:46vw;
         top:55.5vh;
         height:100vh;
-        width:calc(2000px + 54vw);
-              
+        width:calc(2000px + 54vw); 
     }
 </style>
 
@@ -121,9 +122,13 @@
         <div class="worldBoundary" id="worldBoundaryBottom"></div>
     </scrollingElement>
 
-    <stickyElement>
+    <stickyElement style="left:10px; top:10px; position:absolute;">
+        <a id='backButton' href="../index.html">
+            <button>
+                Back to homepage
+            </button>
+        </a>
         <button 
-            style="text-align:left;" 
             onclick="
                 globalXPosition = 0;
                 globalYPosition = 0;
@@ -139,12 +144,12 @@
 
 <script>
     let globalXPosition = 0
-    let globalXmin = -100
-    let globalXmax = 100
+    let globalXmin = -3000
+    let globalXmax = 800
 
     let globalYPosition = 0
-    let globalYmin = -100
-    let globalYmax = 100
+    let globalYmin = -1000
+    let globalYmax = 500
 
     let globalXVelocity = 0
     let globalYVelocity = 0
