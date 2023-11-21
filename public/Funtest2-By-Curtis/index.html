@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    
+    <main>
+        <h1 style="margin-block-end:0">Funtest2-By-Curtis</h1>
+
+        <hr>
+
+        <section>
+            <h1>Video FLAC test #2</h1>
+            
+            <button
+                onclick="
+                    myDiv01.innerHTML = ''
+                    for(person of myArray){
+                        output_text = person
+                        if(person == 'Fred'){
+                            output_text += ' wow'
+                        }
+                        output_text += '<br>' // New line
+                        myDiv01.innerHTML += output_text
+                    }
+                "
+            >
+                Iterate through my array
+            </button>
+
+            <br><br>
+
+            <div id="myDiv01">...</div>
+
+            <script>
+                let myArray = ["Tom", "Fred", "Mary"]
+                let myDiv01 = document.getElementById('myDiv01')
+            </script>
+        </section>
+    </main>
+</body>
+</html>
