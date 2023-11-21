@@ -108,8 +108,7 @@
         <p>Coding this was hard D:</p>
     </scrollingElement>
 
-    <scrollingElement x="600" y="-1100">
-        <p>Hey, this is my corner of the map! Get outta here!</p>
+    <scrollingElement x="-10" y="-1200">
         <img src="alien.png">
     </scrollingElement>
 
@@ -124,7 +123,7 @@
 
     <scrollingElement x="-2500" y="-100">
         <p>Look at this cool satellite!</p>
-        <img width="200" src="satellite.png">
+        <img width="200" src="satellite.png" id="satellite" style="transform: rotate(180deg)">
     </scrollingElement>
 
     <!--
@@ -194,6 +193,8 @@
 
     let scrollingElements = document.getElementsByTagName('scrollingElement')
 
+    let satellite = document.getElementById('satellite')
+    let satelliteRotate = 0
     let meteor = document.getElementById('meteor')
     meteor.setAttribute("x", globalXmin)
 
@@ -269,6 +270,10 @@
         if(parseInt(meteor.getAttribute("x")) > globalXmax + 1000){
             meteor.setAttribute("x", globalXmin - 1000)
         }
+
+        // Update satellite's transform to make it spinny
+        satellite.style.transform = `rotate(${satelliteRotate}deg)`
+        satelliteRotate += 0.1
     }
 
 

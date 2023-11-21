@@ -119,7 +119,7 @@ const creatorName = "Curtis"
 
 let term2Assignments =
 [
-    new Assignment("t2a15", "Spy",                  isShown = true, isWip = true,   isSubmitted = false, ),
+    new Assignment("t2a15", "Spy",                  isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t2a16", "Move-Background",      isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t2a17", "Canvas",               isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("Funtest2","By",                 isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest2-By-Curtis/index.html"),
