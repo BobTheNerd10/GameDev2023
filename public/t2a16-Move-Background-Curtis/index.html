@@ -215,6 +215,9 @@
     meteor.setAttribute("x", globalXmin)
 
 
+    let saul = document.getElementById('moveableImage')
+    saul.style.backgroundPositionX = '1px'
+
     // Set world boundaries
     let worldBoundaryLeft   = document.getElementById('worldBoundaryLeft')
     worldBoundaryLeft.parentNode.setAttribute('x', globalXmax)
@@ -290,6 +293,9 @@
         // Update satellite's transform to make it spinny
         satellite.style.transform = `rotate(${satelliteRotate}deg)`
         satelliteRotate += 0.1
+
+
+        saul.style.backgroundPositionX = String(parseInt(saul.style.backgroundPositionX) + 1) + "px"
     }
 
 
