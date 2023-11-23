@@ -20,73 +20,106 @@
         <hr>
 
         <section>
-            You can use loops and variables to make fast fancy drawings<br><br>
+            Use these inputs to draw stuff on the canvas!<br><br>
 
-            <input type="button" value=" for loop .lineTo(30,200)" onclick="{
-                myContext.beginPath();
-                myContext.lineWidth = 1;
-                myContext.moveTo(20,10)
-                for (i=0; i<20; i++){
-                    myContext.moveTo(i*2,10*i);
-                    myContext.lineTo(i*3,20)
-                }
-                myContext.stroke()
-            }">
+           
 
-            <input type="button" value=".fillrect(30,20, 54, 40)" onclick="{
-                myContext.beginPath();
-                myContext.lineWidth = 1
-                myContext.fillRect(30, 20, 54, 40)
-                myContext.stroke
-            }">
+            Preset scripts: <select id="scriptPresets"
+                onchange="drawingCommandInput.value = this.value"
+            >
+                <option value=""></option>
+                <option value="The 20 quick brown foxes jumped over the 34 lazy dogs 89 times.">Quick brown fox</option>
+                <option value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">Lorem Ipsum</option>
+                <option value="My secret password is WordPass12">Secret Password</option>
+            </select>
+            <textarea style="resize:vertical; width:725px; height:200px;" id="drawingCommandInput"></textarea>
 
-            <input type="button" value=".arc(95, 50, 40, 0, 2 * Math.PI)" onclick="{
-                myContext.beginPath()
-                myContext.lineWidth = 10;
-                myContext.strokeSTyle = 'green'
-                myContext.arc(95, 50, 40, 0 ,2 * Math.PI);
-                myContext.stroke()
-            }">
 
-            <input type="button" value=".fillText('Hello World', 400, 100)" onclick="{
-                myContext.font = '20px Arial'
-                myContext.fillText('Hello World', 400, 100)
-                myContext.translate(400, 100)
-                myContext.rotate(60 * Math.PI / 180)
-                myContext.fillText('Hello World', 10, 10)
-                myContext.stroke()
-                myContext.resetTransform()
-            }">
+            <button onclick="drawAllCommands()">Run ArtScript</button>
+            <button onclick="canvasContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height)">Clear canvas</button>
 
-            <input type="button" value=".quadraticCurveTo(100, 220, 240, 110)" onclick="{
-                myContext.beginPath();
-                myContext.moveTo(300, 100)
-                myContext.quadraticCurveTo(100, 220, 240, 110)
-                myContext.stroke()
-            }">
+            <br>
+            <br>
+            <br>
 
-            <input type="button" value=".createLinearGradient(100, 300, 200, 400)" onclick="{
-                let myGradient = myContext.createLinearGradient(100, 300, 200, 400)
-                myGradient.addColorStop(0, 'red')
-                myGradient.addColorStop(0.5, 'blue')
-                myGradient.addColorStop(1, 'yellow')
-                myContext.fillStyle = myGradient
-                myContext.fillRect(100, 300, 200, 400)
-                myContex.fillStyle = 'black'
-            }"><br><br>
-
-            <input type="button" value="clearRect(20, 20, 50, 50)" onclick="{
-                myContext.clearRect(20, 20, 50, 50)
-            }">
-
-            <input type="button" value="Clear all" onclick="{
-                myContext.clearRect(0, 0, myCanvas.width, myCanvas.height)
-            }">
-
-            <canvas id="myCoolTag" width="725" height="600" style="border:1px solid #000000"></canvas>
+            Output:
+            <canvas id="drawingCanvas" width="725" height="600" style="border:1px solid #000000"></canvas>
+            
+            
             <script>
-                let myCanvas = document.getElementById('myCoolTag')
-                let myContext = myCanvas.getContext('2d')
+                let drawingCommandInput = document.getElementById('drawingCommandInput')
+                let drawingCanvas = document.getElementById('drawingCanvas')
+                let canvasContext = drawingCanvas.getContext('2d')
+
+                function drawAllCommands()
+                {
+
+                    // split the input program into its individual lines
+                    everyCommandLine = drawingCommandInput.value.split('\n') 
+
+
+                    // then split each line into their individual arguments
+                    everyCommandArray = [] 
+                    for(let i = 0; i < everyCommandLine.length; i++)
+                    {
+                        everyCommandArray[i] = everyCommandLine[i].split(' ')
+                    }
+                    
+                    // Then iterate through all the commands!
+                    for(commandArray of everyCommandArray)
+                    {   
+                        // commandArray[0] is the command name
+                        // everything in the array afterwards is arguments to the ArtScript command
+
+                        try{
+                            switch(commandArray[0]){
+
+                                case "width":
+                                    canvasContext.lineWidth = commandArray[1]
+                                    break
+                                
+                                case "color":
+                                case "colour":
+                                    commandArray.shift()
+
+                                    canvasContext.strokeStyle = commandArray.join(' ')
+                                    break
+
+                                case "line":
+                                    lineStartX = commandArray[1]
+                                    lineStartY = commandArray[2]
+                                    lineEndX = commandArray[3]
+                                    lineEndY = commandArray[4]
+                                
+                                    canvasContext.beginPath();
+                                    canvasContext.moveTo(lineStartX,lineStartY)
+                                    canvasContext.lineTo(lineEndX,lineEndY)
+                                    canvasContext.stroke()
+                                    break
+                                    
+                                case "square":
+                                    squareX = commandArray[1]
+                                    squareY = commandArray[2]
+                                    squareWidth = commandArray[3]
+                                    squareHeight = commandArray[4]
+                                    
+                                    canvasContext.beginPath()
+                                    canvasContext.fillRect(squareX, squareY, squareWidth, squareHeight)
+                                    canvasContext.stroke()
+                                    break
+                    
+                        
+                                default:
+                                    if(commandArray[0] != '')
+                                    {
+                                        console.log(`Command ${commandArray[0]} is not defined!`)
+                                    }
+                                    break
+                                }
+                        }
+                        catch (error){console.error(error)}
+                    }
+                }
             </script>
         </section>
     </main>
