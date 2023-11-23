@@ -78,12 +78,14 @@
                                     canvasContext.lineWidth = commandArray[1]
                                     break
                                 
+
                                 case "color":
                                 case "colour":
                                     commandArray.shift()
 
                                     canvasContext.strokeStyle = commandArray.join(' ')
                                     break
+
 
                                 case "line":
                                     lineStartX = commandArray[1]
@@ -97,7 +99,18 @@
                                     canvasContext.stroke()
                                     break
                                     
-                                case "square":
+                                
+                                case "circle":
+                                    circleX = commandArray[1]
+                                    circleY = commandArray[2]
+                                    circleRadius = commandArray[3]
+
+                                    canvasContext.beginPath()
+                                    canvasContext.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI, false);
+                                    canvasContext.stroke()
+                                    break
+
+                                case "squareFill":
                                     squareX = commandArray[1]
                                     squareY = commandArray[2]
                                     squareWidth = commandArray[3]
