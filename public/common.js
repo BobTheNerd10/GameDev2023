@@ -122,7 +122,8 @@ let term2Assignments =
     new Assignment("t2a15", "Spy",                  isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t2a16", "Move-Background",      isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t2a17", "Canvas",               isShown = true, isWip = true,   isSubmitted = false, ),
-    new Assignment("t2a06", "Php-CodeSandbox",      isShown = true, isWip = true,   isSubmitted = false, linkOverride = "https://878nvp-5173.csb.app/", assignmentNotes = " (done using NodeJs)"),
+    new Assignment("t2a18", "local-storage",        isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "t1a09-local-storage-Curtis/index.html", assignmentNotes=" (same as t1a09)"),
+    //new Assignment("t2a06", "Php-CodeSandbox",      isShown = true, isWip = true,   isSubmitted = false, linkOverride = "https://878nvp-5173.csb.app/", assignmentNotes = " (done using NodeJs)"),
     new Assignment("Funtest2","By",                 isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest2-By-Curtis/index.html"),
 ]
 
