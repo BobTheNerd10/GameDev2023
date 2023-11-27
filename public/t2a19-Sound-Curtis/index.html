@@ -22,18 +22,21 @@
         <section>
             
 
-            <p>Sound player tool:</p>
+            <h3>Sound player tool:</h3>
             <select id="soundSelector"></select>
             <input type="button" value="Play" onclick="playSound()">
+            <input type="button" value="Play all sounds (loud)" onclick="playAllSounds()"
 
             <br>
             <br>
             <br>
+            <br>
 
-            <p>Add your sounds to the sound player:</p>
+            <h3>Add your own sounds to the player above:</h3>
+            <span>(Will override existing sound player items if the names match, so be careful!)</span> <br><br>
             File: <input type="file" id="fileInputField" accept="audio/*" /><br>
             Name: <input type="text" id="fileTextInputField" value="My Sound"></input><br>
-            <input type="button" value="Add sound!" onclick="addSoundFile()">
+            <input type="button" value="Add sound!" onclick="addCustomSoundFile()">
 
             
             <script>
@@ -53,42 +56,43 @@
 
                 refreshSoundList()
 
+                
 
 
                 function refreshSoundList()
                 {
+                    soundSelector.innerHTML = ""
                     for(soundName of Object.keys(soundList))
                     {
                         soundSelector.innerHTML += `<option value='${soundName}'>${soundName}</option>`
                     }   
                 }
-                             
+                    
+                
                 function playSound()
                 {
                     soundList[soundSelector.value].play()
                 }
 
 
-                function addSoundFile()
+                function playAllSounds()
                 {
-
-                    file = fileInputField
-
-                    
-                    if(file.files.length)
+                    for(soundName of Object.keys(soundList))
                     {
-                        var reader = new FileReader();
-                        
+                        soundList[soundName].play()
+                    }
+                }
 
-                        // To future self: e.target.result contains all the bytes of the file the user uploads, but i have NO clue how to convert it into something the browser can play
-                        reader.onload = function(e)
-                        {
-                            console.log(e.target.result)
-                            //soundList[fileTextInputField.value] = e.target.result;
-                            refreshSoundList()
-                        };
+
+                function addCustomSoundFile()
+                {                    
+                    if(fileInputField.files.length > 0) // If there is a file in the input, run the code below
+                    {
+                        var audioURL = URL.createObjectURL(fileInputField.files[0])
                         
-                        reader.readAsBinaryString(file.files[0]);
+                        soundList[fileTextInputField.value] = new Audio(audioURL)
+
+                        refreshSoundList()
                     }
                 }
             </script>
