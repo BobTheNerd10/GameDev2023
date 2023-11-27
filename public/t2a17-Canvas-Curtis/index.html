@@ -118,8 +118,20 @@
                                     canvasContext.fillRect(squareX, squareY, squareWidth, squareHeight)
                                     canvasContext.stroke()
                                     break
+
+                                case "font":
+                                    commandArray.shift()
+                                    canvasContext.font = commandArray.join(' ')
+                                    break
+
+                                case "text":
+                                    text = commandArray[1]
+                                    textX = commandArray[2]
+                                    textY = commandArray[3]
+
+                                    canvasContext.fillText(text, textX, textY)
+                                    break
                     
-                        
                                 default:
                                     if(commandArray[0] != '')
                                     {
