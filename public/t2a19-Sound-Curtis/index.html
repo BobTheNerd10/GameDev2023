@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+	<!--Site sheets-->
+	<link rel="stylesheet" href="../printStyle.css">
+	<script src="../common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!--Dummy tag, will be filled in with JS if needed-->
+    </header>
+    
+    <main>
+        <h1 style="margin-block-end:0">T2A19-Sound-Curtis</h1>
+
+        <hr>
+
+        <section>
+            
+
+            <p>Sound player tool:</p>
+            <select id="soundSelector"></select>
+            <input type="button" value="Play" onclick="playSound()">
+
+            <br>
+            <br>
+            <br>
+
+            <p>Add your sounds to the sound player:</p>
+            File: <input type="file" id="fileInputField" accept="audio/*" /><br>
+            Name: <input type="text" id="fileTextInputField" value="My Sound"></input><br>
+            <input type="button" value="Add sound!" onclick="addSoundFile()">
+
+            
+            <script>
+                let soundSelector = document.getElementById('soundSelector')
+                let fileInputField = document.getElementById('fileInputField')
+                let fileTextInputField = document.getElementById('fileTextInputField')
+
+
+                let soundList = 
+                {
+                    "Minecraft Cow"   : new Audio( 'mcCow.ogg'      ),
+                    "Minecraft Sheep" : new Audio( 'mcSheep.ogg'    ),
+                    "Mario Coin"      : new Audio( 'marioCoin.wav'  ),
+                    "Mario Jump"      : new Audio( 'marioJump.wav'  ),
+                    "Mario Stomp"     : new Audio( 'marioStomp.wav' ),
+                }
+
+                refreshSoundList()
+
+
+
+                function refreshSoundList()
+                {
+                    for(soundName of Object.keys(soundList))
+                    {
+                        soundSelector.innerHTML += `<option value='${soundName}'>${soundName}</option>`
+                    }   
+                }
+                             
+                function playSound()
+                {
+                    soundList[soundSelector.value].play()
+                }
+
+
+                function addSoundFile()
+                {
+
+                    file = fileInputField
+
+                    
+                    if(file.files.length)
+                    {
+                        var reader = new FileReader();
+                        
+
+                        // To future self: e.target.result contains all the bytes of the file the user uploads, but i have NO clue how to convert it into something the browser can play
+                        reader.onload = function(e)
+                        {
+                            console.log(e.target.result)
+                            //soundList[fileTextInputField.value] = e.target.result;
+                            refreshSoundList()
+                        };
+                        
+                        reader.readAsBinaryString(file.files[0]);
+                    }
+                }
+            </script>
+        </section>
+    </main>
+</body>
+</html>

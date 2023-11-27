@@ -24,20 +24,18 @@
 
            
 
-            Preset scripts: <select id="scriptPresets"
+            Preset scripts: <select id="scriptPresetsSelect"
                 onchange="drawingCommandInput.value = this.value"
+                style="width:200px;"
             >
-                <option value=""></option>
-                <option value="The 20 quick brown foxes jumped over the 34 lazy dogs 89 times.">Quick brown fox</option>
-                <option value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">Lorem Ipsum</option>
-                <option value="My secret password is WordPass12">Secret Password</option>
             </select>
             <textarea style="resize:vertical; width:725px; height:200px;" id="drawingCommandInput"></textarea>
 
 
             <button onclick="drawAllCommands()">Run ArtScript</button>
+            <button onclick="drawingCommandInput.value = ''">Clear ArtScript</button>
             <button onclick="canvasContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height)">Clear canvas</button>
-
+            
             <br>
             <br>
             <br>
@@ -136,5 +134,19 @@
             </script>
         </section>
     </main>
+
+    
+    <div id="scriptPresetsDiv" style="display:none;">
+        <option value=""></option>
+        <option value="">Forest</option>
+        <option value="">House</option>
+        <option value="">Hangman</option>
+    </div>
+
+    <script>
+        let scriptPresets = document.getElementById('scriptPresetsDiv').innerHTML
+
+        document.getElementById('scriptPresetsSelect').innerHTML = scriptPresets
+    </script>
 </body>
 </html>
