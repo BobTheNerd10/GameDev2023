@@ -123,9 +123,10 @@ let term2Assignments =
     new Assignment("t2a16", "Move-Background",              isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("t2a17", "Canvas",                       isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("t2a18", "local-storage",                isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "t1a09-local-storage-Curtis/index.html", assignmentNotes=" (same as t1a09)"),
-    new Assignment("t2z06", "Php-CodeSandbox",              isShown = true, isWip = true,   isSubmitted = false, linkOverride = "https://82vtvn-8080.csb.app/index.php", assignmentNotes = " (done using NodeJs)"),
-    new Assignment("t2z07", "CodeSandbox-Flask-Python-Web", isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "https://4dzgvs-5000.csb.app/myFlask"),
+    new Assignment("t2z05", "Php-CodeSandbox",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "https://82vtvn-8080.csb.app/index.php", assignmentNotes = " (done using NodeJs)"),
+    new Assignment("t2z06", "CodeSandbox-Flask-Python-Web", isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "https://4dzgvs-5000.csb.app/myFlask"),
     new Assignment("t2a19", "Sound",                        isShown = true, isWip = false,  isSubmitted = true,  ),
+    new Assignment("t2a20", "GameTemplate",                 isShown = true, isWip = true,   isSubmitted = false, ),
     new Assignment("Funtest2","By",                         isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest2-By-Curtis/index.html"),
 ]
 
