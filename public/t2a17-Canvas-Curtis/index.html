@@ -32,9 +32,9 @@
             <textarea style="resize:vertical; width:725px; height:200px;" id="drawingCommandInput"></textarea>
 
 
-            <button onclick="drawAllCommands()">Run ArtScript</button>
-            <button onclick="drawingCommandInput.value = ''">Clear ArtScript</button>
+            <button onclick="drawAllCommands(); localStorage.setItem('savedArtscript', drawingCommandInput.value)">Run ArtScript</button>
             <button onclick="canvasContext.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height)">Clear canvas</button>
+            <button onclick="drawingCommandInput.value = localStorage.getItem('savedArtscript')">Load from last autosave</button>
             
             <br>
             <br>
@@ -108,14 +108,18 @@
                                     canvasContext.stroke()
                                     break
 
-                                case "squareFill":
-                                    squareX = commandArray[1]
-                                    squareY = commandArray[2]
-                                    squareWidth = commandArray[3]
-                                    squareHeight = commandArray[4]
+                                case "square":
+                                    squareX =      Number(commandArray[1])
+                                    squareY =      Number(commandArray[2])
+                                    squareWidth =  Number(commandArray[3])
+                                    squareHeight = Number(commandArray[4])
                                     
                                     canvasContext.beginPath()
-                                    canvasContext.fillRect(squareX, squareY, squareWidth, squareHeight)
+                                    canvasContext.moveTo(squareX,                               squareY)
+                                    canvasContext.lineTo(squareX,                               squareY + squareHeight)
+                                    canvasContext.lineTo(squareX + squareWidth,                 squareY + squareHeight)
+                                    canvasContext.lineTo(squareX + squareWidth,                 squareY)
+                                    canvasContext.lineTo(squareX - (canvasContext.lineWidth/2), squareY)
                                     canvasContext.stroke()
                                     break
 
