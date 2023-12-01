@@ -16,6 +16,21 @@
         margin-inline-start: 0;
         margin-inline-end: 0;
         overflow:hidden;
+		
+		/* Disables drag selecting (for text)*/
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none;   /* Chrome/Safari/Opera */
+		-khtml-user-select: none;    /* Konqueror */
+		-moz-user-select: none;      /* Firefox */
+		-ms-user-select: none;       /* Internet Explorer/Edge*/
+		 user-select: none;          /* Non-prefixed version, currently not supported by any browser */
+
+		/* Disables drag selecting (for images) */
+		-webkit-user-drag: 	none;
+		-khtml-user-drag: 	none;
+		-moz-user-drag: none;
+		-o-user-drag: 	none;
+		user-drag: 		none;
     }
 </style>
 
@@ -72,6 +87,7 @@
 
             - An async function that is called to load the floor 
                 - Loads the floor's assets
+				- Returns the splashtext for the floor (so the splashtext can be dynamic)
 
             - An async function that is called when the floor starts
                 - Takes the floor's difficulty as an input
