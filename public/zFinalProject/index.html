@@ -23,14 +23,14 @@
 		-khtml-user-select: none;    /* Konqueror */
 		-moz-user-select: none;      /* Firefox */
 		-ms-user-select: none;       /* Internet Explorer/Edge*/
-		 user-select: none;          /* Non-prefixed version, currently not supported by any browser */
+		user-select: none;          /* Non-prefixed version, currently not supported by any browser */
 
 		/* Disables drag selecting (for images) */
 		-webkit-user-drag: 	none;
 		-khtml-user-drag: 	none;
 		-moz-user-drag: none;
 		-o-user-drag: 	none;
-		user-drag: 		none;
+		/* user-drag: 		none; /*Currently not supported, but will be supported in the future. */
     }
 </style>
 
@@ -44,7 +44,6 @@
 
     Make it like Wario Ware Incorporated
     Make it to floor 20
-    Make the  
     Have the game controlled only using the mouse
 
 
@@ -56,21 +55,22 @@
                 - initial lives
                 - initial difficulty
                 - initial speed
-                - list of floors and transitions
-                    - Name of the floor for the floor
+                - list of floors and transitions (["floorname", "speed+1", "floorname", "boss", "floornameBoss"])
+                    - Name of the floor so the game knows what floor to put in that slot
                     - "random XXX" (get random floor from the XXX list)
                     - "speed+1"
                     - "difficulty+1" 
                     - "lives+1"
                     - "boss" (boss transition)
                     - "end" (end of the game)
-                - Loop
+                
                 - Integer that manages the index of the floor list the game is currently at
                     
             
             
             Global async script that starts the game
-                - Iterates through the floor list
+                - Shows the elevator thing
+                - Begins iterating through the floor list
                 - Returns whether the player reached an "end" (see list of floors)
                 - Returns the score
             
@@ -114,6 +114,14 @@
     Microgame ideas
         - Spam click to drink a cup of coffee
         - 
+
+
+
+
+    For audio:
+        playbackspeed and/or playbackRate (for speedups)
+        play() 
+        currentTime (for getting position in the song?)
 -->
 
 </html>

@@ -48,9 +48,9 @@
         {
             if ( myHitOther('myImg01', 'myImg02'))
             {
-                alert('you lose 2')
+                alert('You got the carrot!')
                 //document.getElementById('myImg01').style.left = '20px'
-                location = 'goingUp.html' // TODO fill me with whatever the next level is
+                location = '../zFinalProject/index.html' // TODO fill me with whatever the next level is
             }
 
             if ( myHitOther('myImg01', 'myImg03'))
@@ -62,15 +62,15 @@
         }
     </script>
 
-    <img id="myImg01" style="position:absolute; width:100px; height:80px; top:0px; left:50px;"  src="imageDog.webp">
-    <img id="myImg02" style="position:absolute; width:100px; height:80px; top:0px; left:250px;" src="imageNyanCat.gif">
-    <img id="myImg03" style="position:absolute; width:100px; height:80px; top:0px; left:500px;" src="ufo.png">
+    <img id="myImg01" style="position:absolute; width:100px; height:80px; top:50px; left:50px;"  src="imageNyanCat.gif">
+    <img id="myImg02" style="position:absolute; width:100px; height:80px; top:50px; left:250px;" src="carrot.png">
+    <img id="myImg03" style="position:absolute; width:100px; height:80px; top:50px; left:500px;" src="ufo.png">
 
     <input type="button" value="Auto Background Left" onclick="{
         clearInterval(myClock)
         let myTemp = '100px 0px'
         myClock = setInterval(function(){
-            myGlobalX -= 5
+            myGlobalX -= 3
             myTemp = myGlobalX + 'px 0px'
             document.getElementById('myBody').style.backgroundPosition = myTemp
         }, 10)
