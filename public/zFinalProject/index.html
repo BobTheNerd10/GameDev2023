@@ -1,39 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Going up?</title>
+    <title></title>
+
 </head>
-
-<style>
-    * {
-        margin:0;
-        padding:0;
-        margin-block-start:0;
-        margin-block-end:0;
-        margin-inline-start: 0;
-        margin-inline-end: 0;
-        overflow:hidden;
-		
-		/* Disables drag selecting (for text)*/
-		-webkit-touch-callout: none; /* iOS Safari */
-		-webkit-user-select: none;   /* Chrome/Safari/Opera */
-		-khtml-user-select: none;    /* Konqueror */
-		-moz-user-select: none;      /* Firefox */
-		-ms-user-select: none;       /* Internet Explorer/Edge*/
-		user-select: none;          /* Non-prefixed version, currently not supported by any browser */
-
-		/* Disables drag selecting (for images) */
-		-webkit-user-drag: 	none;
-		-khtml-user-drag: 	none;
-		-moz-user-drag: none;
-		-o-user-drag: 	none;
-		/* user-drag: 		none; /*Currently not supported, but will be supported in the future. */
-    }
-</style>
+<body id="myBody" style="background-repeat:repeat; background-size: 80%;" background="myBackground01.jpg">
 
 
+    <h1 style="margin-block-end:0">T2A20-GameTemplate-Curtis</h1>
+    <br>
+    <br>
+    <br>
+    <br>
 
+    <script>
+        // global variables here
+        let myGlobalX = 0
+        let myClock
+
+
+        function myHitOther(my1, my2)
+        {
+            left1      = parseInt(document.getElementById(my1).style.left)
+            right1     = left1 + parseInt(document.getElementById(my1).style.width)
+            top1       = parseInt(document.getElementById(my1).style.top)
+            bottom1    = top1 + parseInt(document.getElementById(my1).style.height)
+            left2      = parseInt(document.getElementById(my2).style.left)
+            right2     = left2 + parseInt(document.getElementById(my2).style.width)
+            top2       = parseInt(document.getElementById(my2).style.top)
+            bottom2    = top2 + parseInt(document.getElementById(my2).style.height)   
+
+            if 
+            (
+                ( right1  >= left2  ) &&
+                ( bottom1 >= top2   ) &&
+                ( left1   <= right2 ) &&
+                ( top1    <= bottom2) 
+            )
+            {
+            return true
+            }
+        }
+
+        function myCheckHit()
+        {
+            if ( myHitOther('myImg01', 'myImg02'))
+            {
+                location = 'microgames.html' 
+            }
+
+            if ( myHitOther('myImg01', 'myImg03'))
+            {
+                alert('you lose 3')
+            }
+
+            // more if statements here
+        }
+    </script>
+
+    <img id="myImg01" style="position:absolute; width:100px; height:80px; top:50px; left:50px;"  src="imageNyanCat.gif">
+    <img id="myImg02" style="position:absolute; width:100px; height:80px; top:50px; left:250px;" src="carrot.png">
+    <img id="myImg03" style="position:absolute; width:100px; height:80px; top:50px; left:500px;" src="ufo.png">
+
+    <input type="button" value="Auto Background Left" onclick="{
+        clearInterval(myClock)
+        let myTemp = '100px 0px'
+        myClock = setInterval(function(){
+            myGlobalX -= 3
+            myTemp = myGlobalX + 'px 0px'
+            document.getElementById('myBody').style.backgroundPosition = myTemp
+        }, 10)
+    }">
+
+    <input type="button" value="Image Right Fast Button onTouchStart"="{this.click(); event.preventDefault();}"
+        onclick="{
+            document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) +
+            10 + 'px'
+                myCheckHit()
+        }"><br><br>
+
+    <a id='backButton' href="../index.html">
+        <button>
+            Back to homepage
+        </button>
+    </a>
+
+    
+</body>
 </html>
