@@ -126,7 +126,7 @@ let term2Assignments =
     new Assignment("t2z05", "Php-CodeSandbox",              isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "https://82vtvn-8080.csb.app/index.php"),
     new Assignment("t2z06", "CodeSandbox-Flask-Python-Web", isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "https://4dzgvs-5000.csb.app/myFlask"),
     new Assignment("t2a19", "Sound",                        isShown = true, isWip = false,  isSubmitted = true,  ),
-    new Assignment("t2a20", "GameTemplate",                 isShown = true, isWip = true,   isSubmitted = true,  ),
+    new Assignment("t2a20", "GameTemplate",                 isShown = true, isWip = false,  isSubmitted = true,  ),
     new Assignment("Funtest2","By",                         isShown = true, isWip = false,  isSubmitted = true,  linkOverride = "Funtest2-By-Curtis/index.html"),
 ]
 
@@ -157,7 +157,9 @@ let term1Assignments =
 
 let assignments = term1Assignments.concat(term2Assignments)
 
-let extraClassTodos = [ // For stuff that isnt assignments 
+let extraClassTodos = [ 
+    'My final project'
+    // For stuff that isnt assignments 
 	//'Nov 9 - Researching how to map binary data from a file to a struct',
 	//'Nov 8 - Working On Other Classes'
 ]
