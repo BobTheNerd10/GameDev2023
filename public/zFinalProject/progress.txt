@@ -2,7 +2,7 @@ Dec 4  - Brainstorming
 Dec 5  - Brainstorming (growing scope oh no)
 Dec 6  - Art for street platformer section
 Dec 7  - Art for bossfight platformer section
-Dec 8  - 
+Dec 8  - Prototype art for characters and started coding the platformer
 Dec 11 - 
 Dec 12 - 
 Dec 13 - 

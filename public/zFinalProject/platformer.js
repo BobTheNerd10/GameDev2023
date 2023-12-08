@@ -1,3 +1,63 @@
+
+
+
+
+
+let gameObjectDiv = document.getElementById('gameObjects')
+
+for(gameElement of gameObjectDiv.childNodes)
+{
+    new GameObject()
+}
+
+
+class GameObject
+{
+
+}
+
+
+
+
+
+function outsideSceneAwake()
+{
+    // Fill this function later
+}
+
+function bossSceneAwake()
+{
+    // Fill this function later
+}
+
+
+
+
+
+
+/*
+
+
+
+
+Create game objects within a div in the platformer scene
+Get all the child nodes in the div and make them instances in a gameObject class
+refer to the element's attributes to give it properties
+handle all the stuff in this script
+
+have a variable specifically for the player
+
+
+
+
+
+
+
+
+
+
+
+
 // global variables here
 let myGlobalX = 0
 let myClock
@@ -63,3 +123,8 @@ function myCheckHit()
     10 + 'px'
         myCheckHit()
 }
+
+
+
+
+*/
