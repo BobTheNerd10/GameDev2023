@@ -91,7 +91,7 @@ GameElement attributes:
     height
     facing ("right" or "left")
     src (for the image sprite)
-    cameraFollows ()
+    cameraFollows (class)
     onUpdate (list of JS functions that's called every frame)
     onCollision (takes the colliding object as well as any arguments in the onCollision list as an input, and returns how it's modified as an output)
 
@@ -155,7 +155,7 @@ function playerUpdate()
 
 
 
-// Evaluates boss AI 
+// Evaluates boss AI?
 function bossUpdate() 
 {
 
