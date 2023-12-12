@@ -33,10 +33,19 @@ let cameraZoom = 1
 
 
 
-
+/* 
+For each element: 
+    Updates the camera values and the css styles of everything on screen
+    Updates the x positions and y positions using the x velocity and y velocity
+    um other things im sure!!
+*/
 async function gameUpdate()
 {
     for(let gameElement of gameElements)
+    {
+
+    }
+    for(let backgroundElement of backgroundElements)
     {
 
     }
@@ -44,14 +53,15 @@ async function gameUpdate()
 
 
 
-async function outsideSceneAwake()
+async function outsideSceneSequence()
 {
     gameUpdateLoop = setInterval(gameUpdate, 1)
+    updateCameraLoop = setInterval(updateCamera, 1)
 }
 
 
 
-async function bossSceneAwake()
+async function bossSceneSequence()
 {
 
 }
@@ -59,6 +69,10 @@ async function bossSceneAwake()
 
 
 
+function updateCamera()
+{
+
+}
 
 
 
@@ -77,6 +91,7 @@ GameElement attributes:
     height
     facing ("right" or "left")
     src (for the image sprite)
+    cameraFollows ()
     onUpdate (list of JS functions that's called every frame)
     onCollision (takes the colliding object as well as any arguments in the onCollision list as an input, and returns how it's modified as an output)
 

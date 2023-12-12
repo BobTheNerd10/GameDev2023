@@ -2,72 +2,7 @@
     Make it like Wario Ware Incorporated
     Make it to floor 20
     Have the game controlled only using the mouse
-
-
-    Stucture:
-
-        gameManager class:
-
-            Constructor
-                - initial lives
-                - initial difficulty
-                - initial speed
-                - list of floors and transitions (["floorname", "speed+1", "floorname", "boss", "floornameBoss"])
-                    - Name of the floor so the game knows what floor to put in that slot
-                    - "random XXX" (get random floor from the XXX list)
-                    - "speed+1"
-                    - "difficulty+1" 
-                    - "lives+1"
-                    - "setTitle XXX" (set your title to something better during the floor transition)
-                    - "boss" (boss transition)
-                    - "end" (end of the game)
-                
-                - Integer that manages the index of the floor list the game is currently at
-                    
-            
-            
-            Global async script that starts the microgame section
-                - Shows the elevator thing
-                - Begins iterating through the floor list
-                - Returns whether the player reached an "end" (see list of floors)
-                - Returns the score
-            
-
-            - Manages the intro *inside* the elevator (not the pre-game cutscene)
-            - Your current title is shown in the microgame ideas thing (it increases as you climb higher)
-            - Manages the elevator doors opening
-            - Manages the elevator doors closing
-            - Manages the moments between floors
-            - Plays the music between floors
-
-
-
-
-        Floor/Microgame class:
-            - Floor element that is a div that fills the whole screen
-                - Contains all the game elements
-
-            - Timer integer in beats (0 = no time limit) (make the default value be inherited from the gameManager)
-
-            - An async function that is called to load the floor 
-                - Loads the floor's assets
-				- Returns the splashtext for the floor (so the splashtext can be dynamic)
-
-            - An async function that is called when the floor starts
-                - Takes the floor's difficulty as an input
-                - Takes the floor's speed as an input 
-                - Should play the music dependant on the speed
-
-            - An async function that is called whevener the timer increments or decrements
-                - Takes the current time as an input (increases from 0 if the floor has no time limit) (decreases to 0 if the floor has a time limit)
-
-            - An async function that is called that returns whether the player has won or lost the game 
-                - called when time is up for timed floors
-                - called immediately, then awaited to signify the end of the floor for nontimed floors
-                - returns a bool for whether the player has won or lost the game
-            
-            - An async function that is called when the floor is hidden by the elevators and is ready to be unloaded
-                - unload the floor's assets
+       
 
 
     Microgame ideas
@@ -152,3 +87,149 @@
         play() 
         currentTime (for getting position in the song?)
 */
+
+
+
+
+
+
+
+// Get the elevator elements
+// Get the floor elements
+// Do the thing
+function microgamesSceneSequence()
+{
+
+}
+
+
+
+
+
+
+
+
+/*
+
+gameManager:
+
+    Constructor
+        - initial lives
+        - initial difficulty
+        - initial speed
+        - list of floors and transitions 
+            
+        
+        - Integer that manages the index of the floor list the game is currently at
+            
+    
+    
+    Global async script that starts the microgame section
+        - Shows the elevator thing
+        - Begins iterating through the floor list
+        - Returns whether the player reached an "end" (see list of floors)
+        - Returns the score
+    
+
+    - Manages the intro *inside* the elevator (not the pre-game cutscene)
+    - Your current title is shown in the microgame ideas thing (it increases as you climb higher)
+    - Manages the elevator doors opening
+    - Manages the elevator doors closing
+    - Manages the moments between floors
+    - Plays the music between floors
+
+*/
+
+
+class GameManager
+{
+    constructor(floorList = [])
+    {
+        this.lives = 4
+        this.difficulty = 1
+        this.speed = 1 // TODO change this to make the value equal to Time Per Music Segment in milliseconds (multiply it for microgames)
+        this.floorList = floorList // ["floorname", "speed+1", "floorname", "boss", "floornameBoss"]
+        this.currentFloorListIndex = 0
+        this.interruptOnNextFloor = false // Shouldnt have to use this, but just in case
+    }
+
+
+
+    async processFloorList()
+    {
+        while(this.interruptOnNextFloor == false)
+        {
+            switch(this.floorList[this.currentFloorListIndex])
+            {   
+                /*
+                cases
+                  "XXXXX" Name of the floor so the game knows what floor to put in that slot
+                  "random XXX" (get random floor from the XXX list)
+                  "speed+1"
+                  "difficulty+1" 
+                  "lives+1"
+                  "setTitle XXX" (set your title to something better during the floor transition)
+                  "boss" (boss transition)
+                  "end" (end of the game)
+                */
+            }
+
+
+
+            // Increase the floor count and roll over if it 
+            this.currentFloorListIndex++
+            if  (this.currentFloorListIndex >= this.floorList.length)  {this.currentFloorListIndex = 0}
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+let AllMicrogames = 
+{
+    // "MicrogameName" : new Microgame(dsklfj, sdlfj)
+}
+
+
+/*
+Floor/Microgame class:
+    - Floor element that is a div that fills the whole screen
+        - Contains all the game elements
+
+    - Timer integer in beats (0 = no time limit) (make the default value be inherited from the gameManager)
+
+    - An async function that is called to load the floor 
+        - Loads the floor's assets
+        - Returns the splashtext for the floor (so the splashtext can be dynamic)
+
+    - An async function that is called when the floor starts
+        - Takes the floor's difficulty as an input
+        - Takes the floor's speed as an input 
+        - Should play the music dependant on the speed
+
+    - An async function that is called whevener the timer increments or decrements
+        - Takes the current time as an input (increases from 0 if the floor has no time limit) (decreases to 0 if the floor has a time limit)
+
+    - An async function that is called that returns whether the player has won or lost the game 
+        - called when time is up for timed floors
+        - called immediately, then awaited to signify the end of the floor for nontimed floors
+        - returns a bool for whether the player has won or lost the game
+    
+    - An async function that is called when the floor is hidden by the elevators and is ready to be unloaded
+        - unload the floor's assets
+*/
+class Microgame
+{
+    constructor()
+    {
+
+    }
+}
+
