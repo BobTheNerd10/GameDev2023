@@ -6,14 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Going Up?</title>
 	<link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="microgames.css">
 </head>
 
-<body>
+
+<style>
+    microgame, elevator
+    {
+        position:absolute;
+        left:0;
+        top:0;
+        width:100vw;
+        height:100vh;
+    }
+
+    microgame
+    {
+        z-index:0;
+        display:none;
+    }
+
+    elevator
+    {
+        z-index:10;
+    }
+</style>
+
+
+<body> 
+    <elevator>
+        microgames
+    </elevator>
+
+    <microgame id="MyMicrogame">
+        blah blah microgame assets here
+    </microgame>
 
 </body>
 
-<script defer src="microgames.js">microgamesSceneSequence()</script>
+
+<script src="microgames.js"></script>
+<script defer>microgamesSceneSequence()</script>
 
 
 </html>

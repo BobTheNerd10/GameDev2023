@@ -236,7 +236,9 @@ function despawnSelf(collidingElement)
 
 function changePage(collidingElement, pageUrl)
 {
-    return collidingElement
+
+    window.location.href = pageUrl;
+    //return collidingElement
 }
 
 

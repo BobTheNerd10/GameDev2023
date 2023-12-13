@@ -5,7 +5,7 @@ Dec 7  - Art for bossfight platformer section
 Dec 8  - Prototype art for characters and started coding the platformer
 Dec 11 - More planning
 Dec 12 - More programming
-Dec 13 - 
+Dec 13 - Made the basic microgame class! Les go!
 Dec 14 - 
 Dec 15 - 
 Dec 18 - 
