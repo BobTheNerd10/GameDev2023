@@ -156,6 +156,7 @@ class GameManager
 
                     // Play the promotion animation and jingle
                     // It has coffee in it hehe
+                    // Effectively speeds up the game
                     break
 
 
