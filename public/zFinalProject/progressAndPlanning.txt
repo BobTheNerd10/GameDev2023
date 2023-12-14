@@ -6,7 +6,7 @@ Dec 8  - Prototype art for characters and started coding the platformer
 Dec 11 - More planning
 Dec 12 - More programming
 Dec 13 - Made the basic microgame class! Les go!
-Dec 14 - Working on some collision code
+Dec 14 - Trying my best to do a lot of code everywhere i can
 Dec 15 - 
 Dec 18 - 
 Dec 19 - 
@@ -28,40 +28,17 @@ Jan 19 -
 
 
 
+For audio:
+    playbackspeed and/or playbackRate (for speedups)
+    play() 
+    currentTime (for getting position in the song?)
+
+
 
 Planning:
 
     Make it like Wario Ware Incorporated
     Have the game controlled only using the mouse
-       
-
-
-    Microgame ideas
-        Level 1 games
-            - Make coffee
-            - Spin on an office chair (this isnt work, what)
-            - Spam click to drink a cup of coffee
-            - Make and throw a paper airplane (this isnt work, what)
-            - Water office plants
-            - Mop/sweep the floors
-            - Take out the trash
-        Level 2 games
-            - Sharpen a pencil    
-            - Shred papers
-            - Look busy (spam click) (this isnt work, what)
-            - Put out a fire (??? this one is kinda bad)
-            - Help give a presentation
-            - Get some water from the water cooler
-            - Organize papers to make them even (click in rhythm)
-        Level 3 games
-            - Hire and fire people (hire the ill witted "qualified" people, fire the moral people who made mistakes)
-            - Buy low, sell high
-            - Sign on the dotted line
-            - higher ups decision making
-            - Delete confidential documents (digital)
-        Boss game (floor 20)
-            - final level (corner office, "Boss" fight) (see below)
-
     
 
     Game progression
@@ -113,8 +90,6 @@ Planning:
                         
         Boss defeated section     
             - Once you defeat the boss, you knock him out the window, and he escapes using a golden parachute
+            - You become the new boss
 
-    For audio:
-        playbackspeed and/or playbackRate (for speedups)
-        play() 
-        currentTime (for getting position in the song?)
+

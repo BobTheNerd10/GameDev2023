@@ -1,7 +1,48 @@
+/*
+Microgame ideas
+        Level 1 games
+            - Make coffee
+            - Spin on an office chair (this isnt work, what)
+            - Spam click to drink a cup of coffee
+            - Make and throw a paper airplane (this isnt work, what)
+            - Water office plants
+            - Mop/sweep the floors
+            - Take out the trash
+        Level 2 games
+            - Sharpen a pencil    
+            - Shred papers
+            - Look busy (spam click) (this isnt work, what)
+            - Put out a fire (??? this one is kinda bad)
+            - Help give a presentation
+            - Get some water from the water cooler
+            - Organize papers to make them even (click in rhythm)
+        Level 3 games
+            - Hire and fire people (hire the ill witted "qualified" people, fire the moral people who made mistakes)
+            - Buy low, sell high
+            - Sign on the dotted line
+            - higher ups decision making
+            - Delete confidential documents (digital)
+        Boss game (floor 20)
+            - final level (corner office, "Boss" fight) (see below)
+
+
+
+
+Todo in this file
+    TONS OF STUFF
+*/
+
+
+
+
+
+
 // Start the game
 async function microgamesSceneSequence()
 {
     let elevatorElement = document.querySelector('elevator')
+
+    let bombElement = document.querySelector('bomb')
 
     let eventList = 
     [
@@ -36,7 +77,7 @@ async function microgamesSceneSequence()
 
     ]
 
-    let gameManagerInstance = new GameManager(elevatorElement, eventList)
+    let gameManagerInstance = new GameManager(elevatorElement, bombElement, eventList)
 
 
     await gameManagerInstance.processEventList()
@@ -44,7 +85,6 @@ async function microgamesSceneSequence()
 
 
     //window.location.href = "platformer_bossFight.html";
-    console.log('done')
 }
 
 
@@ -64,7 +104,7 @@ class GameManager
         this.lives = 4
         this.speed = 1 
         this.score = 0 // 0 = G, 1 = Floor 1, 2 = Floor 2, etc. There is no microgame on floor G
-        this.eventList = eventList // ["floorname", "speed+1", "floorname", "boss", "floornameBoss"]
+        this.eventList = eventList 
         this.currentEventListIndex = 0
         this.interruptOnNextEvent = false // Shouldnt have to use this, but just in case
 
@@ -78,8 +118,7 @@ class GameManager
     async processEventList(currentEventIndex = 0)
     {
         
-        // TODO: Play intro to minigame section
-        // TODO: Play the music intro
+        // Play intro to minigame section
 
         while(true)
         {
@@ -193,9 +232,9 @@ class GameManager
 
 
 /*
-================================================================================================================================================================
-Microgame classes beyond this point   Microgame classes beyond this point   Microgame classes beyond this point   Microgame classes beyond this point   
-================================================================================================================================================================
+========================================================================================================================================================
+Microgames beyond this point   Microgames beyond this point   Microgames beyond this point   Microgames beyond this point   Microgames beyond this point
+========================================================================================================================================================
 */
 
 
@@ -260,9 +299,3 @@ class Microgame
 
     }
 }
-
-
-
-
-
-

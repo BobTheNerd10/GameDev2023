@@ -4,6 +4,8 @@ let cameraX = 0 // This is the leftmost point of the camera
 
 // For elements with the 'evalutePhysics' update function
 let gravity = -1 // -1 y velocity per tick
+let Xfriction = 0.99 // multiplied onto Xvelocity every tick
+let playerXfriction = 0.75 // multiplied onto the player's Xvelocity every tick
 
 let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
@@ -37,6 +39,17 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 let gameElementDiv = document.getElementById('gameElements')
 
 let backgroundElementDiv = document.getElementById('backgroundElements')
+
+
+/*
+Things left to work on in this file:
+    -make evaluateCollisions call the things it needs to
+    -playerUpdate
+    -bossUpdate
+    -hurtCollider
+    -physicsCollision (make things not fall through eachother)
+*/
+
 
 
 
@@ -75,8 +88,6 @@ async function gameUpdate()
 
 
 
-
-
 // Updates the camera values and the css styles of everything on screen
 function updateCamera()
 {
@@ -100,7 +111,6 @@ function updateCamera()
 
 
 
-
     let elementToFollow = document.querySelector('.cameraFollows')
 
     // Failsafe in case an element to follow with the camera cant be found
@@ -108,9 +118,9 @@ function updateCamera()
     {
         return
     }
+
     let x = elementToFollow.getAttribute('x')
     let width = elementToFollow.getAttribute('width')
-
 
     if((x + (width/2)) - (window.innerWidth/2) < screenXminimum)
     {
@@ -125,41 +135,6 @@ function updateCamera()
         cameraX = (x + (width/2)) - (window.innerWidth/2)
     }
 }
-
-
-
-
-/*
-
-
-Elements should be <img> but anything works
-
-GameElement attributes:
-    x
-    y
-    xVelocity
-    yVelocity
-    width
-    height
-    src (for the image sprite)
-    cameraFollows (class)
-    onUpdate (list of JS functions that's called every frame)   onUpdate = "functionhere; functionhere; functionhere; functionhere" (remember to strip spaces from start)
-    onCollision      onCollision = "functionhere; functionhere arg1 arg2; functionhere"
-
-
-background element attributes:
-    x
-    y
-    width 
-    height
-    src
-
-*/
-
-
-
-
-
 
 
 
@@ -181,8 +156,8 @@ function evaluatePhysics(element)
 
 
     // Apply friction (yes this is a very lazy way to make x velocity go back to zero, but it'll be fineee)
-    //initialXVelocity = element.getAttribute('xVelocity')
-    //element.setAttribute('xVelocity', initialXVelocity * Xfriction)
+    initialXVelocity = element.getAttribute('xVelocity')
+    element.setAttribute('xVelocity', initialXVelocity * Xfriction)
 }
 
 
@@ -219,10 +194,6 @@ function evaluateCollisions(elementThatChecks)
 
 
 
-
-
-// Player values
-let playerXfriction = 0.75
 
 
 // Evaluates player controls and health(?)
