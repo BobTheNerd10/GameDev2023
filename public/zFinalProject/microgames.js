@@ -98,9 +98,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 class GameManager
 {
-    constructor(htmlDiv, eventList = [])
+    constructor(elevatorDiv, bombElement, eventList = [])
     {
-        this.htmlDiv = htmlDiv
+        this.elevatorDiv = elevatorDiv
+        this.bombElement = bombElement
         this.lives = 4
         this.speed = 1 
         this.score = 0 // 0 = G, 1 = Floor 1, 2 = Floor 2, etc. There is no microgame on floor G

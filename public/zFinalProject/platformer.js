@@ -7,6 +7,9 @@ let gravity = -1 // -1 y velocity per tick
 let Xfriction = 0.99 // multiplied onto Xvelocity every tick
 let playerXfriction = 0.75 // multiplied onto the player's Xvelocity every tick
 
+//let collisionVelocityMargin = 0 // The amount of pixels an object can fall into another object before it has its velocity reset to 0 to make it look like a solid object
+//let collisionPushMargin = 5 // The amount of pixels an object can fall into another objects before it tries to get pushed out to prevent 
+
 let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
 
@@ -43,7 +46,6 @@ let backgroundElementDiv = document.getElementById('backgroundElements')
 
 /*
 Things left to work on in this file:
-    -make evaluateCollisions call the things it needs to
     -playerUpdate
     -bossUpdate
     -hurtCollider
@@ -77,7 +79,7 @@ async function gameUpdate()
         {
             updateFunction = updateFunction.trim()
 
-            eval(`${updateFunction}(${gameElement})`)
+            eval(`${updateFunction}(gameElement)`)
 
             // No other code is needed because the update function edits the game elements directly (THANK GOD I PUT ALL THE GAME ATTRIBUTES IN HTML TAGS YAAAYYYY)
         }
@@ -152,7 +154,10 @@ function evaluatePhysics(element)
 {
     // Apply gravity
     initialYVelocity = element.getAttribute('yVelocity')
-    element.setAttribute('yVelocity', initialYVelocity + gravity)
+    if(initialYVelocity > -50) // -50 pixels per frame is a pretty high terminal velocity i think
+    {
+        element.setAttribute('yVelocity', initialYVelocity + gravity)
+    }
 
 
     // Apply friction (yes this is a very lazy way to make x velocity go back to zero, but it'll be fineee)
@@ -186,7 +191,29 @@ function evaluateCollisions(elementThatChecks)
             y1           < y2 + height2     // Bottomost point of collision check element is beyond the topmost   point of the checked element
         )
         {
-            // Run elementToCheck's elements, affecting element
+            // Get all of element's update functions and run them as necesarry
+            // *Hopefully* update functions won't need arguments? I hope this is good enough!! sldfjskldfj haha
+            updateFunctions = gameElement.getAttribute('onUpdate')
+
+            for(updateFunctionWithArgs of updateFunctions.split(';'))
+            {
+                updateFunctionWithArgs = updateFunctionWithArgs.trim()
+                updateFunctionWithArgs = updateFunctionWithArgs.split(' ')
+                
+                updateFunction = updateFunctionWithArgs.shift()
+                
+                updateFunctionArgs = ""
+
+                for(arg of updateFunctionWithArgs)
+                {
+                    updateFunctionArgs = ", " + arg
+                }
+            
+
+                eval(`${updateFunction}(elementThatChecks, checkedElement ${updateFunctionArgs})`)
+
+                // No other code is needed because the update function edits the game elements directly (THANK GOD I PUT ALL THE GAME ATTRIBUTES IN HTML TAGS YAAAYYYY)
+            }
         }
     }
 }
@@ -255,12 +282,20 @@ function hurtCollider(colliderElement, collidingElement)
 
 function physicsCollision(colliderElement, collidingElement)
 {
+    x1       = colliderElement.getAttribute('x')
+    y1       = colliderElement.getAttribute('y')
+    width1   = colliderElement.getAttribute('width')
+    height1  = colliderElement.getAttribute('height')
 
+    x2       = collidingElement.getAttribute('x')
+    y2       = collidingElement.getAttribute('y')
+    width2   = collidingElement.getAttribute('width')
+    height2  = collidingElement.getAttribute('height')
 }
 
 
 
-function applyVelocity(colliderElement, _collidingElement, addedXVelocity, addedYVelocity)
+function flingCollider(colliderElement, _collidingElement, addedXVelocity, addedYVelocity)
 {
     initialXVelocity = colliderElement.getAttribute('xVelocity')
     initialYVelocity = colliderElement.getAttribute('yVelocity')
