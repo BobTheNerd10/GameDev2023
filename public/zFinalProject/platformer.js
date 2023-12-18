@@ -7,29 +7,31 @@ let gravity = -1 // -1 y velocity per tick
 let Xfriction = 0.99 // multiplied onto Xvelocity every tick
 let playerXfriction = 0.75 // multiplied onto the player's Xvelocity every tick
 
-//let collisionVelocityMargin = 0 // The amount of pixels an object can fall into another object before it has its velocity reset to 0 to make it look like a solid object
-//let collisionPushMargin = 5 // The amount of pixels an object can fall into another objects before it tries to get pushed out to prevent 
+let collisionVelocityMargin = 0 // The amount of pixels an object can fall into another object before it has its velocity reset to 0 to make it look like a solid object
+let collisionPushMargin = 5 // The amount of pixels an object can fall into another objects before it tries to get pushed out to prevent 
 
 let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
 
 
 
+let gameUpdateLoop
+let updateCameraLoop
 
 async function outsideSceneSequence()
 {
     screenXminimum = 0
     screenXmaximum = 19825 // temporary
 
-    let gameUpdateLoop = setInterval(gameUpdate, 10)
-    let updateCameraLoop = setInterval(updateCamera, 10)
+    gameUpdateLoop = setInterval(gameUpdate, 10)
+    updateCameraLoop = setInterval(updateCamera, 10)
 }
 
 
 async function bossSceneSequence()
 {
-    let gameUpdateLoop = setInterval(gameUpdate, 10)
-    let updateCameraLoop = setInterval(updateCamera, 10)
+    gameUpdateLoop = setInterval(gameUpdate, 10)
+    updateCameraLoop = setInterval(updateCamera, 10)
 }
 
 
@@ -44,6 +46,7 @@ let gameElementDiv = document.getElementById('gameElements')
 let backgroundElementDiv = document.getElementById('backgroundElements')
 
 
+
 /*
 Things left to work on in this file:
     -playerUpdate
@@ -51,7 +54,6 @@ Things left to work on in this file:
     -hurtCollider
     -physicsCollision (make things not fall through eachother)
 */
-
 
 
 
@@ -282,15 +284,38 @@ function hurtCollider(colliderElement, collidingElement)
 
 function physicsCollision(colliderElement, collidingElement)
 {
-    x1       = colliderElement.getAttribute('x')
-    y1       = colliderElement.getAttribute('y')
-    width1   = colliderElement.getAttribute('width')
-    height1  = colliderElement.getAttribute('height')
+    x1         = colliderElement.getAttribute('x')
+    y1         = colliderElement.getAttribute('y')
+    xVelocity1 = colliderElement.getAttribute('xVelocity')
+    yVelocity1 = colliderElement.getAttribute('yVelocity')
+    width1     = colliderElement.getAttribute('width')
+    height1    = colliderElement.getAttribute('height')
 
-    x2       = collidingElement.getAttribute('x')
-    y2       = collidingElement.getAttribute('y')
-    width2   = collidingElement.getAttribute('width')
-    height2  = collidingElement.getAttribute('height')
+    x2         = collidingElement.getAttribute('x')
+    y2         = collidingElement.getAttribute('y')
+    xVelocity2 = collidingElement.getAttribute('xVelocity')
+    yVelocity2 = collidingElement.getAttribute('yVelocity')
+    width2     = collidingElement.getAttribute('width')
+    height2    = collidingElement.getAttribute('height')
+
+    // Set the velocity of the collider element to zero if it's within the colliding element's collisionVelocityMargin
+    // Set the position of the collider element to be outside of the collidingElement if it's within the colliding element's collisionPushMargin
+    // How do you make this counter gravity for things that are effected by it like the player? 
+        //(set Y velocity to zero because this always occurs after the player's gravity is added, but before the player's gravity actually effects the position?)
+
+        
+    // Maybe make both the collisionVelocityMargin and collisionPushMargin 0?
+
+    /*
+    
+    When the collider is inside the colliding
+    1.  Detect which side the collider element is colliding with the colliding element on 
+    2.  Set the collider element's velocity for that direction to zero to prevent it moving in further on that side (if the next position step from the velocity would push it inside)
+    2.5.    Apply friction?
+    3.  Set the collider element's position to the outside of the collider element
+
+    */
+
 }
 
 
@@ -306,6 +331,7 @@ function flingCollider(colliderElement, _collidingElement, addedXVelocity, added
 
 
 
+// Should be the last collision component, or else things will break
 function despawnSelf(_colliderElement, collidingElement)
 {
     collidingElement.remove()

@@ -7,8 +7,8 @@ Dec 11 - More planning
 Dec 12 - More programming
 Dec 13 - Made the basic microgame class! Les go!
 Dec 14 - Trying my best to do a lot of code everywhere i can
-Dec 15 - 
-Dec 18 - 
+Dec 15 - self care day
+Dec 18 - Dreading making the collision code D:
 Dec 19 - 
 Dec 20 - 
 Dec 21 - 
