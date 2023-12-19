@@ -3,16 +3,12 @@
 let cameraX = 0 // This is the leftmost point of the camera
 
 // For elements with the 'evalutePhysics' update function
-let gravity = -1 // -1 y velocity per tick
-let Xfriction = 0.99 // multiplied onto Xvelocity every tick
-let playerXfriction = 0.75 // multiplied onto the player's Xvelocity every tick
+let gravity = -0.05 // -1 y velocity per tick
 
-let collisionVelocityMargin = 0 // The amount of pixels an object can fall into another object before it has its velocity reset to 0 to make it look like a solid object
-let collisionPushMargin = 5 // The amount of pixels an object can fall into another objects before it tries to get pushed out to prevent 
+let Xfriction = 0.975 // Friction from being on the floor (player ignores this)
 
 let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
-
 
 
 let gameUpdateLoop
@@ -51,7 +47,7 @@ let backgroundElementDiv = document.getElementById('backgroundElements')
 Things left to work on in this file:
     -playerUpdate
     -bossUpdate
-    -hurtCollider
+    -damage (hurt collider)
     -physicsCollision (make things not fall through eachother)
 */
 
@@ -241,7 +237,7 @@ function playerUpdate(playerElement)
 
 
 // Evaluates boss AI?
-function bossUpdate(element) 
+function bossUpdate(bossElement) 
 {
 
 }
@@ -277,7 +273,45 @@ Called whenever an object with the "evaluateCollisions" component collides with 
 
 function hurtCollider(colliderElement, collidingElement)
 {
-    // only hurt if the collider is 
+    x1         = colliderElement.getAttribute('x')
+    y1         = colliderElement.getAttribute('y')
+    width1     = colliderElement.getAttribute('width')
+    height1    = colliderElement.getAttribute('height')
+
+    xCentre1   = x1 + (width1  / 2)
+    yCentre1   = y1 + (height1 / 2)
+
+
+    x2         = collidingElement.getAttribute('x')
+    y2         = collidingElement.getAttribute('y')
+    width2     = collidingElement.getAttribute('width')
+    height2    = collidingElement.getAttribute('height')
+
+    xCentre2   = x2 + (width2  / 2)
+    yCentre2   = y2 + (height2 / 2) 
+
+    
+    if(xCentre1 > xCentre2)
+    {
+        colliderElement.setAttribute('xVelocity', 0.5)
+    }
+    else
+    {
+        colliderElement.setAttribute('xVelocity', -0.5)
+    }
+
+    if(yCentre1 > yCentre2)
+    {
+        colliderElement.setAttribute('yVelocity', 0.5)
+    }
+    else
+    {
+        colliderElement.setAttribute('yVelocity', -0.5)
+    }
+
+
+    // Apply damage
+
 }
 
 
@@ -297,14 +331,6 @@ function physicsCollision(colliderElement, collidingElement)
     yVelocity2 = collidingElement.getAttribute('yVelocity')
     width2     = collidingElement.getAttribute('width')
     height2    = collidingElement.getAttribute('height')
-
-    // Set the velocity of the collider element to zero if it's within the colliding element's collisionVelocityMargin
-    // Set the position of the collider element to be outside of the collidingElement if it's within the colliding element's collisionPushMargin
-    // How do you make this counter gravity for things that are effected by it like the player? 
-        //(set Y velocity to zero because this always occurs after the player's gravity is added, but before the player's gravity actually effects the position?)
-
-        
-    // Maybe make both the collisionVelocityMargin and collisionPushMargin 0?
 
     /*
     
