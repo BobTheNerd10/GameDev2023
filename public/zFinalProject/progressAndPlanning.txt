@@ -12,7 +12,7 @@ Dec 18 - Dreading making the collision code D:
 Dec 19 - Made the physics for the hurt function
 Dec 20 - worked on stuff for another class
 Dec 21 - worked on stuff for another class
-Dec 22 - Working on stuf for other classes
+Dec 22 - Worked on stuff for another classes
 
 Break work
 Dec 26 - 
