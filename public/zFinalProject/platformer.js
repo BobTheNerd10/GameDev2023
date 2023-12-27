@@ -347,6 +347,10 @@ function physicsCollision(colliderElement, collidingElement)
 
     Detect it using the angle by determining the position the collider was at in the last frame?
 
+    Calculate a straight line that the collider object took from the non-colliding frame to the colliding-frame
+    Then, determine what side of the colliding object that line crosses
+        If it crosses neither then kill the program
+
     Detect which side the collider element is colliding with the colliding element on 
         use a combination of the velocity that made the objects collide + the origin of the objects to determine where to push the object
 
