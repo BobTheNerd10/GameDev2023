@@ -45,9 +45,8 @@ let backgroundElementDiv = document.getElementById('backgroundElements')
 
 /*
 Things left to work on in this file:
-    -playerUpdate
-    -bossUpdate
-    -damage (hurt collider)
+    -playerUpdate (moving and animations)
+    -bossUpdate (moving, animations, ai, attacks)
     -physicsCollision (make things not fall through eachother)
 */
 
@@ -147,8 +146,8 @@ Called every update/tick/frame
 */
 
 
-// The element with this will have gravity applied, and other global physics things 
-function evaluatePhysics(element) 
+// The element with this will have gravity applied
+function evaluateGravity(element) 
 {
     // Apply gravity
     initialYVelocity = element.getAttribute('yVelocity')
@@ -156,13 +155,17 @@ function evaluatePhysics(element)
     {
         element.setAttribute('yVelocity', initialYVelocity + gravity)
     }
+}
 
 
+
+// The element with this will have friction appllied
+function evaluateFriction(element) 
+{
     // Apply friction (yes this is a very lazy way to make x velocity go back to zero, but it'll be fineee)
     initialXVelocity = element.getAttribute('xVelocity')
     element.setAttribute('xVelocity', initialXVelocity * Xfriction)
 }
-
 
 
 
@@ -308,10 +311,6 @@ function hurtCollider(colliderElement, collidingElement)
     {
         colliderElement.setAttribute('yVelocity', -0.5)
     }
-
-
-    // Apply damage
-
 }
 
 
@@ -332,16 +331,50 @@ function physicsCollision(colliderElement, collidingElement)
     width2     = collidingElement.getAttribute('width')
     height2    = collidingElement.getAttribute('height')
 
-    /*
-    
-    When the collider is inside the colliding
-    1.  Detect which side the collider element is colliding with the colliding element on 
-    2.  Set the collider element's velocity for that direction to zero to prevent it moving in further on that side (if the next position step from the velocity would push it inside)
-    2.5.    Apply friction?
-    3.  Set the collider element's position to the outside of the collider element
+
+    collisionDirection = "" // onTop, onLeft, onBottom, onRight
+
+    if(yVelocity1 > 0)
+    {
+
+    }
+    else if (yVelocity1 < 0)
+    {
+
+    }
+
+    /*  
+
+    Detect it using the angle by determining the position the collider was at in the last frame?
+
+    Detect which side the collider element is colliding with the colliding element on 
+        use a combination of the velocity that made the objects collide + the origin of the objects to determine where to push the object
 
     */
 
+
+    switch(collisionDirection)
+    {
+        case "fromTop":
+            colliderElement.setAttribute('yVelocity', 0)
+            colliderElement.setAttribute('y',         y2 + height2)
+            break
+
+        case "fromLeft":
+            colliderElement.setAttribute('xVelocity', 0)
+            colliderElement.setAttribute('x',         x2 - width1)
+            break
+
+        case "fromBottom":
+            colliderElement.setAttribute('yVelocity', 0)
+            colliderElement.setAttribute('y',         y2 - height1)
+            break
+
+        case "fromRight":
+            colliderElement.setAttribute('xVelocity', 0)
+            colliderElement.setAttribute('x',         x2 + width2)
+            break
+    }
 }
 
 
