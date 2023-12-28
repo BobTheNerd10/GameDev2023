@@ -16,8 +16,8 @@ Dec 22 - Worked on stuff for another classes
 
 Break work
 Dec 26 - decompressing from the stress that is christmas
-Dec 27 - Morning: working on collision code. Evening:
-Dec 28 - 
+Dec 27 - working on collision code
+Dec 28 - Finished player code, collision code, and some other stuff i think
 Dec 29 - 
 Jan 1 - 
 Jan 2 - 

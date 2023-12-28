@@ -10,25 +10,40 @@ let Xfriction = 0.975 // Friction from being on the floor (player ignores this)
 let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
 
+let keysDown = []
+let controls 
 
+let controlsUpdateLoop
 let gameUpdateLoop
-let updateCameraLoop
+let cameraUpdateLoop
+
 
 async function outsideSceneSequence()
 {
     screenXminimum = 0
     screenXmaximum = 19825 // temporary
-
-    gameUpdateLoop = setInterval(gameUpdate, 10)
-    updateCameraLoop = setInterval(updateCamera, 10)
+    
+    controlsSetup()
+    controlsUpdateLoop = setInterval(controlsUpdate, 10)
+    gameUpdateLoop     = setInterval(gameUpdate,     10)
+    cameraUpdateLoop   = setInterval(cameraUpdate,   10)
 }
 
 
 async function bossSceneSequence()
 {
-    gameUpdateLoop = setInterval(gameUpdate, 10)
-    updateCameraLoop = setInterval(updateCamera, 10)
+    controlsSetup()
+    controlsUpdateLoop = setInterval(controlsUpdate, 10)
+    gameUpdateLoop     = setInterval(gameUpdate,     10)
+    cameraUpdateLoop   = setInterval(cameraUpdate,   10)
 }
+
+
+
+/*
+Things left to work on in this file:
+    -bossUpdate (moving, animations, ai, attacks)
+*/
 
 
 
@@ -40,17 +55,6 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 let gameElementDiv = document.getElementById('gameElements')
 
 let backgroundElementDiv = document.getElementById('backgroundElements')
-
-
-
-/*
-Things left to work on in this file:
-    -playerUpdate (moving and animations)
-    -bossUpdate (moving, animations, ai, attacks)
-    -physicsCollision (make things not fall through eachother)
-*/
-
-
 
 
 async function gameUpdate()
@@ -88,8 +92,9 @@ async function gameUpdate()
 
 
 // Updates the camera values and the css styles of everything on screen
-function updateCamera()
+function cameraUpdate()
 {
+    // update positions of all game elements on screen to make them relative to camera
     for(element of gameElementDiv.children)
     {
         element.style.left = `${element.getAttribute('x') - cameraX}px`
@@ -99,6 +104,7 @@ function updateCamera()
         element.style.height = `${element.getAttribute('height')}px`
     }
 
+    // update positions of all background elements on screen to make them relative to camera
     for(element of backgroundElementDiv.children)
     {
         element.style.left = `${element.getAttribute('x') - cameraX}px`
@@ -133,6 +139,113 @@ function updateCamera()
     {
         cameraX = (x + (width/2)) - (window.innerWidth/2)
     }
+}
+
+
+
+
+function controlsSetup()
+{   
+    document.addEventListener('keydown', function(event)
+    {
+        keysDown.push(event.key)
+    })
+
+
+
+    document.addEventListener('keyup', function(event)
+    {
+        const indexOfKey = keysDown.indexOf(event.key);
+        if (indexOfKey == -1) // indexOf returns -1 if it can't find anything, so this is a failsafe just in case
+        { 
+            console.error(`controlsSetup: key ${event.key} was released but wasn't held down! This may be normal on page refresh.`)
+        }
+        else
+        {
+            keysDown.splice(indexOfKey, 1); // remove the released key from the keys down array
+        }
+    })
+}
+
+
+
+
+function controlsUpdate()
+{
+    let controls = 
+    {
+        left  : false,
+        right: false,
+        jump : false
+    }
+
+    for(key of keysDown)
+    {
+        switch(key)
+        {
+            case "a":
+            case "ArrowLeft":
+                controls.left = true;
+                break
+            case "d":
+            case "ArrowRight":
+                controls.right = true;
+                break
+            case "w":
+            case "ArrowUp":
+            case "Spacebar": // Old browsers sometimes returned Spacebar
+            case " ": // space key
+                controls.jump = true;
+                break
+        }
+    }
+}
+
+
+
+
+
+
+function angleFromPoints(x1, y1,  x2, y2)
+{
+    if(x2 == x1 && y2 == y1)
+    {
+        console.error("angleFromPoints: Can't calculate the angle from two points of the same position!")
+        return 0
+    }
+
+
+    // Calculate the angle from the reference angle
+    if(x2-x1 != 0)
+    {
+        angleFromReferenceAngle = Math.atan( (y2-y1) / (x2-x1) )
+    }
+    else
+    {
+        angleFromReferenceAngle = 90
+    }
+    
+
+
+    // Add the reference angle to a 90 degree increment depending on what quadrant it's in
+    if     (x2 >= x1  &&  y2 >= y1) // Quadrant 1 (top right)
+    {
+        trueAngle = angleFromReferenceAngle
+    }
+    else if(x2 <= x1  &&  y2 >= y1) // Quadrant 2 (top left)
+    {
+        trueAngle = 180 - angleFromReferenceAngle
+    }
+    else if(x2 <= x1  &&  y2 <= y1) // Quadrant 3 (bottom left)
+    {
+        trueAngle = 180 + angleFromReferenceAngle
+    }
+    else      // Quadrant 4 (bottom right)
+    {
+        trueAngle = 360 - angleFromReferenceAngle
+    }
+
+    return trueAngle
 }
 
 
@@ -227,12 +340,28 @@ function evaluateCollisions(elementThatChecks)
 // Evaluates player controls and health(?)
 function playerUpdate(playerElement) 
 {
-    // Apply velocities to player depending on whether the player is pushing buttons
+    xVelocity  = playerElement.getAttribute('xVelocity')
+    yVelocity  = playerElement.getAttribute('yVelocity')
+    isGrounded = playerElement.getAttribute('isGrounded')
+    
+
+    if(!(controls.left == true && controls.right == true)) // As long as left and right arent both pressed at the same time...
+    {
+        // Apply velocities to the player!
+        if(controls.left  == true){ xVelocity = -1 }
+        if(controls.right == true){ xVelocity =  1 }
+    }
 
 
+    if(controls.jump == true && isGrounded){
+        isGrounded = false
+        yVelocity += 5
+    }
 
-    initialXVelocity = playerElement.getAttribute('xVelocity')
-    playerElement.setAttribute('xVelocity', initialXVelocity * playerXfriction)
+    
+    playerElement.setAttribute('xVelocity',  xVelocity)
+    playerElement.setAttribute('yVelocity',  yVelocity)
+    playerElement.setAttribute('isGrounded', isGrounded)
 }
 
 
@@ -305,6 +434,7 @@ function hurtCollider(colliderElement, collidingElement)
 
     if(yCentre1 > yCentre2)
     {
+        colliderElement.setAttribute('isGrounded', false)
         colliderElement.setAttribute('yVelocity', 0.5)
     }
     else
@@ -324,6 +454,9 @@ function physicsCollision(colliderElement, collidingElement)
     width1     = colliderElement.getAttribute('width')
     height1    = colliderElement.getAttribute('height')
 
+    centreX1 = x1 + (width1 /2)
+    centreY1 = y1 + (height1/2)
+
     x2         = collidingElement.getAttribute('x')
     y2         = collidingElement.getAttribute('y')
     xVelocity2 = collidingElement.getAttribute('xVelocity')
@@ -331,37 +464,49 @@ function physicsCollision(colliderElement, collidingElement)
     width2     = collidingElement.getAttribute('width')
     height2    = collidingElement.getAttribute('height')
 
+    centreX2 = x2 + (width2 /2)
+    centreY2 = y2 + (height2/2)
+
+
+
+    // Determine the angle of the collision given the positions of the two objects and their widths and heights
 
     collisionDirection = "" // onTop, onLeft, onBottom, onRight
 
-    if(yVelocity1 > 0)
+    angleOfCollision   = angleFromPoints(centreX2, centreY2,  centreX1, centreY1)
+    
+    angleOfTopRight    = angleFromPoints(centreX2, centreY2,    x2 + width2, y2 + height2)
+    angleOfTopLeft     = angleFromPoints(centreX2, centreY2,    x2,          y2 + height2)
+    angleOfBottomLeft  = angleFromPoints(centreX2, centreY2,    x2,          y2          )
+    angleOfBottomRight = angleFromPoints(centreX2, centreY2,    x2 + width2, y2          )
+
+    if(angleOfTopRight <= angleOfCollision && angleOfCollision <= angleOfTopLeft)
     {
-
+        collisionDirection = 'fromTop'
     }
-    else if (yVelocity1 < 0)
+    else if(angleOfTopLeft < angleOfCollision && angleOfCollision < angleOfBottomLeft)
     {
-
+        collisionDirection = 'fromLeft'
+    }
+    else if(angleOfBottomLeft <= angleOfCollision && angleOfCollision <= angleOfBottomRight)
+    {
+        collisionDirection = 'fromBottom'
+    }
+    else // This sucks but it's easier! Hooray for the last possible option!
+    {
+        collisionDirection = 'fromRight'
     }
 
-    /*  
 
-    Detect it using the angle by determining the position the collider was at in the last frame?
 
-    Calculate a straight line that the collider object took from the non-colliding frame to the colliding-frame
-    Then, determine what side of the colliding object that line crosses
-        If it crosses neither then kill the program
-
-    Detect which side the collider element is colliding with the colliding element on 
-        use a combination of the velocity that made the objects collide + the origin of the objects to determine where to push the object
-
-    */
-
+    // Apply some force to stop the collider object
 
     switch(collisionDirection)
     {
         case "fromTop":
-            colliderElement.setAttribute('yVelocity', 0)
-            colliderElement.setAttribute('y',         y2 + height2)
+            colliderElement.setAttribute('isGrounded', true)
+            colliderElement.setAttribute('yVelocity',  0)
+            colliderElement.setAttribute('y',          y2 + height2)
             break
 
         case "fromLeft":
@@ -390,6 +535,11 @@ function flingCollider(colliderElement, _collidingElement, addedXVelocity, added
 
     colliderElement.setAttribute('xVelocity', addedXVelocity + initialXVelocity)
     colliderElement.getAttribute('yVelocity', addedYVelocity + initialYVelocity)
+
+    if(addedYVelocity + initialYVelocity > 0)
+    {
+        colliderElement.setAttribute('isGrounded', false)
+    }
 }
 
 
