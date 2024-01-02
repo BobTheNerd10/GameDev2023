@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="jingles_data" version="1.3.0" audacityversion="2.4.2" sel0="5.1428958333" sel1="6.8571875000" vpos="864" h="0.0000000000" zoom="25.1489200921" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="COMMENTS" value="https://www.youtube.com/watch?v=LgBMcTpcpAw"/>
+		<tag name="TITLE" value="Mario Artist Polygon Studio (Sound Bomber) All Jingles Microgames Win &amp; Lose Music"/>
+		<tag name="ARTIST" value="carlitoshacker"/>
+		<tag name="Software" value="Lavf58.29.100"/>
+		<tag name="YEAR" value="20181225"/>
+	</tags>
+	<import filename="Audio Track.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
+	<import filename="Mario Artist Polygon Studio (Sound Bomber) All Jingles Microgames Win &amp; Lose Music.wav" offset="0.00733333" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
+	<import filename="Audio Track-2.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
+	<import filename="Audio Track-3.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
+	<import filename="Audio Track-4.wav" offset="0.00000000" mute="0" solo="1" height="150" minimized="0" gain="1.0" pan="0.0"/>
+</project>
