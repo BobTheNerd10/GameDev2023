@@ -11,7 +11,12 @@ let screenXminimum = 0
 let screenXmaximum = 19825 // temporary
 
 let keysDown = []
-let controls 
+let controls = 
+{
+    left  : false,
+    right: false,
+    jump : false
+}
 
 let controlsUpdateLoop
 let gameUpdateLoop
@@ -172,7 +177,7 @@ function controlsSetup()
 
 function controlsUpdate()
 {
-    let controls = 
+    nextControls = 
     {
         left  : false,
         right: false,
@@ -185,20 +190,22 @@ function controlsUpdate()
         {
             case "a":
             case "ArrowLeft":
-                controls.left = true;
+                nextControls.left = true;
                 break
             case "d":
             case "ArrowRight":
-                controls.right = true;
+                nextControls.right = true;
                 break
             case "w":
             case "ArrowUp":
             case "Spacebar": // Old browsers sometimes returned Spacebar
             case " ": // space key
-                controls.jump = true;
+            nextControls.jump = true;
                 break
         }
     }
+
+    controls = nextControls
 }
 
 
@@ -492,7 +499,7 @@ function physicsCollision(colliderElement, collidingElement)
     {
         collisionDirection = 'fromBottom'
     }
-    else // This sucks but it's easier! Hooray for the last possible option!
+    else // This sucks because it doesnt actually check if the angle of collision is on the right side, but it's easier! Hooray for the process of elimination!
     {
         collisionDirection = 'fromRight'
     }
