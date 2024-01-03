@@ -33,13 +33,11 @@ Todo in this file
 */
 
 
-
-
-
-
 // Start the game
 async function microgamesSceneSequence()
 {
+    sounds.buttonPress.play()
+
     let elevatorElement = document.querySelector('elevator')
 
     let bombElement = document.querySelector('bomb')
@@ -47,29 +45,29 @@ async function microgamesSceneSequence()
     let eventList = 
     [
         // Level 1 games
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        'promotion +1',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'promotion 1',
         // Level 2 games
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        'promotion +1',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'promotion 1',
         // Level 3 games
-        '',
-        '',
-        '',
-        '',
-        '',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
+        'microgame',
         // Boss
         'end'
 
@@ -89,11 +87,49 @@ async function microgamesSceneSequence()
 
 
 
+
+
+
+
+
+
+
 // For time based things
 const sleep = ms => new Promise(r => setTimeout(r, ms)); 
 
 
+let sounds = 
+{
+    "intro"              : new Audio('sound/microgames/level1_intro.ogg'),
+    "levelUp"            : new Audio('sound/microgames/level2_intro.ogg'),
+    "jingle"             : new Audio('sound/microgames/level1_jingle.ogg'),
+    "win"                : new Audio('sound/microgames/level1_win.ogg'),
+    "gameOver"           : new Audio('sound/microgames/levelX_gameOver.ogg'),
+    "lose"               : new Audio('sound/microgames/levelX_lose.ogg'),
 
+    
+    "level1_intro"       : new Audio('sound/microgames/level1_intro.ogg'),
+    "level1_jingle"      : new Audio('sound/microgames/level1_jingle.ogg'),
+    "level1_win"         : new Audio('sound/microgames/level1_win.ogg'),
+    "level2_intro"       : new Audio('sound/microgames/level2_intro.ogg'),
+    "level2_jingle"      : new Audio('sound/microgames/level2_jingle.ogg'),
+    "level2_win"         : new Audio('sound/microgames/level2_win.ogg'),
+    "level3_intro"       : new Audio('sound/microgames/level3_intro.ogg'),
+    "level3_jingle"      : new Audio('sound/microgames/level3_jingle.ogg'),
+    "level3_win"         : new Audio('sound/microgames/level3_win.ogg'),
+    "levelEndless_intro" : new Audio('sound/microgames/levelEndless_intro.ogg'),
+    "levelX_gameOver"    : new Audio('sound/microgames/levelX_gameOver.ogg'),
+    "levelX_lose"        : new Audio('sound/microgames/levelX_lose.ogg'),
+    
+
+    "buttonPress"        : new Audio('sound/microgames/buttonPress.ogg'),
+}
+
+// 1714 ms = 4 beats
+let beatsPerMinute = 140
+let minutesPerBeat = 1 / beatsPerMinute
+let secondsPerBeat = minutesPerBeat * 60
+let beatLengthInMs = secondsPerBeat * 1000
 
 
 class GameManager
@@ -103,7 +139,7 @@ class GameManager
         this.elevatorDiv = elevatorDiv
         this.bombElement = bombElement
         this.lives = 4
-        this.speed = 1 
+        this.level = 1
         this.score = 0 // 0 = G, 1 = Floor 1, 2 = Floor 2, etc. There is no microgame on floor G
         this.eventList = eventList 
         this.currentEventListIndex = 0
@@ -119,38 +155,42 @@ class GameManager
     async processEventList(currentEventIndex = 0)
     {
         
-        // Play intro to minigame section
+        sounds.intro.play()
+        await sleep(beatLengthInMs * 8)
 
         while(true)
         {
-            currentEvent = this.eventList[currentEventIndex].split(" ")
+            let currentEvent = this.eventList[currentEventIndex].split(" ")
+            console.log(currentEvent)
             // currentEvent is a list
             // Index 0 is the type of event, every index after it is the parameters for the event (such as the promotion or the microgames)
 
             switch(currentEvent[0])
             {   
                 case "microgame":
-                    currentEvent[1] // name of the microgame to get the microgame from the allmicrogames list
+                    //currentEvent[1] // name of the microgame to get the microgame from the allmicrogames list
                     
-                    currentMicrogame = AllMicrogames[currentEvent[1]]
+                    //currentMicrogame = AllMicrogames[currentEvent[1]]
 
-                    currentMicrogame.loadMicrogame()
+                    //currentMicrogame.loadMicrogame()
                     this.score += 1
 
-                    // Play the jingle
+                    sounds.jingle.play()
+                    await sleep(beatLengthInMs * 4)
                     // Play the number increase animation
 
                     // Await for the jingle to be almost over
 
+                    /*
                     // Display the splashtext
                     currentMicrogame.splashtext
 
                     // Open the elevator doors
 
-                    currentMicrogame.microgameStart()
+                    //currentMicrogame.microgameStart()
                     
                     
-                    currentTime = currentMicrogame.time
+                    //currentTime = currentMicrogame.time
 
                     while(currentTime > 0)
                     {
@@ -174,14 +214,21 @@ class GameManager
                     // Close elevator doors
 
                     currentMicrogame.unloadMicrogame()
+                    
 
+                    */
+
+                    let playerHasWon = true // TEMPORARY
                     if(playerHasWon)
                     {
-                        // play the win jingle
+                        sounds.win.play()
+                        await sleep(beatLengthInMs * 4)
                     }
                     else
                     {
-                        // play the lose jingle
+                        sounds.lose.play()
+                        await sleep(beatLengthInMs * 4)
+
                         this.lives = this.lives - 1
                     }
 
@@ -190,13 +237,38 @@ class GameManager
 
 
                 case "promotion":
-                    currentEvent[1] // "+1" "1" "-1"
+                    currentEvent[1] // "1"
                     currentEvent[2] // "YourNewTitle"
 
+                    this.level += Number(currentEvent[1])
 
                     // Play the promotion animation and jingle
-                    // It has coffee in it hehe
-                    // Effectively speeds up the game
+                    sounds.levelUp.play()
+
+                    switch(this.level){
+                        case 1:
+                            sounds.jingle  = sounds.level1_jingle
+                            sounds.win     = sounds.level1_win
+                            sounds.levelUp = sounds.level2_intro
+                            break
+                        case 2:
+                            sounds.jingle  = sounds.level2_jingle
+                            sounds.win     = sounds.level2_win
+                            sounds.levelUp = sounds.level3_intro
+                            break
+                        case 3:
+                            sounds.jingle  = sounds.level3_jingle
+                            sounds.win     = sounds.level3_win
+                            sounds.levelUp = sounds.levelEndless_intro
+                            break
+
+                    }
+
+                    await sleep(beatLengthInMs * 8)
+
+
+                    // It has coffee in it hehe (maybe not)
+                    // Effectively speeds up the game (maybe not)
                     break
 
 
@@ -205,6 +277,9 @@ class GameManager
                     // Increase the score number and play the number animation (in practice, it'll happen on floor 20)
                     // Play some sort of transition
                     this.playerHasWon = true
+                    
+                    sounds.levelEndless_intro.play()
+                    await sleep(beatLengthInMs * 8)
                     return
 
 
@@ -219,6 +294,7 @@ class GameManager
             if(this.lives <= 0)
             {
                 // Play game over sequence
+                sounds.gameOver.play()
                 this.playerHasWon = false
                 return 
             }
@@ -293,7 +369,7 @@ class Microgame
     }
 
 
-    // Called when doors are fully closed and the win/loss jinge is playing
+    // Called when doors are fully closed and the win/lose jinge is playing
     // Hide the microgame's assets and html div
     unloadMicrogame()
     {

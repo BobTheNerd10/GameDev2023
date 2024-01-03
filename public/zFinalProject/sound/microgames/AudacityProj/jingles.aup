@@ -8,9 +8,121 @@
 		<tag name="Software" value="Lavf58.29.100"/>
 		<tag name="YEAR" value="20181225"/>
 	</tags>
-	<import filename="Audio Track.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
-	<import filename="Mario Artist Polygon Studio (Sound Bomber) All Jingles Microgames Win &amp; Lose Music.wav" offset="0.00733333" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
-	<import filename="Audio Track-2.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
-	<import filename="Audio Track-3.wav" offset="0.00000000" mute="1" solo="0" height="150" minimized="0" gain="1.0" pan="0.0"/>
-	<import filename="Audio Track-4.wav" offset="0.00000000" mute="0" solo="1" height="150" minimized="0" gain="1.0" pan="0.0"/>
+	<wavetrack name="Audio Track" isSelected="0" height="150" minimized="0" channel="2" linked="0" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="364548">
+				<waveblock start="0">
+					<simpleblockfile filename="e08088ad.au" len="262144" min="-0.736725" max="0.749298" rms="0.027791"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808023.au" len="102404" min="-0.736633" max="0.749237" rms="0.026986"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Mario Artist Polygon Studio (Sound Bomber) All Jingles Microgames Win &amp; Lose Music" isSelected="0" height="150" minimized="0" channel="0" linked="1" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00733333" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="328793">
+				<waveblock start="0">
+					<simpleblockfile filename="e080818d.au" len="262144" min="-1.0" max="0.999969" rms="0.210093"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808f89.au" len="66649" min="-0.857269" max="0.649628" rms="0.114312"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Mario Artist Polygon Studio (Sound Bomber) All Jingles Microgames Win &amp; Lose Music" isSelected="0" height="150" minimized="0" channel="1" linked="0" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00733333" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="328793">
+				<waveblock start="0">
+					<simpleblockfile filename="e08088da.au" len="262144" min="-0.999908" max="0.999969" rms="0.21043"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808014.au" len="66649" min="-0.858826" max="0.646454" rms="0.114286"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-2" isSelected="0" height="150" minimized="0" channel="0" linked="1" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e080898f.au" len="262144" min="-1.0" max="0.999969" rms="0.216976"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808696.au" len="67001" min="-0.99292" max="0.687805" rms="0.117318"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-2" isSelected="0" height="150" minimized="0" channel="1" linked="0" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e080891b.au" len="262144" min="-1.0" max="0.999969" rms="0.21734"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808187.au" len="67001" min="-0.992767" max="0.687805" rms="0.117269"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-3" isSelected="0" height="150" minimized="0" channel="0" linked="1" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808755.au" len="262144" min="-1.0" max="0.999969" rms="0.217944"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808836.au" len="67001" min="-0.871429" max="0.818878" rms="0.127888"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-3" isSelected="0" height="150" minimized="0" channel="1" linked="0" mute="1" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e08087b2.au" len="262144" min="-1.0" max="0.999969" rms="0.21799"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e08084f9.au" len="67001" min="-0.872131" max="0.81897" rms="0.128496"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-4" isSelected="1" height="150" minimized="0" channel="0" linked="1" mute="0" solo="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808267.au" len="262144" min="-1.0" max="0.990387" rms="0.16953"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e080824d.au" len="67001" min="-0.316254" max="0.315704" rms="0.058656"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Audio Track-4" isSelected="1" height="150" minimized="0" channel="1" linked="0" mute="0" solo="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="329145">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808b05.au" len="262144" min="-1.0" max="0.998566" rms="0.169722"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e080858e.au" len="67001" min="-0.316162" max="0.315826" rms="0.058633"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
 </project>
