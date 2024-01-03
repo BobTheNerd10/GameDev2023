@@ -1,38 +1,3 @@
-/*
-Microgame ideas
-        Level 1 games
-            - Make coffee
-            - Spin on an office chair (this isnt work, what)
-            - Spam click to drink a cup of coffee
-            - Make and throw a paper airplane (this isnt work, what)
-            - Water office plants
-            - Mop/sweep the floors
-            - Take out the trash
-        Level 2 games
-            - Sharpen a pencil    
-            - Shred papers
-            - Look busy (spam click) (this isnt work, what)
-            - Put out a fire (??? this one is kinda bad)
-            - Help give a presentation
-            - Get some water from the water cooler
-            - Organize papers to make them even (click in rhythm)
-        Level 3 games
-            - Hire and fire people (hire the ill witted "qualified" people, fire the moral people who made mistakes)
-            - Buy low, sell high
-            - Sign on the dotted line
-            - higher ups decision making
-            - Delete confidential documents (digital)
-        Boss game (floor 20)
-            - final level (corner office, "Boss" fight) (see below)
-
-
-
-
-Todo in this file
-    TONS OF STUFF
-*/
-
-
 // Start the game
 async function microgamesSceneSequence()
 {
@@ -40,7 +5,7 @@ async function microgamesSceneSequence()
 
     let elevatorElement = document.querySelector('elevator')
 
-    let bombElement = document.querySelector('bomb')
+    let timerElement = document.getElementById('timer')
 
     let eventList = 
     [
@@ -75,7 +40,7 @@ async function microgamesSceneSequence()
 
     ]
 
-    let gameManagerInstance = new GameManager(elevatorElement, bombElement, eventList)
+    let gameManagerInstance = new GameManager(elevatorElement, timerElement, eventList)
 
 
     await gameManagerInstance.processEventList()
@@ -134,10 +99,10 @@ let beatLengthInMs = secondsPerBeat * 1000
 
 class GameManager
 {
-    constructor(elevatorDiv, bombElement, eventList = [])
+    constructor(elevatorDiv, timerElement, eventList = [])
     {
         this.elevatorDiv = elevatorDiv
-        this.bombElement = bombElement
+        this.timerElement = timerElement
         this.lives = 4
         this.level = 1
         this.score = 0 // 0 = G, 1 = Floor 1, 2 = Floor 2, etc. There is no microgame on floor G
@@ -194,7 +159,7 @@ class GameManager
 
                     while(currentTime > 0)
                     {
-                        // Play the bomb's tick animation
+                        // Play the timer's tick animation
                         currentMicrogame.timerUpdate(currentTime)
                         
 
@@ -205,7 +170,7 @@ class GameManager
 
                     }
 
-                    // Bomb explodes
+                    // timer element reaches 0
                     currentMicrogame.timerUpdate(currentTime) // Should always be 0
 
                     currentMicrogame.microgameEnd()
@@ -238,7 +203,6 @@ class GameManager
 
                 case "promotion":
                     currentEvent[1] // "1"
-                    currentEvent[2] // "YourNewTitle"
 
                     this.level += Number(currentEvent[1])
 
@@ -355,7 +319,7 @@ class Microgame
 
     }
 
-    // Called when the timer tick = 0, IE when the bomb explodes, IE when the game is over and the doors are about to close
+    // Called when the timer tick = 0, IE when the bomb explodes in normal wario ware, IE when the game is over and the doors are about to close
     microgameEnd()
     {
 

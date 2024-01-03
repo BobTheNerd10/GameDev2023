@@ -9,58 +9,127 @@
 </head>
 
 
+
+
+
 <style>
-    microgame, elevator
+    elevator
     {
         position:absolute;
         left:0;
         top:0;
         width:100vw;
         height:100vh;
-    }
 
-    microgame
-    {
-        z-index:0;
-        display:none;
-    }
-
-    elevator
-    {
         z-index:10;
     }
 
-    bomb 
+    #timer 
     {
         position:absolute;
+        z-index:20;
         bottom:2vh;
         left:2vw;
-        width:96vw;
+        width:4vw;
         height:auto;
-        background-color:red;
     }
 </style>
 
 
 <body> 
     <elevator>
-        <button onclick="this.style.display = 'none'; microgamesSceneSequence()" style="width:100px; height:100px;"></button>
-        microgames
+        <!--
+            The four corners of the screen
+            The bits that fill in the parts between the corners (you KNOW ellis's zooming is gonna screw things up)
+            The elevator doors themselves
+            anything else in the elevator
+                - Lives counter
+                - Floor counter
+                - Elevator buttons
+                - Light on the top of the elevator?
+            The splashtext display
+            The number display
+        -->
+        <img id="timer" src="art/microgames/timer.png">
+        
     </elevator>
     
-    <bomb>
-        DA BOMB
-    </bomb>
-
-    <microgame id="MyMicrogame">
-        blah blah microgame assets here. This section will be grabbed by the microgame's functions
-    </microgame>
+    <!--Game start button (temp)-->
+    <button onclick="this.style.display = 'none'; microgamesSceneSequence()" style="width:100px; height:100px; z-index:100; position:absolute;"></button>
 </body>
 
 
 
+
+
+
+<style>
+    #microgameLibrary
+    {
+        display:none;
+    }
+
+
+    microgame
+    {
+        position:absolute;
+        left:0;
+        top:0;
+        width:100vw;
+        height:100vh;
+
+        z-index:0;
+        /*display:none; Might need to remove this if this overrides some other things :<*/
+    }
+</style>
+
+<!--
+REFER TO AMONG US TASKS FOR IDEAS FOR MICROGAMES (i cant believe im saying this waaaaaa)
+
+Microgame ideas
+        Level 1 games
+            - Make coffee
+            - Spin on an office chair (this isnt work, what)
+            - Spam click to drink a cup of coffee
+            - Make and throw a paper airplane (this isnt work, what)
+            - Water office plants
+            - Mop/sweep the floors
+            - Take out the trash
+        Level 2 games
+            - Sharpen a pencil    
+            - Shred papers
+            - Look busy (spam click) (this isnt work, what)
+            - Put out a fire (??? this one is kinda bad)
+            - Help give a presentation
+            - Get some water from the water cooler
+            - Organize papers to make them even (click in rhythm)
+        Level 3 games
+            - Hire and fire people (hire the ill witted "qualified" people, fire the moral people who made mistakes)
+            - Buy low, sell high
+            - Sign on the dotted line
+            - higher ups decision making
+            - Delete confidential documents (digital)
+        Boss game (floor 20)
+            - final level (corner office, "Boss" fight) (see below)
+-->
+
+<div id="microgameLibrary">
+    <microgame id="MyMicrogame">
+        blah blah microgame assets here. This section will be copied into the body by the functions
+    </microgame>
+</div>
+
+
+
+
+
+
+
 <script src="microgames.js"></script>
-<script defer></script>
+
+
+
+
 
 
 </html>

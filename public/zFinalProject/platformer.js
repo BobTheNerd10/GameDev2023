@@ -45,12 +45,6 @@ async function bossSceneSequence()
 
 
 
-/*
-Things left to work on in this file:
-    -bossUpdate (moving, animations, ai, attacks)
-*/
-
-
 
 
 // For time based things
@@ -372,8 +366,7 @@ function playerUpdate(playerElement)
 }
 
 
-
-
+/*
 
 // Evaluates boss AI?
 function bossUpdate(bossElement) 
@@ -381,6 +374,7 @@ function bossUpdate(bossElement)
 
 }
 
+*/
 
 
 // Will teleport to the other side of the screen (just off screen) when it goes off screen, maintaining the velocity
