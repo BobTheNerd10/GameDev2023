@@ -1,46 +1,43 @@
 // Start the game
 async function microgamesSceneSequence()
 {
-    sounds.buttonPress.play()
+    sounds.buttonPress.play() // Temp
+
+
 
     let elevatorElement = document.querySelector('elevator')
-
-    let timerElement = document.getElementById('timer')
 
     let eventList = 
     [
         // Level 1 games
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
         'promotion 1',
         // Level 2 games
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
         'promotion 1',
         // Level 3 games
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
-        'microgame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
+        'microgame TestMicrogame',
         // Boss
         'end'
-
-
-
     ]
 
-    let gameManagerInstance = new GameManager(elevatorElement, timerElement, eventList)
+    let gameManagerInstance = new GameManager(elevatorElement, eventList)
 
 
     await gameManagerInstance.processEventList()
@@ -99,10 +96,9 @@ let beatLengthInMs = secondsPerBeat * 1000
 
 class GameManager
 {
-    constructor(elevatorDiv, timerElement, eventList = [])
+    constructor(elevatorDiv, eventList = [])
     {
         this.elevatorDiv = elevatorDiv
-        this.timerElement = timerElement
         this.lives = 4
         this.level = 1
         this.score = 0 // 0 = G, 1 = Floor 1, 2 = Floor 2, etc. There is no microgame on floor G
@@ -126,7 +122,7 @@ class GameManager
         while(true)
         {
             let currentEvent = this.eventList[currentEventIndex].split(" ")
-            console.log(currentEvent)
+
             // currentEvent is a list
             // Index 0 is the type of event, every index after it is the parameters for the event (such as the promotion or the microgames)
 
@@ -135,27 +131,24 @@ class GameManager
                 case "microgame":
                     //currentEvent[1] // name of the microgame to get the microgame from the allmicrogames list
                     
-                    //currentMicrogame = AllMicrogames[currentEvent[1]]
+                    let currentMicrogame = AllMicrogames[currentEvent[1]]
 
-                    //currentMicrogame.loadMicrogame()
+                    currentMicrogame.loadMicrogame()
                     this.score += 1
 
                     sounds.jingle.play()
+
                     await sleep(beatLengthInMs * 4)
                     // Play the number increase animation
-
                     // Await for the jingle to be almost over
-
-                    /*
-                    // Display the splashtext
-                    currentMicrogame.splashtext
+                    currentMicrogame.splashtext // Display the splashtext
 
                     // Open the elevator doors
 
-                    //currentMicrogame.microgameStart()
-                    
-                    
-                    //currentTime = currentMicrogame.time
+                    currentMicrogame.microgameStart()
+
+                    let currentTime = currentMicrogame.time
+
 
                     while(currentTime > 0)
                     {
@@ -164,26 +157,27 @@ class GameManager
                         
 
                         // Await 1 beat/time increment
+                        await sleep(beatLengthInMs * 1)
 
                         currentTime--
-
-
                     }
 
                     // timer element reaches 0
                     currentMicrogame.timerUpdate(currentTime) // Should always be 0
 
                     currentMicrogame.microgameEnd()
-                    playerHasWon = currentMicrogame.playerHasWon
+
+                    let playerHasWon = currentMicrogame.playerHasWon
 
                     // Close elevator doors
+                    // Play elevator door closing animation here
+
+                    await sleep(beatLengthInMs * 1)
 
                     currentMicrogame.unloadMicrogame()
                     
 
-                    */
 
-                    let playerHasWon = true // TEMPORARY
                     if(playerHasWon)
                     {
                         sounds.win.play()
@@ -230,9 +224,6 @@ class GameManager
 
                     await sleep(beatLengthInMs * 8)
 
-
-                    // It has coffee in it hehe (maybe not)
-                    // Effectively speeds up the game (maybe not)
                     break
 
 
@@ -245,7 +236,6 @@ class GameManager
                     sounds.levelEndless_intro.play()
                     await sleep(beatLengthInMs * 8)
                     return
-
 
 
                 default:
@@ -279,23 +269,14 @@ Microgames beyond this point   Microgames beyond this point   Microgames beyond 
 */
 
 
-let AllMicrogames = 
-{
-    // "MicrogameName" : new MICROGAMECLASS()
-}
 
-
-
-// Base microgame class (never used in of itself. Only used as a base)
+// Base microgame class (this is just a shell for referring to the html div for the microgame sldkfjsldfkj)
 class Microgame
 {
     constructor(htmlDiv)
     {
         this.htmlDiv = htmlDiv
     }
-
-    time = 7
-    splashtext = "Do the thing!"
     
 
     // Called when the elevator doors are still closed (at the start of the jingle before the microgame)
@@ -310,11 +291,12 @@ class Microgame
     microgameStart()
     {
         // play the microgame's music and do any other microgame initialization
+        this.htmlDiv.querySelector('.music').play()
     }
 
 
     // Called every timer tick. Can be used to sync up stuff in the game with the timer
-    timerUpdate(timerTick = this.time)
+    timerUpdate(timerTick)
     {
 
     }
@@ -322,7 +304,7 @@ class Microgame
     // Called when the timer tick = 0, IE when the bomb explodes in normal wario ware, IE when the game is over and the doors are about to close
     microgameEnd()
     {
-
+        
     }
 
 
@@ -333,10 +315,31 @@ class Microgame
     }
 
 
+    get time()
+    {
+        return 7 // temporary
+    }
+
+
+    get splashtext()
+    {
+        return "LKDSJF" // temporary
+    }
+
+
     // Called when doors are fully closed and the win/lose jinge is playing
     // Hide the microgame's assets and html div
     unloadMicrogame()
     {
 
     }
+}
+
+
+
+
+
+let AllMicrogames = 
+{
+    "TestMicrogame" : new Microgame(document.getElementById("TestMicrogame")),
 }

@@ -24,7 +24,7 @@
         z-index:10;
     }
 
-    #timer 
+    .timer 
     {
         position:absolute;
         z-index:20;
@@ -33,41 +33,13 @@
         width:4vw;
         height:auto;
     }
-</style>
 
-
-<body> 
-    <elevator>
-        <!--
-            The four corners of the screen
-            The bits that fill in the parts between the corners (you KNOW ellis's zooming is gonna screw things up)
-            The elevator doors themselves
-            anything else in the elevator
-                - Lives counter
-                - Floor counter
-                - Elevator buttons
-                - Light on the top of the elevator?
-            The splashtext display
-            The number display
-        -->
-        <img id="timer" src="art/microgames/timer.png">
-        
-    </elevator>
-    
-    <!--Game start button (temp)-->
-    <button onclick="this.style.display = 'none'; microgamesSceneSequence()" style="width:100px; height:100px; z-index:100; position:absolute;"></button>
-</body>
-
-
-
-
-
-
-<style>
-    #microgameLibrary
+    audio 
     {
-        display:none;
+        display: none;
     }
+
+
 
 
     microgame
@@ -79,9 +51,50 @@
         height:100vh;
 
         z-index:0;
-        /*display:none; Might need to remove this if this overrides some other things :<*/
     }
 </style>
+
+
+<body> 
+    <elevator>
+        <!--
+            The four corners of the screen
+            The bits that fill in the parts between the corners (you KNOW ellis's zooming is gonna screw things up)
+            The elevator doors themselves
+            Elevator decor
+                - Elevator buttons
+                - Light on the top of the elevator?
+        -->
+
+        <span class="livesCounter"></span>
+
+        <span class="scoreCounter"></span>
+
+        <span class="splashtext"></span>
+
+        <img class="timer" src="art/microgames/timer.png">
+        <span class="timerText"></span>
+
+        <div class="activeMicrogame"></div>
+        
+    </elevator>
+    
+    <!--Game start button (temp)-->
+    <button onclick="this.style.display = 'none'; microgamesSceneSequence()" style="width:100px; height:100px; z-index:100; position:absolute;">Start</button>
+</body>
+
+
+
+
+
+<div style="display:none;">
+
+    <microgame id="TestMicrogame" splashtext="Do nothing!" time="7">
+        <audio class="music" style="display:none;" src="sound/microgames/TestMicrogame/music.ogg"></audio>
+    </microgame>
+
+</div>
+
 
 <!--
 REFER TO AMONG US TASKS FOR IDEAS FOR MICROGAMES (i cant believe im saying this waaaaaa)
@@ -113,23 +126,8 @@ Microgame ideas
             - final level (corner office, "Boss" fight) (see below)
 -->
 
-<div id="microgameLibrary">
-    <microgame id="MyMicrogame">
-        blah blah microgame assets here. This section will be copied into the body by the functions
-    </microgame>
-</div>
-
-
-
-
-
-
 
 <script src="microgames.js"></script>
-
-
-
-
 
 
 </html>
