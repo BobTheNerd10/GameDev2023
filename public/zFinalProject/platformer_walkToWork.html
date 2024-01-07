@@ -19,10 +19,22 @@
         isGrounded
         width
         height
+        stunTime
         src (for the image sprite)
         cameraFollows (class)
         onUpdate (list of JS functions that's called every frame)   onUpdate = "functionhere; functionhere; functionhere; functionhere"
-        onCollision      onCollision = "functionhere; functionhere arg1 arg2; functionhere"
+            evaluateGravity
+            evaluateFriction
+            evaluateCollisions
+            playerUpdate
+            wrapsAroundScreen
+        onCollision   onCollision = "functionhere; functionhere arg1 arg2; functionhere"
+            hurtCollider
+            physicsCollision
+            flingCollider X Y
+            despawnSelf
+            changePage pageUrl
+
 
     background element attributes:
         x
@@ -32,12 +44,91 @@
         src
 -->
 
+<style>
+    #gameElements *, #backgroundElements * 
+    {
+        position: absolute
+    }
+
+
+    #backgroundElements
+    {
+        z-index:-5
+    }
+</style>
+
+
 <body style="background-color:rgb(221, 255, 255)">
     <div id="backgroundElements">
-
+        <img 
+            src="art/platformer/outside/PlayerBuilding.png"
+            style
+            x="0" y="150" xVelocity="0" yVelocity="0" width="840" height="990"
+        >
+        <img 
+            src="art/platformer/outside/BuildingNear1.png"
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-position: 0px 0px;
+            z-index: -7"
+            x="1000" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="500"
+        >
+        <img 
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-image:url('art/platformer/outside/BuildingNearish2.png');
+            background-position: 0px 0px;
+            z-index: -8"
+            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="600"
+        >
+        <img 
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-image:url('art/platformer/outside/BuildingNearish1.png');
+            background-position: 0px 0px;
+            z-index: -9;"
+            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="700"
+        >
+        <img 
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-image:url('art/platformer/outside/BuildingFar1.png');
+            background-position: 0px 0px;
+            z-index: -9;"
+            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="1000"
+        >
     </div>
     <div id="gameElements">
+        <img src="art/platformer/player.png" 
+            class="cameraFollows" x="700" y="150" xVelocity="0" yVelocity="0" isGrounded="false" width="56" height="106"
+            onUpdate="evaluateGravity; evaluateCollisions; playerUpdate"
+            stunTime = "0"
+        >
+        <img 
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-image:url('art/platformer/outside/groundStreet.png');
+            background-position: 0px 0px;"
+            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="150"
+            onCollision="physicsCollision"
+        >
 
+        <img 
+            x="-100" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="100" height="500"
+            onCollision="physicsCollision"
+        >
+
+        <img src="art/platformer/outside/Car1.png" 
+            class="cameraFollows" x="1000" y="150" xVelocity="2.5" yVelocity="0" isGrounded="false" width="97" height="61"
+            onUpdate="wrapsAroundScreen"
+            onCollision="hurtCollider"
+        >
+        
     </div>
 </body>
 
