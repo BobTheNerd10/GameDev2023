@@ -116,6 +116,13 @@ function addLayerCounteracting(inputLink = "", layersDeep = 0)
 
 const creatorName = "Curtis"
 
+let finalProjectLevels =
+[
+    new Assignment("Level1", "late-for-work",  isShown = true, isWip = true,  isSubmitted = false,  linkOverride = "zFinalProject/index.html"),
+    new Assignment("Level2", "going-up?",      isShown = true, isWip = true,  isSubmitted = false,  linkOverride = "zFinalProject/microgames.html"),
+    new Assignment("Level3", "corner-office",  isShown = true, isWip = true,  isSubmitted = false,  linkOverride = "zFinalProject/platformer_bossFight.html"),
+
+]
 
 let term2Assignments =
 [
@@ -155,10 +162,10 @@ let term1Assignments =
 ]
 
 
-let assignments = term1Assignments.concat(term2Assignments)
+let assignments = term1Assignments.concat(term2Assignments.concat(finalProjectLevels))
 
 let extraClassTodos = [ 
-    'My final project'
+    //'My final project'
     // For stuff that isnt assignments 
 	//'Nov 9 - Researching how to map binary data from a file to a struct',
 	//'Nov 8 - Working On Other Classes'
@@ -214,12 +221,17 @@ let assignmentListElements = document.getElementsByClassName("assignmentList")
 
 for (let assignmentListElement of assignmentListElements)
 {
-    assignmentListElement.innerHTML += "<h3>Term 2</h3>"
+    assignmentListElement.innerHTML += "<h3>Final Project Levels</h3>"
+    for (let assignment of finalProjectLevels)
+    {
+        assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
+    }
+    assignmentListElement.innerHTML += "<hr> <h3>Term 2</h3>"
     for (let assignment of term2Assignments)
     {
         assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything
     }
-    assignmentListElement.innerHTML += "<br> <h3>Term 1</h3>"
+    assignmentListElement.innerHTML += "<hr> <h3>Term 1</h3>"
     for (let assignment of term1Assignments)
     {
         assignmentListElement.innerHTML += assignment.getLinkFormat("assignmentList", layersDeep) ? "<p>" + assignment.getLinkFormat("assignmentList", layersDeep) + "</p>" : "" // If it's null then don't add anything

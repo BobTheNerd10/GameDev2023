@@ -243,8 +243,8 @@ function angleFromPoints(x1, y1,  x2, y2)
 {
     if(x2 == x1 && y2 == y1)
     {
-        console.error("angleFromPoints: Can't calculate the angle from two points of the same position!")
-        return 0
+        // Fail! Can't calculate the angle between the two points
+        return 90 // Should just be up
     }
 
 
@@ -382,8 +382,8 @@ function playerUpdate(playerElement)
     if(!(controls.left == true && controls.right == true)) // As long as left and right arent both pressed at the same time...
     {
         // Apply velocities to the player
-        if(controls.left  == true){ xVelocity += -1 }
-        if(controls.right == true){ xVelocity +=  1 }
+        if(controls.left  == true){ xVelocity += -1; playerElement.style.transform = "scaleX(-1)"}
+        if(controls.right == true){ xVelocity +=  1; playerElement.style.transform = "scaleX(1)" }
     }
 
 
@@ -647,13 +647,26 @@ function despawnSelf(_colliderElement, collidingElement)
 // For changing the page
 async function changePage(_colliderElement, _collidingElement, pageUrl)
 {
+    clearInterval(controlsUpdateLoop)
+    clearInterval(gameUpdateLoop)
+    clearInterval(cameraUpdateLoop)
+
+    sounds.door.play()
+
+    await sleep(1000)
+
+    document.getElementById('silhouette').style.opacity = 1
+    sounds.exitEffect.play()
+
+    await sleep(2000)
+
     window.location.href = pageUrl;
 }
 
 
 // For playing a sound!
 function playSound(_colliderElement, _collidingElement, sound)
-{
+{   
     let soundToPlay = sounds[sound]
     soundToPlay.play()
     //sounds[sound].play()
