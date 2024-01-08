@@ -21,7 +21,7 @@ let cameraUpdateLoop
 async function outsideSceneSequence()
 {
     screenXminimum = 0
-    screenXmaximum = 20000 // temporary
+    screenXmaximum = 8000 + 500 // temporary
     
     controlsSetup()
     controlsUpdateLoop = setInterval(controlsUpdate, 10)
@@ -401,7 +401,6 @@ function wrapsAroundScreen(element)
     height = Number(element.getAttribute('height'))
 
 
-    console.log(x, screenXmaximum)
     if(x + width + 100 < screenXminimum)
     {
         element.setAttribute('x', screenXmaximum + width - 1)// The minus one is so this doesnt try to wrap around the screen every frame. It's a hack but it hopefully won't look bad
@@ -447,11 +446,11 @@ function hurtCollider(colliderElement, collidingElement)
     
     if(xCentre1 > xCentre2)
     {
-        colliderElement.setAttribute('xVelocity', 4)
+        colliderElement.setAttribute('xVelocity', 5)
     }
     else
     {
-        colliderElement.setAttribute('xVelocity', -4)
+        colliderElement.setAttribute('xVelocity', -5)
     }
 
     if(yCentre1 > yCentre2)
@@ -595,6 +594,7 @@ function despawnSelf(_colliderElement, collidingElement)
 
 function changePage(_colliderElement, _collidingElement, pageUrl)
 {
+    console.log(pageUrl)
     window.location.href = pageUrl;
 }
 

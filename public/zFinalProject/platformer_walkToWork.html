@@ -65,42 +65,63 @@
             style
             x="0" y="150" xVelocity="0" yVelocity="0" width="840" height="990"
         >
+
         <img 
-            src="art/platformer/outside/BuildingNear1.png"
+            src="art/platformer/outside/Sign.png"
+            style
+            x="1000" y="150" xVelocity="0" yVelocity="0" width="353" height="130"
+        >
+
+        <img 
+            src="art/platformer/outside/EvilBuilding.png"
+            style
+            x="8000" y="150" xVelocity="0" yVelocity="0" width="1136" height="1647"
+        >
+        <!--<div 
             style="        
             background-repeat: repeat;
             background-size: 1%;
+            background-image:url('art/platformer/outside/BuildingNear1.png');
             background-position: 0px 0px;
             z-index: -7"
-            x="1000" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="500"
-        >
-        <img 
+            x="500" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="500"
+        ></div>-->
+        <div 
             style="        
             background-repeat: repeat;
             background-size: 1%;
             background-image:url('art/platformer/outside/BuildingNearish2.png');
             background-position: 0px 0px;
             z-index: -8"
-            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="600"
-        >
-        <img 
+            x="200" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="600"
+        ></div>
+        <div 
             style="        
             background-repeat: repeat;
             background-size: 1%;
             background-image:url('art/platformer/outside/BuildingNearish1.png');
             background-position: 0px 0px;
             z-index: -9;"
-            x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="700"
-        >
-        <img 
+            x="700" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="700"
+        ></div>
+        <div 
+            style="        
+            background-repeat: repeat;
+            background-size: 1%;
+            background-image:url('art/platformer/outside/BuildingNearish1.png');
+            background-position: 0px 0px;
+            z-index: -9;"
+            x="400" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="700"
+        ></div>
+        <div 
             style="        
             background-repeat: repeat;
             background-size: 1%;
             background-image:url('art/platformer/outside/BuildingFar1.png');
             background-position: 0px 0px;
-            z-index: -9;"
+            z-index: -10;"
             x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="1000"
-        >
+        ></div>
     </div>
     <div id="gameElements">
         <img src="art/platformer/player.png" 
@@ -108,7 +129,7 @@
             onUpdate="evaluateGravity; evaluateCollisions; playerUpdate"
             stunTime = "0"
         >
-        <img 
+        <div 
             style="        
             background-repeat: repeat;
             background-size: 1%;
@@ -116,18 +137,75 @@
             background-position: 0px 0px;"
             x="0" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="80000" height="150"
             onCollision="physicsCollision"
+        ></div>
+
+
+        <!--Left wall-->
+        <div 
+            x="-100" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="100" height="5000"
+            onCollision="physicsCollision"
+        ></div>
+
+        <!--Right wall-->
+        <div 
+            x="8150" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="100" height="5000"
+            onCollision="physicsCollision"
+        ></div>
+
+        <!--Go to microgame section-->
+        <div 
+            x="8115" y="150" xVelocity="0" yVelocity="0" isGrounded="false" width="35" height="80"
+            onCollision="changePage 'microgames.html'"
+        ></div>
+
+
+        <img src="art/platformer/outside/BananaPeel.png" 
+            x="2000" y="145" xVelocity="0" yVelocity="0" isGrounded="false" width="59" height="25"
+            onCollision="hurtCollider; despawnSelf"
         >
 
-        <img 
-            x="-100" y="0" xVelocity="0" yVelocity="0" isGrounded="false" width="100" height="500"
+
+        <img src="art/platformer/outside/WaterSplash.png" 
+            x="2700" y="195" xVelocity="0" yVelocity="0" isGrounded="false" width="78" height="103"
+            onCollision="flingCollider 0 0.2"
+        >
+
+        <img src="art/platformer/outside/FireHydrant.png" 
+            x="2700" y="145" xVelocity="0" yVelocity="0" isGrounded="false" width="70" height="70"
             onCollision="physicsCollision"
         >
 
+
+        
         <img src="art/platformer/outside/Car1.png" 
-            class="cameraFollows" x="1000" y="150" xVelocity="2.5" yVelocity="0" isGrounded="false" width="97" height="61"
-            onUpdate="wrapsAroundScreen"
-            onCollision="hurtCollider"
-        >
+        x="4000" y="145" xVelocity="2.5" yVelocity="0" isGrounded="false" width="97" height="61"
+        onUpdate="wrapsAroundScreen"
+        onCollision="hurtCollider"
+    >
+
+    <img src="art/platformer/outside/Car2.png" 
+        style="-webkit-transform: scaleX(-1);
+        transform: scaleX(-1);"
+        x="3000" y="145" xVelocity="-2.5" yVelocity="0" isGrounded="false" width="97" height="61"
+        onUpdate="wrapsAroundScreen"
+        onCollision="hurtCollider"
+    >
+
+    <img src="art/platformer/outside/Car3.png" 
+        style="-webkit-transform: scaleX(-1);
+        transform: scaleX(-1);"
+        x="7000" y="145" xVelocity="-2.5" yVelocity="0" isGrounded="false" width="97" height="61"
+        onUpdate="wrapsAroundScreen"
+        onCollision="hurtCollider"
+    >
+
+    <img src="art/platformer/outside/Car4.png" 
+        style="-webkit-transform: scaleX(-1);
+        transform: scaleX(-1);"
+        x="7500" y="145" xVelocity="-2.5" yVelocity="0" isGrounded="false" width="97" height="61"
+        onUpdate="wrapsAroundScreen"
+        onCollision="hurtCollider"
+    >
         
     </div>
 </body>
