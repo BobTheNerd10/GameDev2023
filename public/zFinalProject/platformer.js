@@ -5,6 +5,9 @@ let cameraX = 0 // This is the leftmost point of the camera
 // For elements with the 'evalutePhysics' update function
 let gravity = -0.1 // y velocityper tick
 
+let screenXminimum = 0
+let screenXmaximum = 0
+
 let keysDown = []
 let controls = 
 {
@@ -21,12 +24,15 @@ let cameraUpdateLoop
 async function outsideSceneSequence()
 {
     screenXminimum = 0
-    screenXmaximum = 8000 + 500 // temporary
+    screenXmaximum = 6000 + 500 
     
     controlsSetup()
     controlsUpdateLoop = setInterval(controlsUpdate, 10)
     gameUpdateLoop     = setInterval(gameUpdate,     10)
     cameraUpdateLoop   = setInterval(cameraUpdate,   10)
+
+
+    
 }
 
 
@@ -38,6 +44,18 @@ async function bossSceneSequence()
     cameraUpdateLoop   = setInterval(cameraUpdate,   10)
 }
 
+
+
+
+let sounds = 
+{
+    "carhorn"    : new Audio('sound/platformer/carhorn.mp3'),
+    "door"       : new Audio('sound/platformer/door.mp3'),
+    "exitEffect" : new Audio('sound/platformer/exitEffect.mp3'),
+    "jump"       : new Audio('sound/platformer/jump.mp3'),
+    "punch"      : new Audio('sound/platformer/punch.mp3'),
+    "slip"       : new Audio('sound/platformer/slip.mp3'),
+}
 
 
 
@@ -72,7 +90,7 @@ async function gameUpdate()
 
         // Get all of element's update functions and run them as necesarry
         // *Hopefully* update functions won't need arguments? I hope this is good enough!! sldfjskldfj haha
-        updateFunctions = gameElement.getAttribute('onUpdate')
+        updateFunctions = gameElement.getAttribute('updateComponents')
 
         if(updateFunctions == null){continue} // Failsafe in case there are no update functions
 
@@ -220,6 +238,7 @@ function radiansToDegrees(radians)
   return radians * (180/pi);
 }
 
+
 function angleFromPoints(x1, y1,  x2, y2)
 {
     if(x2 == x1 && y2 == y1)
@@ -232,7 +251,6 @@ function angleFromPoints(x1, y1,  x2, y2)
     // Calculate the angle from the reference angle
     if(x2-x1 != 0)
     {
-        //console.log(y2, y1, x2, x1)
         angleFromReferenceAngle = radiansToDegrees(Math.atan( (y2-y1) / (x2-x1) ))
     }
     else
@@ -285,7 +303,7 @@ function evaluateGravity(element)
 }
 
 
-// The element with this evaluates all other elements to see if it's colliding with any of them, and calls their onCollision functions if it is
+// The element with this evaluates all other elements to see if it's colliding with any of them, and calls their collisionComponents functions if it is
 function evaluateCollisions(elementThatChecks) 
 {
     x1       = Number(elementThatChecks.getAttribute('x'))
@@ -311,7 +329,7 @@ function evaluateCollisions(elementThatChecks)
         )
         {
             // Get all of the collider element's collision functions and run them as necesarry
-            collisionFunctions = checkedElement.getAttribute('onCollision')
+            collisionFunctions = checkedElement.getAttribute('collisionComponents')
 
             if(collisionFunctions == null){continue}
 
@@ -372,6 +390,7 @@ function playerUpdate(playerElement)
     if(controls.jump == true && isGrounded == "true"){
         isGrounded = false
         yVelocity += 5
+        sounds.jump.play()
     }
 
     
@@ -407,9 +426,43 @@ function wrapsAroundScreen(element)
     }
     else if(x - 100 > screenXmaximum)
     {
-        console.log("teleporting")
         element.setAttribute('x', screenXminimum - width + 1)// The minus one is so this doesnt try to wrap around the screen every frame. It's a hack but it hopefully won't look bad
     }
+}
+
+
+
+
+// Will teleport to the other side of the screen (just off screen) when it goes off screen, maintaining the velocity
+function flipLoop(element) 
+{
+    flipTick = Number(element.getAttribute('flipTick'))
+
+
+    if(flipTick == 0)
+    {
+        // Invert the transform's scaling to make it flip directions!
+        if(element.style.transform == "scaleX(-1)")
+        {
+            element.style.transform = "scaleX(1)"
+        }
+        else
+        {
+            element.style.transform = "scaleX(-1)"
+        }   
+    }
+
+
+    if(flipTick == null || flipTick == 0)
+    {
+        element.setAttribute('flipTick', 5)
+        return
+    }
+
+    
+
+    // Decrease the flipTick by one
+    element.setAttribute('flipTick', flipTick - 1)
 }
 
 
@@ -591,14 +644,19 @@ function despawnSelf(_colliderElement, collidingElement)
 }
 
 
-
-function changePage(_colliderElement, _collidingElement, pageUrl)
+// For changing the page
+async function changePage(_colliderElement, _collidingElement, pageUrl)
 {
-    console.log(pageUrl)
     window.location.href = pageUrl;
 }
 
 
-
+// For playing a sound!
+function playSound(_colliderElement, _collidingElement, sound)
+{
+    let soundToPlay = sounds[sound]
+    soundToPlay.play()
+    //sounds[sound].play()
+}
 
 
