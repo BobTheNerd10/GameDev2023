@@ -34,6 +34,7 @@ async function outsideSceneSequence()
     music.loop = true;
     
     
+    // Wait until the game starts
     while(gameStarted == false)
     {
         await sleep(10)

@@ -9,21 +9,7 @@
 </head>
 
 
-
-
-
 <style>
-    elevator
-    {
-        position:absolute;
-        left:0;
-        top:0;
-        width:100vw;
-        height:100vh;
-
-        z-index:10;
-    }
-
     .timer 
     {
         position:absolute;
@@ -33,13 +19,6 @@
         width:4vw;
         height:auto;
     }
-
-    audio 
-    {
-        display: none;
-    }
-
-
 
 
     microgame
@@ -52,11 +31,138 @@
 
         z-index:0;
     }
+
+
+
+    .elevator
+    {
+        --horiz-margin:25%;
+        --vertic-margin:25%;
+        
+        position:relative;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+
+        z-index:10;
+    }
+
+    .CornerUL,
+    .CornerUR,
+    .CornerDL,
+    .CornerDR 
+    {
+        position: absolute;
+        width: var(--horiz-margin);
+        height: var(--vertic-margin);
+    }
+
+    .ElevatorFront
+    {
+        position:absolute;
+        
+        top: var(--vertic-margin);
+        height:calc(100% - var(--vertic-margin) * 2);
+
+        left: var(--horiz-margin);
+        width:calc(100% - var(--horiz-margin) * 2);
+    }
+
+    .CornerUL 
+    {  
+        left:0;
+        top:0;
+    }
+
+    .CornerUR
+    {
+        right:0;
+        top:0;
+        transform:scaleX(-1);
+    }
+
+    .CornerDL
+    {
+        bottom:0;
+        left:0;
+    }
+
+    .CornerDR
+    {
+        bottom:0;
+        right:0;
+        transform:scaleX(-1);
+    }
+
+    .LeftCover,
+    .RightCover,
+    .UpCover,
+    .DownCover
+    {
+        position:absolute;
+    }
+
+    .LeftCover 
+    {
+        left:0;
+        top: var(--vertic-margin);
+        height: calc(100% - var(--vertic-margin) * 2);
+        width:24.5%;
+        background-color: rgb(188, 188, 188);
+    }
+
+    .RightCover 
+    {
+        right:0;
+        top: var(--vertic-margin);
+        height: calc(100% - var(--vertic-margin) * 2);
+        width:24.5%;
+        background-color: rgb(188, 188, 188);
+    }
+
+    .UpCover 
+    {
+        left:var(--horiz-margin);
+        top:0;
+        height: var(--vertic-margin);
+        width: calc(100% - var(--horiz-margin) * 2);
+        background-color: rgb(99, 99, 99);
+    }
+
+    .DownCover 
+    {
+        left:var(--horiz-margin);
+        bottom:0;
+        height: var(--vertic-margin);
+        width: calc(100% - var(--horiz-margin) * 2);
+        background-color: rgb(216, 216, 216);
+    }
+
 </style>
 
 
-<body> 
-    <elevator>
+<body style="position:absolute; width:100%; height:100%; top:0; left:0;"> 
+    <div class="activeMicrogame"></div>
+
+
+    <div class="elevator">
+        <div class="LeftCover"></div>
+        <div class="RightCover"></div>
+        <div class="UpCover"></div>
+        <div class="DownCover"></div>
+
+        <img class="CornerUL" src="art/microgames/CornerUpper.png">
+        <img class="CornerUR" src="art/microgames/CornerUpper.png">
+        <img class="CornerDL" src="art/microgames/CornerLower.png">
+        <img class="CornerDR" src="art/microgames/CornerLower.png">
+
+        <img class="ElevatorFront" src="art/microgames/ElevatorFront.png">
+
+        
+
+
+
         <!--
             The four corners of the screen
             The bits that fill in the parts between the corners (you KNOW ellis's zooming is gonna screw things up)
@@ -73,11 +179,11 @@
         <span class="splashtext"></span>
 
         <img class="timer" src="art/microgames/timer.png">
-        <span class="timerText"></span>
-
-        <div class="activeMicrogame"></div>
+        <span class="timerText"></span>       
         
-    </elevator>
+    </div>
+
+    
     
     <!--Game start button (temp)-->
     <button onclick="this.style.display = 'none'; microgamesSceneSequence()" style="width:100px; height:100px; z-index:100; position:absolute;">Start</button>
