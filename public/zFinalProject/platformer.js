@@ -20,16 +20,33 @@ let controlsUpdateLoop
 let gameUpdateLoop
 let cameraUpdateLoop
 
+let gameStarted = false
 
 async function outsideSceneSequence()
 {
     screenXminimum = 0
     screenXmaximum = 6000 + 500 
+
+    cameraUpdateLoop   = setInterval(cameraUpdate, 10)
+    
+    music = new Audio('sound/platformer/lateForWork.mp3')
+    music.volume = 0.5
+    music.loop = true;
+    
+    
+    while(gameStarted == false)
+    {
+        await sleep(10)
+    }
+
+    music.play()
+
+    
     
     controlsSetup()
     controlsUpdateLoop = setInterval(controlsUpdate, 10)
     gameUpdateLoop     = setInterval(gameUpdate,     10)
-    cameraUpdateLoop   = setInterval(cameraUpdate,   10)
+    
 
 
     
@@ -655,10 +672,16 @@ async function changePage(_colliderElement, _collidingElement, pageUrl)
 
     await sleep(1000)
 
-    document.getElementById('silhouette').style.opacity = 1
+    silhouette = document.getElementById('silhouette')
+
+    silhouette.style.opacity = 1
+
+    silhouette.classList.add('zoomer');
+    
+    
     sounds.exitEffect.play()
 
-    await sleep(2000)
+    await sleep(3500)
 
     window.location.href = pageUrl;
 }
